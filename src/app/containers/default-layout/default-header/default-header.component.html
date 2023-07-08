@@ -1,0 +1,57 @@
+<!--<c-header class="mb-4 d-print-none" position="sticky">-->
+<ng-container>
+  <c-container [fluid]="true">
+    <button
+      toggle="visible"
+      cHeaderToggler
+      [cSidebarToggle]="sidebarId"
+      class="ps-1"
+    >
+      <iconify icon="mdi:menu" size="md" />
+    </button>
+
+    <c-header-nav class="ms-3 align-items-center">
+      {{user.email}}
+      <ng-container *ngTemplateOutlet="userDropdown"></ng-container>
+    </c-header-nav>
+
+  </c-container>
+</ng-container>
+<!--</c-header>-->
+
+<ng-template #userDropdown>
+  <c-dropdown alignment="end" variant="nav-item">
+    <button
+      cButton
+      color=""
+      [caret]="false"
+      cDropdownToggle
+      class="py-0"
+    >
+      <iconify icon="mdi:user" size="md" />
+    </button>
+    <ul cDropdownMenu class="pt-0 pr-5 w-auto">
+      <li>
+        <h6 cDropdownHeader class="bg-light fw-semibold py-2">{{getName()}}</h6>
+      </li>
+      <li></li>
+      <li>
+        <a routerLink="./" cDropdownItem>
+          <iconify icon="mdi:user" />
+          Profile
+        </a>
+      </li>
+      <li>
+        <hr cDropdownDivider/>
+      </li>
+      <li>
+        <a routerLink="./" cDropdownItem>
+          <iconify icon="mdi:logout" />
+          Logout
+        </a>
+      </li>
+      <li></li>
+    </ul>
+  </c-dropdown>
+</ng-template>
+

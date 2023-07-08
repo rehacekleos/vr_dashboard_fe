@@ -1,0 +1,31 @@
+import { Component, Input, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+
+import { ClassToggleService, HeaderComponent } from '@coreui/angular';
+import { User } from "../../../models/user.model";
+import { AuthService } from "../../../auth/auth.service";
+
+@Component({
+  selector: 'app-default-header',
+  templateUrl: './default-header.component.html',
+})
+export class DefaultHeaderComponent extends HeaderComponent implements OnInit{
+
+  @Input() sidebarId: string = "sidebar";
+
+  user: User = null;
+
+  constructor(private authService: AuthService) {
+    super();
+  }
+
+  ngOnInit(): void {
+    this.authService.$user.subscribe(user => {
+      this.user = user;
+    })
+  }
+
+  getName(){
+    return `${this.user.name} ${this.user.surname}`
+  }
+}
