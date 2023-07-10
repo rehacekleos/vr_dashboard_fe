@@ -10,7 +10,7 @@ import {
   CardGroupComponent,
   ColComponent,
   ContainerComponent,
-  FormControlDirective, FormDirective, FormFeedbackComponent, FormModule, InputGroupComponent, InputGroupTextDirective, RowComponent
+  FormControlDirective, FormDirective, FormFeedbackComponent, FormModule, GutterDirective, InputGroupComponent, InputGroupTextDirective, RowComponent
 } from "@coreui/angular";
 import { IconDirective } from "@coreui/icons-angular";
 import { RouterLink } from "@angular/router";
@@ -46,7 +46,8 @@ import { FormsModule } from "@angular/forms";
     FormsModule,
     FormModule,
     FormFeedbackComponent,
-    AlertComponent
+    AlertComponent,
+    GutterDirective
   ]
 })
 export class AuthModule { }

@@ -35,7 +35,7 @@
         <h6 cDropdownHeader class="bg-light fw-semibold py-2">{{getName()}}</h6>
       </li>
       <li></li>
-      <li>
+      <li class="mt-2">
         <a routerLink="./" cDropdownItem>
           <iconify icon="mdi:user" />
           Profile
@@ -45,12 +45,11 @@
         <hr cDropdownDivider/>
       </li>
       <li>
-        <a routerLink="./" cDropdownItem>
+        <a (click)="logout()" class="pointer" cDropdownItem>
           <iconify icon="mdi:logout" />
           Logout
         </a>
       </li>
-      <li></li>
     </ul>
   </c-dropdown>
 </ng-template>

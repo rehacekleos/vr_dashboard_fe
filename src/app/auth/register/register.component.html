@@ -4,34 +4,86 @@
       <c-col lg="7" md="9" xl="6">
         <c-card class="mx-4">
           <c-card-body class="p-4">
-            <form cForm>
+            <form
+              #registerForm="ngForm"
+              novalidate
+              [validated]="validated"
+              (ngSubmit)="onSubmit(registerForm)"
+              cForm>
               <h1>Register</h1>
               <p class="text-medium-emphasis">Create your account</p>
-              <c-input-group class="mb-3">
+              <c-input-group class="mb-3 has-validation">
                 <span cInputGroupText>
                   <iconify [icon]="'mdi:user'" />
                 </span>
-                <input autoComplete="given-name" cFormControl placeholder="Name" />
-                <input autoComplete="family-name" cFormControl placeholder="Surname" />
+                <input
+                  required
+                  name="name"
+                  #name="ngModel"
+                  ngModel
+                  autoComplete="given-name"
+                  cFormControl
+                  placeholder="Name" />
+                <input
+                  required
+                  name="surname"
+                  #surname="ngModel"
+                  ngModel
+                  autoComplete="family-name"
+                  cFormControl
+                  placeholder="Surname" />
+                <c-form-feedback class="" *ngIf="(!name.valid || !surname.valid)" [valid]="false">
+                  <span class="me-2" *ngIf="!name.valid">Name is required!</span>
+                  <span *ngIf="!surname.valid">Surname is required!</span>
+                </c-form-feedback>
               </c-input-group>
-              <c-input-group class="mb-3">
+              <c-input-group class="mb-3 has-validation" >
                 <span cInputGroupText class=""><strong>@</strong></span>
-                <input autoComplete="email" type="email" cFormControl placeholder="Email" />
+                <input
+                  required
+                  ngModel
+                  name="email"
+                  autoComplete="email"
+                  type="email"
+                  email
+                  cFormControl
+                  placeholder="Email" />
+                <c-form-feedback [valid]="false">Wrong email format!</c-form-feedback>
               </c-input-group>
-              <c-input-group class="mb-3">
+              <c-input-group class="mb-3 has-validation">
                 <span cInputGroupText>
                   <iconify [icon]="'mdi:lock'" />
                 </span>
-                <input autoComplete="new-password" cFormControl placeholder="Password" type="password" />
+                <input
+                  required
+                  minlength="6"
+                  ngModel
+                  name="password"
+                  autoComplete="new-password"
+                  cFormControl
+                  placeholder="Password"
+                  #password="ngModel"
+                  type="password" />
+                <c-form-feedback [valid]="false">The password must have at least 6 letters!</c-form-feedback>
               </c-input-group>
-              <c-input-group class="mb-4">
+              <c-input-group class="mb-3 has-validation">
                 <span cInputGroupText>
                   <iconify [icon]="'mdi:lock'" />
                 </span>
-                <input autoComplete="new-password" cFormControl placeholder="Repeat password" type="password" />
+                <input
+                  required
+                  minlength="6"
+                  ngModel
+                  name="rePassword"
+                  autoComplete="new-password"
+                  cFormControl
+                  placeholder="Repeat password"
+                  #rePassword="ngModel"
+                  type="password" />
+                <c-form-feedback  [valid]="password.value == rePassword.value">The passwords must match!</c-form-feedback>
               </c-input-group>
               <div class="d-grid">
-                <button cButton color="success">Create Account</button>
+                <button cButton color="success" type="submit">Create Account</button>
               </div>
               <div class="d-grid pt-4">
                 <button cButton class="px-0" color="link" routerLink="/auth/login">

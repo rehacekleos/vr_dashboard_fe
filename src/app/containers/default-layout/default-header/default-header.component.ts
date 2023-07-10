@@ -28,4 +28,8 @@ export class DefaultHeaderComponent extends HeaderComponent implements OnInit{
   getName(){
     return `${this.user.name} ${this.user.surname}`
   }
+
+  async logout() {
+    await this.authService.logout();
+  }
 }

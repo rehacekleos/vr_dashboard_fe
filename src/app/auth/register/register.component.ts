@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { AuthService } from "../auth.service";
+import { NgForm } from "@angular/forms";
+import { RegisterUser } from "../../models/auth.model";
 
 @Component({
   selector: 'app-register',
@@ -6,5 +9,27 @@ import { Component } from '@angular/core';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent {
+  validated = false;
 
+  constructor(private authService: AuthService) {
+  }
+
+  async onSubmit(loginForm: NgForm) {
+    this.validated = true;
+    if (loginForm.valid) {
+      try {
+        const newUser: RegisterUser = {
+          email: loginForm.form.controls['email'].value,
+          name: loginForm.form.controls['name'].value,
+          surname: loginForm.form.controls['surname'].value,
+          password: loginForm.form.controls['password'].value,
+          rePassword: loginForm.form.controls['rePassword'].value,
+        }
+
+        await this.authService.register(newUser);
+      } catch (e) {
+        this.validated = false;
+      }
+    }
+  }
 }
