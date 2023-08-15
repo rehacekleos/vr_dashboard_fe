@@ -28,7 +28,8 @@ export class LoginComponent {
         await this.authService.login(login);
       } catch (e: any) {
         this.validated = false;
-        this.error = e.message;
+        console.log(e)
+        this.error = e.error.message;
       }
     }
   }

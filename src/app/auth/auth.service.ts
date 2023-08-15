@@ -22,7 +22,6 @@ export class AuthService extends HttpService{
     const res = await firstValueFrom(this.http.post<AuthResponse>(this.createUrl('/login'), login));
     this.$user.next(res.user)
     await this.router.navigate(['']);
-    // throw new Error("Wrong email or password!")
   }
 
   async logout() {
