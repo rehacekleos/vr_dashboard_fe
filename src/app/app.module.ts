@@ -11,39 +11,29 @@ import { AppRoutingModule } from './app-routing.module';
 
 // Import app component
 import { AppComponent } from './app.component';
-
-// Import containers
-import { DefaultFooterComponent, DefaultHeaderComponent, DefaultLayoutComponent } from './containers';
-
+import { DefaultHeaderComponent, DefaultLayoutComponent } from "./containers";
 import {
-  AvatarModule,
-  BadgeModule,
-  BreadcrumbModule,
-  ButtonGroupModule,
-  ButtonModule,
-  CardModule,
+  AvatarModule, BadgeModule,
+  BreadcrumbModule, ButtonGroupModule,
+  ButtonModule, CardModule,
   DropdownModule,
-  FooterModule,
-  FormModule,
+  FooterModule, FormModule,
   GridModule,
-  HeaderModule,
-  ListGroupModule,
-  NavModule,
-  ProgressModule,
-  SharedModule,
-  SidebarModule,
-  TabsModule,
-  UtilitiesModule
-} from '@coreui/angular';
-
-import { IconModule, IconSetService } from '@coreui/icons-angular';
+  HeaderModule, ListGroupModule,
+  NavModule, ProgressModule, SharedModule,
+  SidebarModule, TabsModule, UtilitiesModule
+} from "@coreui/angular";
+import { IconModule, IconSetService } from "@coreui/icons-angular";
 import { ComponentsModule } from "./components/components.module";
-import { DocsComponentsModule } from "@docs-components/docs-components.module";
-import { HttpClientModule } from "@angular/common/http";
+import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
+import { AuthGuard } from "./guards/auth.guard";
+import { OrganisationsGuard } from "./guards/organisations.guard";
+import { AuthInterceptor } from "./interceptors/auth.interceptor";
+
+
 
 @NgModule({
   declarations: [AppComponent,
-    DefaultFooterComponent,
     DefaultHeaderComponent,
     DefaultLayoutComponent],
   imports: [
@@ -75,17 +65,19 @@ import { HttpClientModule } from "@angular/common/http";
     CardModule,
     NgScrollbarModule,
     ComponentsModule,
-    DocsComponentsModule,
     FormsModule,
     HttpClientModule
   ],
   providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
     {
       provide: LocationStrategy,
       useClass: HashLocationStrategy
     },
     IconSetService,
-    Title
+    Title,
+    AuthGuard,
+    OrganisationsGuard
   ],
   exports: [
   ],
