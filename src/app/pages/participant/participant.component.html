@@ -1,0 +1,37 @@
+<c-container>
+  <c-row>
+    <div class="d-flex flex-row align-items-center justify-content-between mb-2">
+      <h2 class="m-0">Participants</h2>
+      <button class="btn btn-primary btn-sm" (click)="modalVisibleChange(true)"><iconify icon="mdi:add" />Add participant</button>
+    </div>
+
+    <c-col>
+      <c-card>
+        <c-card-body>
+          <table cTable>
+            <thead>
+            <tr>
+              <th>Nickname</th>
+              <th>Name</th>
+              <th>Surname</th>
+              <th>Age</th>
+              <th>Notes</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let part of participants">
+              <td>{{part.nickname}}</td>
+              <td>{{part.name || ''}}</td>
+              <td>{{part.nickname || ''}}</td>
+              <td>{{part.birthday || ''}}</td>
+              <td>{{part.description || ''}}</td>
+            </tr>
+            </tbody>
+          </table>
+        </c-card-body>
+      </c-card>
+    </c-col>
+  </c-row>
+</c-container>
+
+<app-new-participant-modal [open]="openModal" (visibleChanged)="modalVisibleChange($event)"/>

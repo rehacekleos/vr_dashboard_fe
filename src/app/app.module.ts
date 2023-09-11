@@ -21,7 +21,7 @@ import {
   GridModule,
   HeaderModule, ListGroupModule,
   NavModule, ProgressModule, SharedModule,
-  SidebarModule, TabsModule, UtilitiesModule
+  SidebarModule, TabsModule, TooltipDirective, UtilitiesModule
 } from "@coreui/angular";
 import { IconModule, IconSetService } from "@coreui/icons-angular";
 import { ComponentsModule } from "./components/components.module";
@@ -29,6 +29,9 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
 import { AuthGuard } from "./guards/auth.guard";
 import { OrganisationsGuard } from "./guards/organisations.guard";
 import { AuthInterceptor } from "./interceptors/auth.interceptor";
+import { CustomToastrService } from "./shared/services/custom-toastr.service";
+import { ToastrModule } from "ngx-toastr";
+import { ErrorInterceptor } from "./interceptors/error.interceptor";
 
 
 
@@ -66,10 +69,13 @@ import { AuthInterceptor } from "./interceptors/auth.interceptor";
     NgScrollbarModule,
     ComponentsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    TooltipDirective,
+    ToastrModule.forRoot(),
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
     {
       provide: LocationStrategy,
       useClass: HashLocationStrategy

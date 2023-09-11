@@ -1,0 +1,43 @@
+<c-container>
+  <div class="mb-3">
+    <h2>{{organisation.name}}</h2>
+    <span class="h5">Code | <span class="text-muted">{{organisation.code}}</span> <iconify (click)="copyCode()" class="ms-2 pointer h-75"
+                                                                                           icon="zondicons:copy"/></span>
+  </div>
+
+  <c-row>
+    <div class="d-flex flex-row align-items-center justify-content-between mb-2">
+      <h5 class="m-0">Employees</h5>
+      <button class="btn btn-primary btn-sm"><iconify icon="mdi:add" />Invite employee</button>
+    </div>
+
+    <c-col>
+      <c-card>
+        <c-card-body>
+          <table cTable>
+            <thead>
+            <tr>
+              <th>Email</th>
+              <th>Name</th>
+              <th>Surname</th>
+              <th>Role</th>
+              <th>Participants</th>
+            </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let emp of employees">
+                <td>{{emp.user.email}}</td>
+                <td>{{emp.user.name}}</td>
+                <td>{{emp.user.surname}}</td>
+                <td>{{emp.role.name}}</td>
+                <td>{{emp.participantIds.length}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </c-card-body>
+      </c-card>
+    </c-col>
+  </c-row>
+
+
+</c-container>

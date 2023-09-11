@@ -10,7 +10,7 @@ import {
     CardComponent,
     ColComponent,
     ContainerComponent,
-    FormControlDirective, FormDirective, FormFeedbackComponent, InputGroupComponent, InputGroupTextDirective,
+    FormControlDirective, FormDirective, FormFeedbackComponent, GutterDirective, InputGroupComponent, InputGroupTextDirective,
     RowComponent
 } from "@coreui/angular";
 import { ComponentsModule } from "../components/components.module";
@@ -35,7 +35,8 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
         FormsModule,
         InputGroupComponent,
         InputGroupTextDirective,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        GutterDirective
     ]
 })
 export class PagesModule { }

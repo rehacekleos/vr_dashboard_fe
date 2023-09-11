@@ -1,1 +1,14 @@
-<p>dashboard works!</p>
+<c-row class="mb-3" [gutter]="3">
+  <c-col [xs]="12" [sm]="6" [lg]="3" >
+    <app-widget [title]="'Applications'" [value]="organisation.applicationIds.length" icon="cil-gamepad"></app-widget>
+  </c-col>
+  <c-col [xs]="12" [sm]="6" [lg]="3">
+    <app-widget [title]="'Employees'" [value]="0" icon="mdi-user"></app-widget>
+  </c-col>
+  <c-col [xs]="12" [sm]="6" [lg]="3">
+    <app-widget [title]="'Participants'" [value]="0" icon="mdi:user-outline"></app-widget>
+  </c-col>
+  <c-col [xs]="12" [sm]="6" [lg]="3">
+    <app-widget [title]="'Activities'" [value]="0" icon="cil:bolt"></app-widget>
+  </c-col>
+</c-row>

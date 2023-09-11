@@ -1,0 +1,13 @@
+<c-container>
+  <c-row>
+    <div class="d-flex flex-row align-items-center justify-content-between mb-2">
+      <h2 class="m-0">Applications</h2>
+      <button class="btn btn-primary btn-sm"><iconify icon="mdi:add" />Add application</button>
+    </div>
+  </c-row>
+  <c-row>
+    <c-col [xs]="12" [sm]="6" [lg]="3" *ngFor="let app of applications">
+      <app-application-widget [application]="app" />
+    </c-col>
+  </c-row>
+</c-container>

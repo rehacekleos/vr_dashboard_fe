@@ -1,0 +1,13 @@
+<c-container>
+  <c-row>
+    <div class="d-flex flex-row align-items-center justify-content-between mb-2">
+      <h2 class="m-0">Activities</h2>
+      <button class="btn btn-primary btn-sm" (click)="modalVisibleChange(true)"><iconify icon="mdi:add" />Add activity</button>
+    </div>
+  </c-row>
+  <c-row>
+
+  </c-row>
+</c-container>
+
+<app-new-activity-modal [open]="openModal" (visibleChanged)="modalVisibleChange($event)" />

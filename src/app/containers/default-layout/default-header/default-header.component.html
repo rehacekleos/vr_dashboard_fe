@@ -11,7 +11,10 @@
     </button>
 
     <c-header-nav class="ms-3 align-items-center">
-      {{user.email}}
+      <div class="me-2">
+        <iconify [icon]="'cil-institution'" />
+        {{organisation.name}}
+      </div>
       <ng-container *ngTemplateOutlet="userDropdown"></ng-container>
     </c-header-nav>
 
@@ -20,7 +23,7 @@
 <!--</c-header>-->
 
 <ng-template #userDropdown>
-  <c-dropdown alignment="end" variant="nav-item">
+  <c-dropdown [cTooltip]="user.email" cTooltipPlacement="left" alignment="end" variant="nav-item">
     <button
       cButton
       color=""

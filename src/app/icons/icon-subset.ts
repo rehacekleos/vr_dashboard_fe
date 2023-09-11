@@ -89,7 +89,7 @@ import {
   cilUserFollow,
   cilUserUnfollow,
   cilGamepad,
-  cilInstitution
+  cilInstitution, cilBolt
 } from '@coreui/icons';
 
 export const iconSubset = {
@@ -120,6 +120,7 @@ export const iconSubset = {
   cilBasket,
   cilBell,
   cilBold,
+  cilBolt,
   cilBookmark,
   cilCalculator,
   cilCalendar,

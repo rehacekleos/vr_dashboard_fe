@@ -1,0 +1,33 @@
+<c-container>
+  <div class="d-flex flex-row align-items-center justify-content-between mb-2">
+    <h2 class="m-0">Participant</h2>
+    <button class="btn btn-light btn-sm" (click)="goToEdit()"><iconify icon="ic:round-edit" />Edit</button>
+  </div>
+  <c-card *ngIf="participant">
+    <c-card-body>
+      <c-row>
+        <c-col [xs]="2">
+          <img class="w-100" alt="Profile photo" cImg rounded [src]="getProfileImage()" />
+        </c-col>
+        <c-col [xs]="10">
+          <h5>Basic Information</h5>
+          <c-row>
+            <c-col xs="auto"  class="me-5">
+
+              <p class="m-0"><span class="fw-bolder">Nickname | </span>{{participant.nickname}}</p>
+              <p class="m-0"><span class="fw-bolder">Name | </span>{{participant.name}}</p>
+              <p class="m-0"><span class="fw-bolder">Surname | </span>{{participant.surname}}</p>
+              <p class="m-0"><span class="fw-bolder">Age | </span>{{getAge(participant.birthday)}}</p>
+              <p class="m-0"><span class="fw-bolder">Gender | </span><span class="text-capitalize">{{participant.sex}}</span></p>
+            </c-col>
+            <c-col xs>
+              <p class="m-0 fw-bolder">Notes</p>
+              <p class="m-0 font-monospace small">{{participant.description}}</p>
+            </c-col>
+          </c-row>
+
+        </c-col>
+      </c-row>
+    </c-card-body>
+  </c-card>
+</c-container>

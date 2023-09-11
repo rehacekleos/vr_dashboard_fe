@@ -9,6 +9,7 @@ export class IconifyComponent implements OnInit{
 
   @Input() icon: string;
   @Input() size: 'xs' | 'sm' | 'md' | 'lg' = 'sm';
+  @Input() customSize: number;
 
   styles: string;
 
@@ -26,7 +27,10 @@ export class IconifyComponent implements OnInit{
       default:
         this.styles = "font-size: 28px;"
         break;
+    }
 
+    if (this.customSize){
+      this.styles = `font-size: ${this.customSize}px;`
     }
 
   }

@@ -12,6 +12,22 @@ const routes: Routes = [
       {
         path: 'dashboard',
         component: DashboardComponent
+      },
+      {
+        path: 'organisation',
+        loadChildren: () => import('./organisation/organisation.module').then((m) => m.OrganisationModule)
+      },
+      {
+        path: 'participant',
+        loadChildren: () => import('./participant/participant.module').then((m) => m.ParticipantModule)
+      },
+      {
+        path: 'application',
+        loadChildren: () => import('./application/application.module').then((m) => m.ApplicationModule)
+      },
+      {
+        path: 'activity',
+        loadChildren: () => import('./activity/activity.module').then((m) => m.ActivityModule)
       }
     ]
   }

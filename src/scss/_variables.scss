@@ -8,8 +8,8 @@
 
 @import "@coreui/coreui/scss/coreui";
 
- $white:     #fff;
- $gray-base: #3c4b64;
+$white: #fff;
+$gray-base: #3c4b64;
 // $gray-100:  #ebedef;
 // $gray-200:  #d8dbe0;
 // $gray-300:  #c4c9d0;
@@ -64,35 +64,35 @@
 // );
 // scss-docs-end colors-map
 
- $primary-dark:  #00296D;
- $primary:       #0065BD;
- $primary-50:    #5EB8EB;
- $primary-25:    #C9EEFB;
+$primary-dark: #00296D;
+$primary: #0065BD;
+$primary-50: #5EB8EB;
+$primary-25: #C9EEFB;
 
- $secondary-dark:  #212233;
- $secondary:       #9da5b1;
- $secondary-50:    #9da5b1;
- $secondary-25:    #ced2d8;
+$secondary-dark: #212233;
+$secondary: #9da5b1;
+$secondary-50: #9da5b1;
+$secondary-25: #ced2d8;
 
- $success-dark:  #0B6B15;
- $success:       #37BA23;
- $success-50:    #96dbad;
- $success-25:    #E4FBD2;
+$success-dark: #0B6B15;
+$success: #37BA23;
+$success-50: #96dbad;
+$success-25: #E4FBD2;
 
- $info-dark:  #003583;
- $info:       #0084E2;
- $info-50:    #62C9F6;
- $info-25:    #CAF4FD;
+$info-dark: #003583;
+$info: #0084E2;
+$info-50: #62C9F6;
+$info-25: #CAF4FD;
 
- $warning-dark:  #835801;
- $warning:       #E2AB04;
- $warning-50:    #F6D965;
- $warning-25:    #FDF6CB;
+$warning-dark: #835801;
+$warning: #E2AB04;
+$warning-50: #F6D965;
+$warning-25: #FDF6CB;
 
- $danger-dark:  #62061A;
- $danger:       #AA1914;
- $danger-50:    #E5846C;
- $danger-25:    #FADECE;
+$danger-dark: #62061A;
+$danger: #AA1914;
+$danger-50: #E5846C;
+$danger-25: #FADECE;
 
 // $light-dark:     $gray-100;
 // $light:          $gray-100;
@@ -118,13 +118,13 @@
 // scss-docs-end theme-colors-map
 
 // Text colors
- $high-emphasis-dark:    rgba(shift-color($gray-base, +26), .87);
- $medium-emphasis-dark:  rgba(shift-color($gray-base, +26), .6);
- $disabled-dark:         rgba(shift-color($gray-base, +26), .38);
+$high-emphasis-dark: rgba(shift-color($gray-base, +26), .87);
+$medium-emphasis-dark: rgba(shift-color($gray-base, +26), .6);
+$disabled-dark: rgba(shift-color($gray-base, +26), .38);
 
- $high-emphasis-light:    rgba($white, .87);
- $medium-emphasis-light:  rgba($white, .6);
- $disabled-light:         rgba($white, .38);
+$high-emphasis-light: rgba($white, .87);
+$medium-emphasis-light: rgba($white, .6);
+$disabled-light: rgba($white, .38);
 
 // The contrast ratio to reach against white, to determine if color changes from "light" to "dark". Acceptable values for WCAG 2.0 are 3, 4.5 and 7.
 // See https://www.w3.org/TR/WCAG20/#visual-audio-contrast-contrast
@@ -251,7 +251,7 @@
 
 // $enable-caret:                true;
 // $enable-rounded:              true;
- $enable-shadows:              false;
+$enable-shadows: false;
 // $enable-gradients:            false;
 // $enable-transitions:          true;
 // $enable-reduced-motion:       true;
@@ -441,7 +441,7 @@
 // Font, line-height, and color for body text, headings, and more.
 
 // stylelint-disable value-keyword-case
-// $font-family-sans-serif:      system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+$font-family-sans-serif: "Public Sans", sans-serif;
 // $font-family-monospace:       SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 // stylelint-enable value-keyword-case
 // $font-family-base:            var(--#{$variable-prefix}font-sans-serif);
@@ -1093,7 +1093,7 @@
 // $card-spacer-x:                     $spacer;
 // $card-title-spacer-y:               $spacer / 2;
 // $card-border-width:                 $border-width;
-$card-border-width:                 0;
+$card-border-width: 0;
 // $card-border-radius:                $border-radius;
 // $card-border-color:                 rgba($black, .125);
 // $card-inner-border-radius:          subtract($card-border-radius, $card-border-width);
@@ -1526,7 +1526,7 @@ $card-border-width:                 0;
 // scss-docs-end carousel-variables
 
 // scss-docs-start sidebar-variables
-// $sidebar-width:                            16rem;
+ $sidebar-width:                            14rem;
 // $sidebar-widths: (
 //   sm: 12rem,
 //   lg: 20rem,
@@ -1535,9 +1535,9 @@ $card-border-width:                 0;
 // $sidebar-padding-y:                        0;
 // $sidebar-padding-x:                        0;
 // $sidebar-color:                            $high-emphasis-light;
- $sidebar-color:                            $high-emphasis-dark;
+$sidebar-color: $high-emphasis-dark;
 // $sidebar-bg:                               $gray-base;
- $sidebar-bg:                               #FFF;
+$sidebar-bg: #FFF;
 // $sidebar-border-width:                     0;
 // $sidebar-border-color:                     transparent;
 // $sidebar-transition:                       margin-left .15s, margin-right .15s, box-shadow .075s, transform .15s, width .15s, z-index 0s ease .15s;
@@ -1546,7 +1546,7 @@ $card-border-width:                 0;
 // $sidebar-brand-height:                     4rem;
 // $sidebar-brand-color:                      $high-emphasis-light;
 // $sidebar-brand-bg:                         rgba($black, .2);
- $sidebar-brand-bg:                         $primary;
+$sidebar-brand-bg: $primary;
 
 // $sidebar-header-height:                    4rem;
 // $sidebar-header-padding-y:                 .75rem;
@@ -1564,31 +1564,31 @@ $card-border-width:                 0;
 // $sidebar-nav-title-padding-x:              1rem;
 // $sidebar-nav-title-margin-top:             1rem;
 // $sidebar-nav-title-color:                  $medium-emphasis-light;
-$sidebar-nav-title-color:                  $gray-800;
+$sidebar-nav-title-color: $gray-800;
 // $sidebar-nav-title-transition:             height .15s, margin .15s;
 
 // $sidebar-nav-link-padding-y:               .8445rem;
 // $sidebar-nav-link-padding-x:               1rem;
 // $sidebar-nav-link-color:                   $medium-emphasis-light;
- $sidebar-nav-link-color:                   $medium-emphasis-dark;
+$sidebar-nav-link-color: $medium-emphasis-dark;
 // $sidebar-nav-link-bg:                      transparent;
 // $sidebar-nav-link-transition:              background .15s ease, color .15s ease;
 // $sidebar-nav-link-icon-color:              $medium-emphasis-light;
- $sidebar-nav-link-icon-color:              $medium-emphasis-dark;
+$sidebar-nav-link-icon-color: $medium-emphasis-dark;
 
 // $sidebar-nav-link-hover-color:             $high-emphasis-light;
- $sidebar-nav-link-hover-color:             $high-emphasis-dark;
+$sidebar-nav-link-hover-color: $high-emphasis-dark;
 // $sidebar-nav-link-hover-bg:                rgba($white, .05);
- $sidebar-nav-link-hover-bg:                rgba($gray-base, .15);
+$sidebar-nav-link-hover-bg: rgba($gray-base, .15);
 // $sidebar-nav-link-hover-icon-color:        $high-emphasis-light;
- $sidebar-nav-link-hover-icon-color:        $high-emphasis-dark;
+$sidebar-nav-link-hover-icon-color: $high-emphasis-dark;
 
 // $sidebar-nav-link-active-color:            $high-emphasis-light;
- $sidebar-nav-link-active-color:            $high-emphasis-dark;
+$sidebar-nav-link-active-color: $high-emphasis-dark;
 // $sidebar-nav-link-active-bg:               rgba($white, .05);
- $sidebar-nav-link-active-bg:               rgba($gray-base, .15);
+$sidebar-nav-link-active-bg: rgba($gray-base, .15);
 // $sidebar-nav-link-active-icon-color:       $high-emphasis-light;
- $sidebar-nav-link-active-icon-color:       $high-emphasis-dark;
+$sidebar-nav-link-active-icon-color: $high-emphasis-dark;
 
 // $sidebar-nav-link-disabled-color:          $disabled-light;
 // $sidebar-nav-link-disabled-icon-color:     $sidebar-nav-link-icon-color;
@@ -1598,16 +1598,16 @@ $sidebar-nav-title-color:                  $gray-800;
 // $sidebar-nav-icon-font-size:               $sidebar-nav-icon-height;
 
 // $sidebar-nav-group-bg:                     rgba(0, 0, 0, .2);
- $sidebar-nav-group-bg:                     $white;
+$sidebar-nav-group-bg: $white;
 // $sidebar-nav-group-transition:             background .15s ease-in-out;
 // $sidebar-nav-group-items-transition:       height .15s ease;
 // $sidebar-nav-group-toggle-show-color:      $sidebar-nav-link-color;
- $sidebar-nav-group-toggle-show-color:      $high-emphasis-dark;
+$sidebar-nav-group-toggle-show-color: $high-emphasis-dark;
 
 // $sidebar-nav-group-indicator-color:        $medium-emphasis-light;
- $sidebar-nav-group-indicator-color:        $medium-emphasis-dark;
+$sidebar-nav-group-indicator-color: $medium-emphasis-dark;
 // $sidebar-nav-group-indicator:              str-replace(url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 11 14'%3E%3Cpath fill='#{$sidebar-nav-group-indicator-color}' d='M9.148 2.352l-4.148 4.148 4.148 4.148q0.148 0.148 0.148 0.352t-0.148 0.352l-1.297 1.297q-0.148 0.148-0.352 0.148t-0.352-0.148l-5.797-5.797q-0.148-0.148-0.148-0.352t0.148-0.352l5.797-5.797q0.148-0.148 0.352-0.148t0.352 0.148l1.297 1.297q0.148 0.148 0.148 0.352t-0.148 0.352z'/%3E%3C/svg%3E"), "#", "%23");
- $sidebar-nav-group-indicator-hover-color:  $medium-emphasis-dark;
+$sidebar-nav-group-indicator-hover-color: $medium-emphasis-dark;
 // $sidebar-nav-group-indicator-hover:        str-replace(url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 11 14'%3E%3Cpath fill='#{$sidebar-nav-group-indicator-hover-color}' d='M9.148 2.352l-4.148 4.148 4.148 4.148q0.148 0.148 0.148 0.352t-0.148 0.352l-1.297 1.297q-0.148 0.148-0.352 0.148t-0.352-0.148l-5.797-5.797q-0.148-0.148-0.148-0.352t0.148-0.352l5.797-5.797q0.148-0.148 0.352-0.148t0.352 0.148l1.297 1.297q0.148 0.148 0.148 0.352t-0.148 0.352z'/%3E%3C/svg%3E"), "#", "%23");
 // $sidebar-nav-group-indicator-transition:   transform .15s;
 
@@ -1619,18 +1619,18 @@ $sidebar-nav-title-color:                  $gray-800;
 
 // $sidebar-toggler-height:                   3rem;
 // $sidebar-toggler-bg:                       rgba($black, .2);
- $sidebar-toggler-bg:                       $primary;
+$sidebar-toggler-bg: $primary;
 // $sidebar-toggler-transition:               transform .15s;
 
 // $sidebar-toggler-indicator-width:          4rem;
 // $sidebar-toggler-indicator-height:         3rem;
 // $sidebar-toggler-indicator-color:          $gray-600;
- $sidebar-toggler-indicator-color:          $white;
+$sidebar-toggler-indicator-color: $white;
 // $sidebar-toggler-indicator:                str-replace(url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 11 14'%3E%3Cpath fill='#{$sidebar-toggler-indicator-color}' d='M9.148 2.352l-4.148 4.148 4.148 4.148q0.148 0.148 0.148 0.352t-0.148 0.352l-1.297 1.297q-0.148 0.148-0.352 0.148t-0.352-0.148l-5.797-5.797q-0.148-0.148-0.148-0.352t0.148-0.352l5.797-5.797q0.148-0.148 0.352-0.148t0.352 0.148l1.297 1.297q0.148 0.148 0.148 0.352t-0.148 0.352z'/%3E%3C/svg%3E"), "#", "%23");
 // $sidebar-toggler-hover-bg:                 rgba(0, 0, 0, .3);
-$sidebar-toggler-hover-bg:                 $primary;
+$sidebar-toggler-hover-bg: $primary;
 // $sidebar-toggler-hover-indicator-color:    $sidebar-nav-link-hover-color;
-$sidebar-toggler-hover-indicator-color:    $white;
+$sidebar-toggler-hover-indicator-color: $white;
 // $sidebar-toggler-hover-indicator:          str-replace(url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 11 14'%3E%3Cpath fill='#{$sidebar-toggler-hover-indicator-color}' d='M9.148 2.352l-4.148 4.148 4.148 4.148q0.148 0.148 0.148 0.352t-0.148 0.352l-1.297 1.297q-0.148 0.148-0.352 0.148t-0.352-0.148l-5.797-5.797q-0.148-0.148-0.148-0.352t0.148-0.352l5.797-5.797q0.148-0.148 0.352-0.148t0.352 0.148l1.297 1.297q0.148 0.148 0.148 0.352t-0.148 0.352z'/%3E%3C/svg%3E"), "#", "%23");
 // scss-docs-end sidebar-variables
 

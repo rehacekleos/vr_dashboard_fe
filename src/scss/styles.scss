@@ -22,5 +22,10 @@ $enable-rtl: true;
 // Prism.js
 @import "examples";
 
+@import 'ngx-toastr/toastr';
+@import 'ngx-toastr/toastr-bs5-alert';
+
 // If you want to add something do it here
 @import "custom";
+
+
