@@ -1,0 +1,19 @@
+<c-modal size="lg" alignment="center" [scrollable]="true" [visible]="open" (visibleChange)="visibleChange($event)">
+
+  <c-modal-header>
+    <h5 cModalTitle>
+      <iconify size="lg" icon="cil-gamepad"/>
+      Add Application
+    </h5>
+    <button (click)="visibleChange(false)" cButtonClose></button>
+  </c-modal-header>
+  <c-modal-body>
+    <app-application-form *ngIf="open" [newApplication]="newApplication" [submit]="submitForm" (onSubmitForm)="onSubmitForm($event)"  />
+  </c-modal-body>
+  <c-modal-footer>
+    <button (click)="visibleChange(false)" cButton color="secondary">
+      Close
+    </button>
+    <button cButton color="primary" (click)="onSubmit()">Add</button>
+  </c-modal-footer>
+</c-modal>

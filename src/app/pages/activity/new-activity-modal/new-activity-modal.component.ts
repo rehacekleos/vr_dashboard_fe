@@ -18,7 +18,7 @@ export class NewActivityModalComponent {
     data: "",
     anonymous: false,
     notes: "",
-    applicationId: ""
+    applicationId: null
   }
 
   @Input() open: boolean;

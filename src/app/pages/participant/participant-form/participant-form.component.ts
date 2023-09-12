@@ -18,6 +18,7 @@ export class ParticipantFormComponent implements OnInit{
   @Input() newParticipant: NewParticipant;
   @Output() onSubmitForm: EventEmitter<NewParticipant> = new EventEmitter<NewParticipant>();
 
+
   ngOnInit(): void {
     this.submit?.subscribe(() => {
       this.form.ngSubmit.emit(true);

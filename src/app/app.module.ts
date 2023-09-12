@@ -32,6 +32,7 @@ import { AuthInterceptor } from "./interceptors/auth.interceptor";
 import { CustomToastrService } from "./shared/services/custom-toastr.service";
 import { ToastrModule } from "ngx-toastr";
 import { ErrorInterceptor } from "./interceptors/error.interceptor";
+import { OrganisationInterceptor } from "./interceptors/organisation.interceptor";
 
 
 
@@ -75,6 +76,7 @@ import { ErrorInterceptor } from "./interceptors/error.interceptor";
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: OrganisationInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
     {
       provide: LocationStrategy,

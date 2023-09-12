@@ -1,10 +1,12 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { NgForm } from "@angular/forms";
-import { Subject } from "rxjs";
-import { NewParticipant } from "../../../models/participant.model";
+import { filter, Subject } from "rxjs";
+import { NewParticipant, Participant } from "../../../models/participant.model";
 import dayjs from "dayjs";
 import { NewActivity } from "../../../models/activity.model";
 import { Application } from "../../../models/application.model";
+import { ParticipantService } from "../../../shared/services/app/participant.service";
+import { ApplicationService } from "../../../shared/services/app/application.service";
 
 @Component({
   selector: 'app-activity-form',
@@ -15,19 +17,44 @@ export class ActivityFormComponent implements OnInit{
 
   validated = false;
   applications: Application[];
+  participants: Participant[];
+
+  file: File;
 
   @ViewChild('newActivityForm') form: NgForm;
   @Input() submit: Subject<any>;
   @Input() newActivity: NewActivity;
   @Output() onSubmitForm: EventEmitter<NewActivity> = new EventEmitter<NewActivity>();
 
+  constructor(private participantService: ParticipantService,
+              private applicationService: ApplicationService) {
+  }
+
   ngOnInit(): void {
     this.submit?.subscribe(() => {
       this.form.ngSubmit.emit(true);
     })
+    this.participantService.$participants.subscribe(p => {
+      if (p){
+        this.participants = p;
+        if (!this.newActivity.participantId){
+          this.newActivity.participantId = p[0]?.id;
+        }
+      }
+    })
+
+    this.applicationService.$applications.subscribe(a => {
+      if (a){
+        this.applications = a;
+        if (!this.newActivity.applicationId){
+          this.newActivity.applicationId = a[0]?.id
+        }
+      }
+    })
   }
 
   async onSubmit(form: NgForm) {
+    console.log(this.newActivity, this.file);
     this.validated = true;
     if (form.valid) {
       try {
@@ -44,6 +71,10 @@ export class ActivityFormComponent implements OnInit{
         this.validated = false;
       }
     }
+  }
+
+  onFileSelected($event){
+    this.file = $event.target.files[0];
   }
 
   getTimeMax() {

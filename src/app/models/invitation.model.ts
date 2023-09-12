@@ -1,21 +1,19 @@
-import { Role } from "./role.model";
+import { Role, RoleNames } from "./role.model";
 
 export class Invitation{
     id: string;
     organisationId: string;
-    userId: string;
-    role: Role;
+    email: string;
+    role: RoleNames;
     code: string;
     time: string;
 }
 
 export class AcceptInvitation{
-    userId: string;
     code: string;
 }
 
 export class NewInvitation{
-    organisationId: string;
-    userId: string;
-    role: Role;
+    email: string;
+    role: string;
 }

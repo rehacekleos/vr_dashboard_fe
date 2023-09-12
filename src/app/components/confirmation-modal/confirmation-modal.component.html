@@ -1,0 +1,17 @@
+<c-modal size="lg" alignment="center" [scrollable]="true" [visible]="open" (visibleChange)="visibleChange($event)">
+  <c-modal-header>
+    <h5 cModalTitle>
+      {{title}}
+    </h5>
+    <button (click)="visibleChange(false)" cButtonClose></button>
+  </c-modal-header>
+  <c-modal-body>
+    {{message}}
+  </c-modal-body>
+  <c-modal-footer class="justify-content-between">
+    <button (click)="visibleChange(false)" cButton color="secondary">
+      Cancel
+    </button>
+    <button cButton [color]="color" (click)="onSubmit()">{{confirmButtonText}}</button>
+  </c-modal-footer>
+</c-modal>

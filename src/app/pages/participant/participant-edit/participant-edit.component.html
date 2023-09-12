@@ -1,4 +1,4 @@
-<c-container>
+<c-container *ngIf="participant">
   <div class="d-flex flex-row align-items-center justify-content-between mb-2">
     <h2 class="m-0">Edit Participant</h2>
   </div>
@@ -8,23 +8,34 @@
         <c-card-body class="text-center h-100">
           <h5>Profile photo</h5>
           <img class="w-75 img-fluid" alt="Profile photo" cImg rounded [src]="getProfileImage()"/>
-          <button class="btn btn-secondary mt-2">Change</button>
+          <c-row class="justify-content-center">
+            <button class="btn btn-secondary mt-2 w-auto">Change</button>
+          </c-row>
         </c-card-body>
         <c-card-footer class="text-center bg-white">
-          <button class="btn btn-danger mt-auto">Delete Participant</button>
+          <button class="btn btn-danger mt-auto" (click)="openConfirmModal()" >Delete Participant</button>
         </c-card-footer>
       </c-card>
     </c-col>
     <c-col [xs]="8">
       <c-card class="h-100">
         <c-card-body>
-          <app-participant-form [newParticipant]="participant"></app-participant-form>
+          <app-participant-form [newParticipant]="participant" [submit]="submitForm" (onSubmitForm)="onSubmitForm($event)"></app-participant-form>
         </c-card-body>
         <c-card-footer class="d-flex justify-content-between bg-white">
           <button class="btn btn-secondary" (click)="cancel()">Cancel</button>
-          <button class="btn btn-primary">Save Changes</button>
+          <button class="btn btn-primary" (click)="onSaveButtonClick()" >Save Changes</button>
         </c-card-footer>
       </c-card>
     </c-col>
   </c-row>
+
+  <app-confirmation-modal
+    [open]="deleteModalOpen"
+    [title]="'Delete Participant'"
+    [message]="getDeleteMessage()"
+    [confirmButtonText]="'Delete'"
+    (confirm)="deleteParticipant()"
+    (cancel)="closeConfirmModal()"
+    [color]="'danger'"/>
 </c-container>

@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Participant } from "../../../models/participant.model";
 import { DomSanitizer } from "@angular/platform-browser";
 import dayjs from "dayjs";
 import duration from "dayjs/plugin/duration";
-import { Router } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
+import { ParticipantService } from "../../../shared/services/app/participant.service";
 
 dayjs.extend(duration)
 
@@ -12,21 +13,20 @@ dayjs.extend(duration)
   templateUrl: './participant-detail.component.html',
   styleUrls: ['./participant-detail.component.scss']
 })
-export class ParticipantDetailComponent {
+export class ParticipantDetailComponent implements OnInit{
 
-  participant: Participant = {
-    nickname: "rehacleo",
-    id: "1",
-    organisationId: "",
-    birthday: "1996-09-16",
-    name: "Leoš",
-    surname: "Řeháček",
-    sex: "men",
-    description: `adasdasdaad \n adasdasdaad \n adasdasdaad \n adasdasdaad \n adasdasdaad \n adasdasdaad \n asdasdasd \n asdadasd asddsadasd dsa das d sa dsa d sa d as das dsa d asd a asdasd sad as  sad das d ads sa dd asd asad `
-  }
+  participant: Participant
 
   constructor(private _sanitizer: DomSanitizer,
+              private route: ActivatedRoute,
+              private participantService: ParticipantService,
               private router: Router) {
+  }
+
+  ngOnInit(): void {
+    this.route.params.subscribe(async p => {
+      this.participant = await this.participantService.getParticipant(p.id)
+    })
   }
 
 
@@ -38,6 +38,9 @@ export class ParticipantDetailComponent {
   }
 
   getAge(birthday: string) {
+    if (birthday === ""){
+      return ""
+    }
     const date = dayjs(birthday);
     return dayjs().diff(date, 'year')
   }
@@ -45,4 +48,5 @@ export class ParticipantDetailComponent {
   async goToEdit() {
     await this.router.navigate(['participant', this.participant.id, 'edit'])
   }
+
 }

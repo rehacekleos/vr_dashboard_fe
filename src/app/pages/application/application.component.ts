@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Application } from "../../models/application.model";
+import { ApplicationService } from "../../shared/services/app/application.service";
 
 @Component({
   selector: 'app-application',
@@ -8,22 +9,24 @@ import { Application } from "../../models/application.model";
 })
 export class ApplicationComponent implements OnInit{
 
-  applications: Application[] = [
-    {
-      name: "test",
-      code: "dsadsad",
-      id: "1",
-      setting: {},
-      organisationId: ""
-    }
-  ];
+  applications: Application[]
+  openModal = false;
 
-  constructor() {
+  constructor(private applicationService: ApplicationService) {
   }
 
   ngOnInit(): void {
+    this.applicationService.$applications.subscribe(a => {
+      this.applications = a;
+    })
   }
 
 
+  invisibleChanged($event: boolean) {
+    this.openModal = $event;
+  }
 
+  onOpenModal() {
+    this.openModal = true;
+  }
 }

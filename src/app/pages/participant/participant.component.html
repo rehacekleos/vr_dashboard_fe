@@ -11,6 +11,7 @@
           <table cTable>
             <thead>
             <tr>
+              <th></th>
               <th>Nickname</th>
               <th>Name</th>
               <th>Surname</th>
@@ -20,10 +21,11 @@
             </thead>
             <tbody>
             <tr *ngFor="let part of participants">
+              <td><iconify class="text-primary pointer" icon="bxs:detail" (click)="goToDetail(part.id)"/></td>
               <td>{{part.nickname}}</td>
               <td>{{part.name || ''}}</td>
-              <td>{{part.nickname || ''}}</td>
-              <td>{{part.birthday || ''}}</td>
+              <td>{{part.surname || ''}}</td>
+              <td>{{getAge(part.birthday)}}</td>
               <td>{{part.description || ''}}</td>
             </tr>
             </tbody>
@@ -32,6 +34,7 @@
       </c-card>
     </c-col>
   </c-row>
+
 </c-container>
 
 <app-new-participant-modal [open]="openModal" (visibleChanged)="modalVisibleChange($event)"/>

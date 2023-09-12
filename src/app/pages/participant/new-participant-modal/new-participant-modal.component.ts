@@ -4,6 +4,8 @@ import { RegisterUser } from "../../../models/auth.model";
 import { NewParticipant } from "../../../models/participant.model";
 import dayjs from "dayjs";
 import { Subject } from "rxjs";
+import { ParticipantService } from "../../../shared/services/app/participant.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-new-participant-modal',
@@ -13,6 +15,7 @@ import { Subject } from "rxjs";
 export class NewParticipantModalComponent {
 
   submitForm: Subject<any> = new Subject<any>()
+  error: string;
 
   newParticipant: NewParticipant = {
     nickname: "",
@@ -26,6 +29,10 @@ export class NewParticipantModalComponent {
   @Input() open: boolean;
   @Output() visibleChanged: EventEmitter<boolean> = new EventEmitter<boolean>();
 
+  constructor(private participantService: ParticipantService,
+              private router: Router) {
+  }
+
 
   visibleChange($event: boolean) {
     this.visibleChanged.emit($event);
@@ -36,7 +43,13 @@ export class NewParticipantModalComponent {
   }
 
 
-  onSubmitForm($event: NewParticipant) {
-    console.log($event);
+  async onSubmitForm($event: NewParticipant) {
+    try {
+      const participant = await this.participantService.createParticipant($event);
+      this.visibleChanged.emit(false);
+      await this.router.navigate(['/participant', participant.id]);
+    } catch (e){
+      this.error = e.error.message;
+    }
   }
 }

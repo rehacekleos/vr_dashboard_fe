@@ -3,10 +3,11 @@
     <c-row class="justify-content-center text-center">
       <h2>You don't have any organisations</h2>
       <c-col class="col-md-6 col-12 mb-2 mb-md-0">
-        <c-card class="align-items-center p-4">
+        <c-card class="align-items-center p-4 h-100">
           <h4>Create organisation</h4>
           <form #createForm="ngForm"
                 cForm
+                class="h-100 d-flex flex-column"
                 [validated]="createValidated"
                 (ngSubmit)="onCreateSubmit(createForm)">
             <div class="mb-2">
@@ -24,17 +25,18 @@
                 <c-alert class="py-2" color="danger">{{createError}}</c-alert>
               </c-col>
             </c-row>
-            <c-row>
+            <c-row class="mt-auto">
               <button class="btn btn-primary" type="submit">Create</button>
             </c-row>
           </form>
         </c-card>
       </c-col>
       <c-col class="col-md-6 col-12">
-        <c-card class="align-items-center p-4">
+        <c-card class="align-items-center p-4 h-100">
           <h4>Join to organisation</h4>
           <form #joinForm="ngForm"
                 cForm
+                class="h-100 d-flex flex-column"
                 [validated]="joinValidated"
                 (ngSubmit)="onJoinSubmit(joinForm)">
             <div class="mb-2">
@@ -52,7 +54,7 @@
                 <c-alert class="py-2" color="danger">{{joinError}}</c-alert>
               </c-col>
             </c-row>
-            <c-row>
+            <c-row class="mt-auto">
               <button class="btn btn-primary" type="submit">Join</button>
             </c-row>
           </form>

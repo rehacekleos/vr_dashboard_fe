@@ -7,6 +7,7 @@ import { User } from "../../models/user.model";
 import { AuthService } from "../../auth/auth.service";
 import { OrganisationService } from "../../shared/services/app/organisation.service";
 import { Router } from "@angular/router";
+import { InvitationService } from "../../shared/services/app/invitation.service";
 
 @Component({
   selector: 'app-no-organisation',
@@ -23,7 +24,10 @@ export class NoOrganisationComponent implements OnInit{
 
   user: User;
 
-  constructor(private authService: AuthService, private orgService: OrganisationService, private router: Router) {
+  constructor(private authService: AuthService,
+              private orgService: OrganisationService,
+              private invitationService: InvitationService,
+              private router: Router) {
   }
 
   ngOnInit(): void {
@@ -40,7 +44,7 @@ export class NoOrganisationComponent implements OnInit{
 
       try {
         await this.orgService.createOrganisation(newOrg);
-        await this.router.navigate([''])
+        await this.router.navigate(['']);
       } catch (e: any) {
         this.createValidated = false;
         console.log(e)
@@ -52,17 +56,14 @@ export class NoOrganisationComponent implements OnInit{
   async onJoinSubmit(form: NgForm) {
     this.joinValidated = true;
     if (form.valid) {
-      const user = this.authService.getCurrentUser();
       const join: AcceptInvitation = {
         code: form.form.controls['code'].value,
-        userId: user.id
       }
-
       try {
-
+        await this.invitationService.acceptInvitation(join);
+        await this.router.navigate(['']);
       } catch (e: any) {
         this.joinValidated = false;
-        console.log(e)
         this.joinError = e.error.message;
       }
     }

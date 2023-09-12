@@ -4,22 +4,29 @@ import { CommonModule } from '@angular/common';
 import { OrganisationRoutingModule } from './organisation-routing.module';
 import { OrganisationComponent } from './organisation.component';
 import {
+  AlertComponent,
+  ButtonCloseDirective, ButtonDirective,
   CardBodyComponent,
   CardComponent,
   ColComponent,
-  ContainerComponent,
-  GutterDirective,
+  ContainerComponent, FormCheckComponent, FormCheckInputDirective, FormControlDirective, FormDirective, FormFeedbackComponent, FormSelectDirective,
+  GutterDirective, InputGroupComponent, ModalBodyComponent, ModalComponent, ModalFooterComponent, ModalHeaderComponent, ModalTitleDirective,
   RowComponent,
-  TableDirective,
+  TableDirective, TooltipDirective,
   WidgetStatCComponent
 } from "@coreui/angular";
 import { ComponentsModule } from "../../components/components.module";
 import { ClipboardModule } from "@angular/cdk/clipboard";
+import { NewInvitationModalComponent } from './invitation/new-invitation-modal/new-invitation-modal.component';
+import { NewInvitationFormComponent } from './invitation/new-invitation-form/new-invitation-form.component';
+import { FormsModule } from "@angular/forms";
 
 
 @NgModule({
   declarations: [
-    OrganisationComponent
+    OrganisationComponent,
+    NewInvitationModalComponent,
+    NewInvitationFormComponent
   ],
   imports: [
     CommonModule,
@@ -33,7 +40,24 @@ import { ClipboardModule } from "@angular/cdk/clipboard";
     ColComponent,
     TableDirective,
     CardComponent,
-    CardBodyComponent
+    CardBodyComponent,
+    ButtonCloseDirective,
+    ButtonDirective,
+    ModalBodyComponent,
+    ModalComponent,
+    ModalFooterComponent,
+    ModalHeaderComponent,
+    ModalTitleDirective,
+    FormCheckComponent,
+    FormCheckInputDirective,
+    FormControlDirective,
+    FormDirective,
+    FormSelectDirective,
+    FormsModule,
+    InputGroupComponent,
+    FormFeedbackComponent,
+    AlertComponent,
+    TooltipDirective
   ]
 })
 export class OrganisationModule { }

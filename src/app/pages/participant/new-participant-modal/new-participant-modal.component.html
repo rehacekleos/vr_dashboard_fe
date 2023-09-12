@@ -8,7 +8,8 @@
     <button (click)="visibleChange(false)" cButtonClose></button>
   </c-modal-header>
   <c-modal-body>
-    <app-participant-form [newParticipant]="newParticipant" [submit]="submitForm" (onSubmitForm)="onSubmitForm($event)"/>
+    <app-participant-form *ngIf="open" [newParticipant]="newParticipant" [submit]="submitForm" (onSubmitForm)="onSubmitForm($event)"/>
+    <c-alert *ngIf="error" color="danger">{{error}}</c-alert>
   </c-modal-body>
   <c-modal-footer>
     <button (click)="visibleChange(false)" cButton color="secondary">

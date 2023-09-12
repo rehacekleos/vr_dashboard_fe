@@ -15,6 +15,7 @@ import {
 } from "@coreui/angular";
 import { ComponentsModule } from "../components/components.module";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { NgxSkeletonLoaderModule } from "ngx-skeleton-loader";
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
         InputGroupComponent,
         InputGroupTextDirective,
         ReactiveFormsModule,
-        GutterDirective
+        GutterDirective,
+        NgxSkeletonLoaderModule
     ]
 })
 export class PagesModule { }
