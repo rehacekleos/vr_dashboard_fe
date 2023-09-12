@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Organisation } from "../../models/organisation.model";
-import { OrganisationService } from "../../shared/services/organisation.service";
+import { OrganisationService } from "../../shared/services/app/organisation.service";
 
 @Component({
   selector: 'app-dashboard',

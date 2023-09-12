@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Organisation } from "../../models/organisation.model";
-import { OrganisationService } from "../../shared/services/organisation.service";
+import { OrganisationService } from "../../shared/services/app/organisation.service";
 import { Clipboard } from "@angular/cdk/clipboard";
 import { CustomToastrService } from "../../shared/services/custom-toastr.service";
 import { Employee } from "../../models/employee.model";

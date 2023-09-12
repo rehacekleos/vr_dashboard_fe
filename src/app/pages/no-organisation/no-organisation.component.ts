@@ -5,7 +5,7 @@ import { NewOrganisation } from "../../models/organisation.model";
 import { AcceptInvitation } from "../../models/invitation.model";
 import { User } from "../../models/user.model";
 import { AuthService } from "../../auth/auth.service";
-import { OrganisationService } from "../../shared/services/organisation.service";
+import { OrganisationService } from "../../shared/services/app/organisation.service";
 import { Router } from "@angular/router";
 
 @Component({

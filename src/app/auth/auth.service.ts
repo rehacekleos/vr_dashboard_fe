@@ -5,7 +5,7 @@ import { HttpClient, HttpClientModule } from "@angular/common/http";
 import { Router } from "@angular/router";
 import { HttpService } from "../shared/services/http.service";
 import { AuthResponse, LoginUser, RegisterUser } from "../models/auth.model";
-import { OrganisationService } from "../shared/services/organisation.service";
+import { OrganisationService } from "../shared/services/app/organisation.service";
 import { SessionStorageUtil } from "../shared/utils/sessionStorageUtil";
 
 @Injectable({

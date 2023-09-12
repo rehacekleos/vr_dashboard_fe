@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from "@angular/router";
 import { AuthService } from "../auth/auth.service";
-import { OrganisationService } from "../shared/services/organisation.service";
+import { OrganisationService } from "../shared/services/app/organisation.service";
 
 @Injectable()
 export class OrganisationsGuard implements CanActivate {

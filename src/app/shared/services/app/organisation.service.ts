@@ -1,8 +1,8 @@
-import { HttpService } from "./http.service";
+import { HttpService } from "../http.service";
 import { BehaviorSubject, firstValueFrom } from "rxjs";
-import { AuthResponse } from "../../models/auth.model";
+import { AuthResponse } from "../../../models/auth.model";
 import { HttpClient } from "@angular/common/http";
-import { NewOrganisation, Organisation } from "../../models/organisation.model";
+import { NewOrganisation, Organisation } from "../../../models/organisation.model";
 import { Injectable } from "@angular/core";
 
 @Injectable({

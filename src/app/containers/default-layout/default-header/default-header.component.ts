@@ -5,7 +5,7 @@ import { ClassToggleService, HeaderComponent } from '@coreui/angular';
 import { User } from "../../../models/user.model";
 import { AuthService } from "../../../auth/auth.service";
 import { Organisation } from "../../../models/organisation.model";
-import { OrganisationService } from "../../../shared/services/organisation.service";
+import { OrganisationService } from "../../../shared/services/app/organisation.service";
 
 @Component({
   selector: 'app-default-header',
