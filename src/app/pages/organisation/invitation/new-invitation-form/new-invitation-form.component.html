@@ -4,7 +4,7 @@
   [validated]="validated"
   (ngSubmit)="onSubmit(newInvitationForm)"
   cForm>
-  <label>Email</label>
+  <label>{{Translations.email | translation | titlecase}}</label>
   <c-input-group class="mb-2 has-validation">
     <input
       name="email"
@@ -12,12 +12,12 @@
       cFormControl
       email
       type="email"
-      placeholder="Email"
+      [placeholder]="Translations.email | translation | titlecase"
       required
     />
-    <c-form-feedback [valid]="false">Wrong email format!</c-form-feedback>
+    <c-form-feedback [valid]="false">{{Translations.inputErrors.email | translation}}</c-form-feedback>
   </c-input-group>
-  <label>Role</label>
+  <label>{{Translations.role | translation | titlecase}}</label>
   <c-input-group class="mb-2 has-validation">
     <select
       [ngModel]="newInvitation.role"
@@ -26,6 +26,6 @@
       cSelect>
       <option *ngFor="let role of roles" [value]="role">{{role}}</option>
     </select>
-    <c-form-feedback [valid]="false">Role is required!</c-form-feedback>
+    <c-form-feedback [valid]="false">{{Translations.inputErrors.role | translation}}</c-form-feedback>
   </c-input-group>
 </form>

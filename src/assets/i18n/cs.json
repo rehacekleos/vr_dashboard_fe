@@ -1,0 +1,136 @@
+{
+  "dashboard": "přehled",
+  "activity": "aktivita",
+  "activities": "aktivity",
+  "participant": "participant",
+  "participants": "participanti",
+  "application": "aplikace",
+  "applications": "aplikace",
+  "organisation": "organizace",
+  "organisationName": "Jméno organizace",
+  "organisations": "organizace",
+  "invitation": "Pozvánka",
+  "invitationCode": "Kód pozvánky",
+  "invitations": "Pozvánky",
+  "employee": "zaměstnanec",
+  "employees": "zaměstnanci",
+  "code": "kód",
+  "role": "role",
+  "valid": "validní",
+  "actions": "akce",
+  "createdAt": "vytvořeno",
+  "time": "čas",
+  "file": "soubor",
+  "anonymous": "anonym",
+  "statistics": "statistiky",
+
+  "Actions": {
+    "select": "vybrat",
+    "detail": "detail",
+    "add": "přidat",
+    "close": "zavřít",
+    "edit": "upravit",
+    "change": "změnit",
+    "cancel": "zrušit",
+    "save": "uložit",
+    "delete": "odstranit",
+    "create": "vytvořit",
+    "join": "připojit se",
+    "refresh": "obnovit",
+    "invite": "pozvat"
+  },
+
+  "createOrJoinOrganisation": "Vytvořit nebo připojit se k organizaci",
+  "noOrganisation": "Nemáte žádné organizace.",
+  "joinOrganisation": "Připojit se k organizaci",
+  "inviteEmployee": "Pozvat zaměstnance",
+  "needToRefresh": "Je potřeba obnova",
+
+  "add": {
+    "application": "Přidat aplikaci",
+    "participant": "Přidat participanta",
+    "activity": "Přidat aktivitu"
+  },
+
+  "edit": {
+    "participant": "Upravit participanta"
+  },
+
+  "delete": {
+    "participant": "Odstranit participanta",
+    "invitation": "Odstranit pozvánku"
+  },
+
+  "confirm": {
+    "delete": {
+      "participant_$": "Opravdu chcete odstranit participanta s přezdívkou: {{param}}?",
+      "invitation_$": "Opravdu chcete odstranit pozvánku s emailem: {{param}}?"
+    }
+  },
+
+  "create": {
+    "organisation": "Vytvořit organizaci",
+    "account": "Vytvořit účet"
+  },
+
+  "nickname": "přezdívka",
+  "name": "jméno",
+  "surname": "příjmení",
+  "nameAndSurname": "Jméno a Příjmení",
+  "age": "věk",
+  "notes": "poznámky",
+  "email": "email",
+  "password": "heslo",
+  "repassword": "Opakujte heslo",
+  "birthday": "Datum narození",
+  "gender": "pohlaví",
+  "settings": "nastavení",
+  "optional": "volitelné",
+
+  "profile": "profil",
+  "basicInformation": "Obecné informace",
+  "profilePhoto": "Profilová fotka",
+
+  "login": "Přihlásit se",
+  "logout": "Odhlásit se",
+  "loginToAccount": "Přihlásit se ke svému účtu",
+  "register": "Registrovat se",
+  "registerMessage": "Ještě nemáte účet? Jednoduše si ho vytvořte.",
+  "forgotPassword": "Zapomenuté heslo?",
+  "alreadyAccount": "Již máte účet?",
+  "createAccountMessage": "Vytvořte si svůj účet",
+  "goToLogin": "Zpátky na přihlašovací obrazovku",
+
+  "inputErrors": {
+    "nickname": "Přezdívka je povinná!",
+    "name": "Jméno je povinné!",
+    "surname": "Příjmení je povinné!",
+    "age": "Věk je povinný!",
+    "notes": "Poznámky jsou povinné!",
+    "email": "Špatný formát emailu!",
+    "password": "Heslo musí být minimálně 6 znaků dlouhé!",
+    "repassword": "Hesla se neshodují!",
+    "file": "Soubor je povinný!",
+    "application": "Aplikace je povinná!",
+    "time": "Čas je povinný!",
+    "participant": "Participant je povinný!",
+    "role": "Role je povinná!"
+  },
+
+  "messages": {
+    "copy": {
+      "code": "Kód byl zkopírován."
+    },
+    "update": {
+      "participant": "Participant byl aktualizován.",
+      "invitation": "Pozvánka byla obnovena."
+    },
+    "delete": {
+      "participant": "Participant byl odstraněn!",
+      "invitation": "Pozvánka byla odstraněna!"
+    },
+    "selected": {
+      "organisation$": "Organizace {{param}} byla vybrána."
+    }
+  }
+}

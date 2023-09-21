@@ -1,0 +1,98 @@
+<c-container>
+  <div class="mb-3">
+    <h2>{{organisation.name}}</h2>
+    <span class="h5">{{Translations.code | translation | titlecase}} | <span class="text-muted">{{organisation.code}}</span>
+      <iconify (click)="copyCode(organisation.code)" class="ms-2 pointer h-75" icon="zondicons:copy"/>
+    </span>
+  </div>
+
+  <c-row>
+    <div class="d-flex flex-row align-items-center justify-content-between mb-2">
+      <h5 class="m-0">{{Translations.employees | translation | titlecase}}</h5>
+      <button class="btn btn-primary btn-sm" (click)="invitationModalVisibleChange(true)"><iconify icon="mdi:invite" class="pe-1" />{{Translations.inviteEmployee | translation}}</button>
+    </div>
+
+    <c-col>
+      <c-card>
+        <c-card-body>
+          <table cTable>
+            <thead>
+            <tr>
+              <th>{{Translations.email | translation | titlecase}}</th>
+              <th>{{Translations.name | translation | titlecase}}</th>
+              <th>{{Translations.surname | translation | titlecase}}</th>
+              <th>{{Translations.role | translation | titlecase}}</th>
+              <th>{{Translations.participants | translation | titlecase}}</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let emp of employees">
+              <td>{{emp.user.email}}</td>
+              <td>{{emp.user.name}}</td>
+              <td>{{emp.user.surname}}</td>
+              <td>{{emp.role.name}}</td>
+              <td>{{emp.participantIds.length}}</td>
+            </tr>
+            </tbody>
+          </table>
+        </c-card-body>
+      </c-card>
+    </c-col>
+  </c-row>
+
+  <c-row class="mt-3">
+    <div class="d-flex flex-row align-items-center justify-content-between mb-2">
+      <h5 class="m-0">{{Translations.invitations | translation | titlecase}}</h5>
+    </div>
+
+    <c-col>
+      <c-card>
+        <c-card-body>
+          <table cTable>
+            <thead>
+            <tr>
+              <th>{{Translations.email | translation | titlecase}}</th>
+              <th>{{Translations.role | translation | titlecase}}</th>
+              <th>{{Translations.createdAt | translation | titlecase}}</th>
+              <th class="text-center">{{Translations.valid | translation | titlecase}}</th>
+              <th>{{Translations.code | translation | titlecase}}</th>
+              <th>{{Translations.actions | translation | titlecase}}</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let inv of invitations">
+              <td>{{inv.email}}</td>
+              <td>{{inv.role}}</td>
+              <td>{{toLocaleTime(inv.time)}}</td>
+              <td class="text-center">
+                <ng-container *ngIf="isExpired(inv.time); else valid">
+                  <iconify [cTooltip]="Translations.needToRefresh | translation" cTooltipPlacement="top" class="text-danger" icon="gridicons:cross-circle" />
+                </ng-container>
+              </td>
+              <td>{{inv.code}} <iconify (click)="copyCode(inv.code)" class="ms-2 pointer h-75" icon="zondicons:copy"/></td>
+              <td>
+                <iconify (click)="refreshInvitation(inv.id)" [cTooltip]="Translations.Actions.refresh | translation | titlecase" cTooltipPlacement="top" class="pointer me-2" icon="mdi:refresh" />
+                <iconify (click)="openDeleteModal(inv)" [cTooltip]="Translations.Actions.delete | translation | titlecase" cTooltipPlacement="top" class="text-danger pointer" icon="mdi:trash" />
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </c-card-body>
+      </c-card>
+    </c-col>
+  </c-row>
+</c-container>
+
+<app-new-invitation-modal [open]="openInvitationModal" (visibleChanged)="invitationModalVisibleChange($event)"/>
+<app-confirmation-modal
+  [open]="deleteModalOpen"
+  [title]="Translations.delete.invitation | translation"
+  [message]="getDeleteMessage()"
+  [confirmButtonText]="Translations.Actions.delete | translation | titlecase"
+  (confirm)="deleteInvitation()"
+  (cancel)="closeDeleteModal()"
+  [color]="'danger'"/>
+
+<ng-template #valid>
+  <iconify class="text-success" icon="codicon:pass-filled" />
+</ng-template>

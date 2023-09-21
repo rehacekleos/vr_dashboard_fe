@@ -2,13 +2,14 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Subject } from "rxjs";
 import { NewActivity } from "../../models/activity.model";
 import dayjs from "dayjs";
+import { TranslateComponent } from "../../shared/translate/translate.component";
 
 @Component({
   selector: 'app-confirmation-modal',
   templateUrl: './confirmation-modal.component.html',
   styleUrls: ['./confirmation-modal.component.scss']
 })
-export class ConfirmationModalComponent {
+export class ConfirmationModalComponent extends TranslateComponent{
 
   @Input() open: boolean;
   @Input() color: 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info' | 'dark' | 'light' | string;

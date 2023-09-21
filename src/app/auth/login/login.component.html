@@ -1,5 +1,8 @@
 <div class="bg-light min-vh-100 d-flex flex-row align-items-center">
   <c-container>
+    <c-row class="fixed-top text-end mx-5 mt-3">
+      <app-select-language />
+    </c-row>
     <c-row class="justify-content-center">
       <c-col md="10">
         <c-card-group>
@@ -9,9 +12,9 @@
                     cForm
                     [validated]="validated"
                     (ngSubmit)="onSubmit(loginForm)">
-                <h1>Login</h1>
-                <p class="text-medium-emphasis">Sign In to your account</p>
-                <c-input-group class="mb-3">
+                <h1>{{Translations.login | translation}}</h1>
+                <p class="text-medium-emphasis">{{Translations.loginToAccount | translation}}</p>
+                <c-input-group class="mb-3 has-validation">
                   <span cInputGroupText>
                     <iconify [icon]="'mdi:user'"/>
                   </span>
@@ -22,12 +25,12 @@
                     cFormControl
                     email
                     type="email"
-                    placeholder="Email"
+                    [placeholder]="Translations.email | translation | titlecase"
                     required
                   />
-                  <c-form-feedback [valid]="false">Wrong email format!</c-form-feedback>
+                  <c-form-feedback [valid]="false">{{Translations.inputErrors.email | translation}}</c-form-feedback>
                 </c-input-group>
-                <c-input-group class="mb-4">
+                <c-input-group class="mb-4 has-validation">
                   <span cInputGroupText>
                     <iconify [icon]="'mdi:lock'"/>
                   </span>
@@ -36,12 +39,12 @@
                     ngModel
                     autoComplete="current-password"
                     cFormControl
-                    placeholder="Password"
+                    [placeholder]="Translations.password | translation | titlecase"
                     type="password"
                     minlength="6"
                     required
                   />
-                  <c-form-feedback [valid]="false">The password must have at least 6 letters!</c-form-feedback>
+                  <c-form-feedback [valid]="false">{{Translations.inputErrors.password | translation}}</c-form-feedback>
                 </c-input-group>
                 <c-row *ngIf="error">
                   <c-col>
@@ -50,13 +53,13 @@
                 </c-row>
                 <c-row>
                   <c-col xs="6">
-                    <button cButton class="px-4" color="primary" type="submit">
-                      Login
+                    <button class="btn btn-primary px-4" type="submit">
+                      {{Translations.login | translation}}
                     </button>
                   </c-col>
                   <c-col class="text-right" xs="6">
-                    <button cButton class="px-0" color="link">
-                      Forgot password?
+                    <button class="btn px-0 btn-link">
+                      {{Translations.forgotPassword | translation}}
                     </button>
                   </c-col>
                 </c-row>
@@ -66,12 +69,12 @@
           <c-card class="text-white bg-primary py-5">
             <c-card-body class="text-center">
               <div>
-                <h2>Sign up</h2>
+                <h2>{{Translations.register | translation}}</h2>
                 <p>
-                  You haven't created an account yet? Simply create one here.
+                  {{Translations.registerMessage | translation}}
                 </p>
-                <button [active]="true" cButton class="mt-3" color="primary" routerLink="/auth/register">
-                  Register Now!
+                <button class="btn mt-3 btn-secondary" routerLink="/auth/register">
+                  {{Translations.register | translation}}
                 </button>
               </div>
             </c-card-body>

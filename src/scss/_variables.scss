@@ -70,7 +70,7 @@ $primary-50: #5EB8EB;
 $primary-25: #C9EEFB;
 
 $secondary-dark: #212233;
-$secondary: #9da5b1;
+$secondary: rgba(188, 200, 210, 0.89);
 $secondary-50: #9da5b1;
 $secondary-25: #ced2d8;
 
@@ -105,16 +105,16 @@ $danger-25: #FADECE;
 // $dark-25:        shift-color($dark, -80);
 
 // scss-docs-start theme-colors-map
-// $theme-colors: (
-//   "primary":    $primary,
-//   "secondary":  $secondary,
-//   "success":    $success,
-//   "info":       $info,
-//   "warning":    $warning,
-//   "danger":     $danger,
-//   "light":      $light,
-//   "dark":       $dark
-// );
+ $theme-colors: (
+   "primary":    $primary,
+   "secondary":  $secondary,
+   "success":    $success,
+   "info":       $info,
+   "warning":    $warning,
+   "danger":     $danger,
+   "light":      $light,
+   "dark":       $dark
+ );
 // scss-docs-end theme-colors-map
 
 // Text colors
@@ -674,16 +674,16 @@ $font-family-sans-serif: "Public Sans", sans-serif;
 
 // $btn-transition:              color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 
-// $button-variants: (
-//   "primary": btn-color-map($primary, $primary),
-//   "secondary": btn-color-map($secondary, $secondary),
-//   "success": btn-color-map($success, $success),
-//   "danger": btn-color-map($danger, $danger),
-//   "warning": btn-color-map($warning, $warning),
-//   "info": btn-color-map($info, $info),
-//   "light": btn-color-map($light, $light),
-//   "dark": btn-color-map($dark, $dark)
-// );
+ $button-variants: (
+   "primary": btn-color-map($primary, $primary),
+   "secondary": btn-color-map($secondary, $secondary),
+   "success": btn-color-map($success, $success),
+   "danger": btn-color-map($danger, $danger),
+   "warning": btn-color-map($warning, $warning),
+   "info": btn-color-map($info, $info),
+   "light": btn-color-map($light, $light),
+   "dark": btn-color-map($dark, $dark)
+ );
 // scss-docs-end button-variables
 
 
@@ -1308,16 +1308,16 @@ $card-border-width: 0;
 
 // $alert-dismissible-padding-r:       $alert-padding-x * 3; // 3x covers width of x plus default padding on either side
 
-// $alert-variants: (
-//   "primary": alert-color-map($primary),
-//   "secondary": alert-color-map($secondary),
-//   "success": alert-color-map($success),
-//   "danger": alert-color-map($danger),
-//   "warning": alert-color-map($warning),
-//   "info": alert-color-map($info),
-//   "light": alert-color-map($light),
-//   "dark": alert-color-map($dark)
-// );
+ $alert-variants: (
+   "primary": alert-color-map($primary),
+   "secondary": alert-color-map($secondary),
+   "success": alert-color-map($success),
+   "danger": alert-color-map($danger),
+   "warning": alert-color-map($warning),
+   "info": alert-color-map($info),
+   "light": alert-color-map($light),
+   "dark": alert-color-map($dark)
+ );
 // scss-docs-end alert-variables
 
 // Callouts

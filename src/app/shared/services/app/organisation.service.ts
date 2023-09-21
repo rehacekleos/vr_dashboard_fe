@@ -1,6 +1,5 @@
 import { HttpService } from "../http.service";
 import { BehaviorSubject, firstValueFrom } from "rxjs";
-import { AuthResponse } from "../../../models/auth.model";
 import { HttpClient } from "@angular/common/http";
 import { NewOrganisation, Organisation } from "../../../models/organisation.model";
 import { Injectable } from "@angular/core";
@@ -20,7 +19,7 @@ export class OrganisationService extends HttpService{
 
     this.$organisations.subscribe(val => {
       this.organisations = val;
-      if (val?.length > 0){
+      if (val?.length > 0 && this.$selectedOrganisation.getValue() === undefined){
         this.$selectedOrganisation.next(val[0]);
       }
     })
@@ -33,8 +32,14 @@ export class OrganisationService extends HttpService{
   }
 
   async createOrganisation(newOrg: NewOrganisation){
-    const res = await firstValueFrom(this.http.post(this.createUrl(''), newOrg));
+    const res = await firstValueFrom(this.http.post<Organisation>(this.createUrl(''), newOrg));
     await this.getOrganisations();
+    this.$selectedOrganisation.next(res);
   }
 
+  async getOrganisation(id: any) {
+    const res = await firstValueFrom(this.http.get<Organisation>(this.createUrl(`/${id}`)));
+    this.$selectedOrganisation.next(res);
+    return res;
+  }
 }

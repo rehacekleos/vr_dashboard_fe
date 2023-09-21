@@ -1,28 +1,29 @@
 import { INavData } from '@coreui/angular';
+import { Translations } from "../../shared/translate/translate.model";
 
 export const navItems: INavData[] = [
   {
-    name: 'Dashboard',
+    name: Translations.dashboard,
     url: '/dashboard',
     iconComponent: {name: 'cil-speedometer'},
   },
   {
-    name: 'Activities',
+    name: Translations.activities,
     url: '/activity',
     iconComponent: {name: 'cil-bolt'},
   },
   {
-    name: 'Participants',
+    name: Translations.participants,
     url: '/participant',
     iconComponent: {name: 'cil-user'},
   },
   {
-    name: 'Applications',
+    name: Translations.applications,
     url: '/application',
     iconComponent: {name: 'cil-gamepad'},
   },
   {
-    name: 'Organisation',
+    name: Translations.organisations,
     url: '/organisation',
     iconComponent: {name: 'cil-institution'},
   },

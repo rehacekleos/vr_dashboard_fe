@@ -1,0 +1,136 @@
+{
+	"actions": "Events",
+  "Actions": {
+    "add": "add",
+    "cancel": "cancel",
+    "change": "change",
+    "close": "close",
+    "create": "create",
+    "delete": "remove",
+    "detail": "detail",
+    "edit": "edit",
+    "invite": "invite",
+    "join": "join",
+    "refresh": "refresh",
+    "save": "save",
+    "select": "select"
+  },
+
+	"activities": "activities",
+	"activity": "activity",
+	"add": {
+    "activity": "Add an activity",
+    "application": "Add an application",
+    "participant": "Add a participant"
+  },
+
+	"age": "age",
+	"alreadyAccount": "Already have an account?",
+	"anonymous": "anonymous",
+	"application": "applications",
+	"applications": "applications",
+	"basicInformation": "General information",
+	"birthday": "Date of Birth",
+	"code": "code",
+  "confirm": {
+    "delete": {
+      "invitation_$": "Do you really want to remove the email invitation: {{param}}?",
+      "participant_$": "Do you really want to remove a participant with a nickname: {{param}}?"
+    }
+  },
+
+  "create": {
+    "account": "Create an account",
+    "organisation": "Create an organization"
+  },
+
+  "delete": {
+    "invitation": "Remove invitation",
+    "participant": "Remove a participant"
+  },
+
+  "edit": {
+    "participant": "Edit participant"
+  },
+
+  "inputErrors": {
+    "age": "Age is mandatory!",
+    "application": "The application is mandatory!",
+    "email": "Wrong email format!",
+    "file": "The file is mandatory!",
+    "name": "Name is required!",
+    "nickname": "Nickname is mandatory!",
+    "notes": "Notes are required!",
+    "participant": "Participation is mandatory!",
+    "password": "The password must be at least 6 characters long!",
+    "repassword": "The passwords don't match!",
+    "role": "The role is mandatory!",
+    "surname": "Surname is mandatory!",
+    "time": "Time is mandatory!"
+  },
+
+  "messages": {
+    "copy": {
+      "code": "The code has been copied."
+    },
+    "delete": {
+      "invitation": "The invitation has been removed!",
+      "participant": "Participant has been removed!"
+    },
+    "selected": {
+      "organisation$": "Organization {{param}} has been selected."
+    },
+    "update": {
+      "invitation": "The invitation has been refreshed.",
+      "participant": "Participant has been updated."
+    }
+  },
+
+	"createAccountMessage": "Create your account",
+	"createdAt": "Created at",
+	"createOrJoinOrganisation": "Create or join to organisation",
+	"dashboard": "dashboard",
+
+	"email": "email",
+	"employee": "employee",
+	"employees": "employees",
+	"file": "file",
+	"forgotPassword": "Forgot your password?",
+	"gender": "gender",
+	"goToLogin": "Back to the login page",
+
+
+	"invitation": "invitation",
+	"invitationCode": "Invitation code",
+	"invitations": "invitations",
+	"inviteEmployee": "Invite employees",
+	"joinOrganisation": "Join to the organisation",
+	"login": "Log in",
+	"loginToAccount": "Log in to your account",
+	"logout": "Log out",
+
+	"name": "name",
+	"nameAndSurname": "Name and surname",
+	"needToRefresh": "Refresh is needed",
+	"nickname": "nickname",
+	"noOrganisation": "You have no organization.",
+	"notes": "notes",
+	"optional": "optional",
+	"organisation": "organisation",
+	"organisationName": "Name of organisation",
+	"organisations": "organisations",
+	"participant": "participant",
+	"participants": "participants",
+	"password": "password",
+	"profile": "profile",
+	"profilePhoto": "Profile photo",
+	"register": "Register now",
+	"registerMessage": "Don't have an account yet? Simply create one.",
+	"repassword": "Repeat password",
+	"role": "role",
+	"settings": "settings",
+	"statistics": "statistics",
+	"surname": "surname",
+	"time": "time",
+	"valid": "valid"
+}

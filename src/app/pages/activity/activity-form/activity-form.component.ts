@@ -7,13 +7,14 @@ import { NewActivity } from "../../../models/activity.model";
 import { Application } from "../../../models/application.model";
 import { ParticipantService } from "../../../shared/services/app/participant.service";
 import { ApplicationService } from "../../../shared/services/app/application.service";
+import { TranslateComponent } from "../../../shared/translate/translate.component";
 
 @Component({
   selector: 'app-activity-form',
   templateUrl: './activity-form.component.html',
   styleUrls: ['./activity-form.component.scss']
 })
-export class ActivityFormComponent implements OnInit{
+export class ActivityFormComponent extends TranslateComponent implements OnInit{
 
   validated = false;
   applications: Application[];
@@ -28,6 +29,7 @@ export class ActivityFormComponent implements OnInit{
 
   constructor(private participantService: ParticipantService,
               private applicationService: ApplicationService) {
+    super()
   }
 
   ngOnInit(): void {

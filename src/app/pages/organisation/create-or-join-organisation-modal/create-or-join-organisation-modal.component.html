@@ -1,0 +1,14 @@
+<c-modal size="lg" alignment="center" [scrollable]="true" [visible]="open" (visibleChange)="visibleChange($event)">
+
+  <c-modal-header>
+    <button (click)="visibleChange(false)" cButtonClose></button>
+  </c-modal-header>
+  <c-modal-body>
+      <app-create-or-join-organisation class="row g-2 justify-content-center text-center" />
+  </c-modal-body>
+  <c-modal-footer>
+    <button (click)="visibleChange(false)" cButton color="secondary">
+      {{Translations.Actions.close | translation | titlecase}}
+    </button>
+  </c-modal-footer>
+</c-modal>

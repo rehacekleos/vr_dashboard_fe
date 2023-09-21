@@ -16,6 +16,8 @@
         {{organisation.name}}
       </div>
       <ng-container *ngTemplateOutlet="userDropdown"></ng-container>
+
+      <app-select-language />
     </c-header-nav>
 
   </c-container>
@@ -41,7 +43,7 @@
       <li class="mt-2">
         <a routerLink="./" cDropdownItem>
           <iconify icon="mdi:user" />
-          Profile
+          {{Translations.profile | translation | titlecase}}
         </a>
       </li>
       <li>
@@ -50,7 +52,7 @@
       <li>
         <a (click)="logout()" class="pointer" cDropdownItem>
           <iconify icon="mdi:logout" />
-          Logout
+          {{Translations.logout | translation}}
         </a>
       </li>
     </ul>

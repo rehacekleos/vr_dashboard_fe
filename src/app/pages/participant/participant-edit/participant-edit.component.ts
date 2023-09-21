@@ -5,13 +5,16 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { ParticipantService } from "../../../shared/services/app/participant.service";
 import { Subject } from "rxjs";
 import { CustomToastrService } from "../../../shared/services/custom-toastr.service";
+import { TranslateComponent } from "../../../shared/translate/translate.component";
+import { CustomTranslateService } from "../../../shared/translate/services/custom-translate.service";
+import { Translations } from "../../../shared/translate/translate.model";
 
 @Component({
   selector: 'app-participant-edit',
   templateUrl: './participant-edit.component.html',
   styleUrls: ['./participant-edit.component.scss']
 })
-export class ParticipantEditComponent implements OnInit{
+export class ParticipantEditComponent extends TranslateComponent implements OnInit{
 
   participant: Participant
   submitForm: Subject<any> = new Subject<any>()
@@ -20,9 +23,11 @@ export class ParticipantEditComponent implements OnInit{
 
   constructor(private _sanitizer: DomSanitizer,
               private route: ActivatedRoute,
+              private translationService: CustomTranslateService,
               private participantService: ParticipantService,
               private toaster: CustomToastrService,
               private router: Router) {
+    super();
   }
 
   ngOnInit(): void {
@@ -50,7 +55,7 @@ export class ParticipantEditComponent implements OnInit{
     }
     try {
       await this.participantService.updateParticipant(participant);
-      this.toaster.showToastMessage("Participant was updated.");
+      this.toaster.showToastMessage(this.translationService.instantTranslation(Translations.messages.update.participant));
       await this.router.navigate(['participant', this.participant.id])
     } catch (e) {
       console.log(e);
@@ -63,13 +68,13 @@ export class ParticipantEditComponent implements OnInit{
 
   async deleteParticipant() {
     await this.participantService.deleteParticipant(this.participant.id);
-    this.toaster.showToastMessage("Participant was deleted!");
+    this.toaster.showToastMessage(this.translationService.instantTranslation(Translations.messages.delete.participant));
     this.deleteModalOpen = false;
     await this.router.navigate(['participant']);
   }
 
   getDeleteMessage() {
-    return `Are you want to delete participant with nickname: ${this.participant.nickname}?`;
+    return this.translationService.instantTranslation(Translations.confirm.delete.participant_$, {param: this.participant.nickname});
   }
 
   openConfirmModal() {

@@ -13,7 +13,8 @@
     "dev": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "check-translation": "node Prompts/translate-check.js"
   },
   "private": true,
   "dependencies": {
@@ -35,11 +36,14 @@
     "@coreui/icons-angular": "~4.5.2",
     "@coreui/utils": "^2.0.2",
     "@iconify/iconify": "^3.1.0",
+    "@ngx-translate/core": "^15.0.0",
+    "@ngx-translate/http-loader": "^8.0.0",
     "chart.js": "^3.9.1",
     "dayjs": "^1.11.9",
     "ngx-scrollbar": "^12.0.0",
     "ngx-skeleton-loader": "^8.1.0",
     "ngx-toastr": "^17.0.2",
+    "ngx-translate": "^0.0.1-security",
     "rxjs": "~7.8.1",
     "tslib": "^2.3.0",
     "zone.js": "~0.13.1"

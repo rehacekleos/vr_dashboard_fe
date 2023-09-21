@@ -1,0 +1,58 @@
+<c-col class="col-md-6 col-12 mb-2 mb-md-0">
+  <c-card class="align-items-center p-4 h-100">
+    <h4>{{Translations.create.organisation | translation}}</h4>
+    <form #createForm="ngForm"
+          cForm
+          class="h-100 d-flex flex-column"
+          [validated]="createValidated"
+          (ngSubmit)="onCreateSubmit(createForm)">
+      <div class="mb-2">
+        <input
+          name="name"
+          ngModel
+          cFormControl
+          type="text"
+          [placeholder]="Translations.organisationName | translation"
+          required
+        />
+      </div>
+      <c-row *ngIf="createError">
+        <c-col>
+          <c-alert class="py-2" color="danger">{{createError}}</c-alert>
+        </c-col>
+      </c-row>
+      <c-row class="mt-auto">
+        <button class="btn btn-primary" type="submit">{{Translations.Actions.create | translation | titlecase}}</button>
+      </c-row>
+    </form>
+  </c-card>
+</c-col>
+<c-col class="col-md-6 col-12">
+  <c-card class="align-items-center p-4 h-100">
+    <h4>{{Translations.joinOrganisation | translation}}</h4>
+    <form #joinForm="ngForm"
+          cForm
+          class="h-100 d-flex flex-column"
+          [validated]="joinValidated"
+          (ngSubmit)="onJoinSubmit(joinForm)">
+      <div class="mb-2">
+        <input
+          name="code"
+          ngModel
+          cFormControl
+          type="text"
+          [placeholder]="Translations.invitationCode | translation"
+          required
+        />
+      </div>
+      <c-row *ngIf="joinError">
+        <c-col>
+          <c-alert class="py-2" color="danger">{{joinError}}</c-alert>
+        </c-col>
+      </c-row>
+      <c-row class="mt-auto">
+        <button class="btn btn-primary" type="submit">{{Translations.Actions.join | translation | titlecase}}</button>
+      </c-row>
+    </form>
+  </c-card>
+</c-col>

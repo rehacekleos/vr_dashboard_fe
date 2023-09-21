@@ -4,13 +4,14 @@ import { Subject } from "rxjs";
 import { NewParticipant } from "../../../models/participant.model";
 import dayjs from "dayjs";
 import { NewApplication } from "../../../models/application.model";
+import { TranslateComponent } from "../../../shared/translate/translate.component";
 
 @Component({
   selector: 'app-application-form',
   templateUrl: './application-form.component.html',
   styleUrls: ['./application-form.component.scss']
 })
-export class ApplicationFormComponent {
+export class ApplicationFormComponent extends TranslateComponent{
   validated = false;
 
   @ViewChild('applicationForm') form: NgForm;

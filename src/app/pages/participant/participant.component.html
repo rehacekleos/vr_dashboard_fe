@@ -1,8 +1,8 @@
 <c-container>
   <c-row>
     <div class="d-flex flex-row align-items-center justify-content-between mb-2">
-      <h2 class="m-0">Participants</h2>
-      <button class="btn btn-primary btn-sm" (click)="modalVisibleChange(true)"><iconify icon="mdi:add" />Add participant</button>
+      <h2 class="m-0 text-capitalize">{{Translations.participants | translation}}</h2>
+      <button class="btn btn-primary btn-sm" (click)="modalVisibleChange(true)"><iconify icon="mdi:add" />{{Translations.add.participant | translation}}</button>
     </div>
 
     <c-col>
@@ -12,11 +12,11 @@
             <thead>
             <tr>
               <th></th>
-              <th>Nickname</th>
-              <th>Name</th>
-              <th>Surname</th>
-              <th>Age</th>
-              <th>Notes</th>
+              <th class="text-capitalize">{{Translations.nickname | translation}}</th>
+              <th class="text-capitalize">{{Translations.name | translation}}</th>
+              <th class="text-capitalize">{{Translations.surname | translation}}</th>
+              <th class="text-capitalize">{{Translations.age | translation}}</th>
+              <th class="text-capitalize">{{Translations.notes | translation}}</th>
             </tr>
             </thead>
             <tbody>

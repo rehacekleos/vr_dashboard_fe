@@ -6,13 +6,14 @@ import dayjs from "dayjs";
 import { Subject } from "rxjs";
 import { ParticipantService } from "../../../shared/services/app/participant.service";
 import { Router } from "@angular/router";
+import { TranslateComponent } from "../../../shared/translate/translate.component";
 
 @Component({
   selector: 'app-new-participant-modal',
   templateUrl: './new-participant-modal.component.html',
   styleUrls: ['./new-participant-modal.component.scss']
 })
-export class NewParticipantModalComponent {
+export class NewParticipantModalComponent extends TranslateComponent{
 
   submitForm: Subject<any> = new Subject<any>()
   error: string;
@@ -31,6 +32,7 @@ export class NewParticipantModalComponent {
 
   constructor(private participantService: ParticipantService,
               private router: Router) {
+    super()
   }
 
 

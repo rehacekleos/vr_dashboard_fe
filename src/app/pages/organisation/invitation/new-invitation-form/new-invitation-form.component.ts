@@ -6,13 +6,14 @@ import { NewActivity } from "../../../../models/activity.model";
 import dayjs from "dayjs";
 import { NewInvitation } from "../../../../models/invitation.model";
 import { RoleNames } from "../../../../models/role.model";
+import { TranslateComponent } from "../../../../shared/translate/translate.component";
 
 @Component({
   selector: 'app-new-invitation-form',
   templateUrl: './new-invitation-form.component.html',
   styleUrls: ['./new-invitation-form.component.scss']
 })
-export class NewInvitationFormComponent implements OnInit{
+export class NewInvitationFormComponent extends TranslateComponent implements OnInit{
   validated = false;
   roles = Object.values(RoleNames);
 

@@ -2,8 +2,8 @@
 
   <c-modal-header>
     <h5 cModalTitle>
-      <iconify size="lg" icon="cil:bolt"/>
-      Invite user
+      <iconify size="lg" icon="mdi:invite"/>
+      {{Translations.inviteEmployee | translation}}
     </h5>
     <button (click)="visibleChange(false)" cButtonClose></button>
   </c-modal-header>
@@ -13,8 +13,8 @@
   </c-modal-body>
   <c-modal-footer>
     <button (click)="visibleChange(false)" cButton color="secondary">
-      Close
+      {{Translations.Actions.close | translation | titlecase}}
     </button>
-    <button cButton color="primary" (click)="onSubmit()">Invite</button>
+    <button cButton color="primary" (click)="onSubmit()">{{Translations.Actions.invite | translation | titlecase}}</button>
   </c-modal-footer>
 </c-modal>

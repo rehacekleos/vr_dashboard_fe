@@ -10,7 +10,7 @@
   </c-modal-body>
   <c-modal-footer class="justify-content-between">
     <button (click)="visibleChange(false)" cButton color="secondary">
-      Cancel
+      {{Translations.Actions.cancel | translation | titlecase}}
     </button>
     <button cButton [color]="color" (click)="onSubmit()">{{confirmButtonText}}</button>
   </c-modal-footer>

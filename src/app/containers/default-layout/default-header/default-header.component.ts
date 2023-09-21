@@ -6,6 +6,7 @@ import { User } from "../../../models/user.model";
 import { AuthService } from "../../../auth/auth.service";
 import { Organisation } from "../../../models/organisation.model";
 import { OrganisationService } from "../../../shared/services/app/organisation.service";
+import { Translations } from "../../../shared/translate/translate.model";
 
 @Component({
   selector: 'app-default-header',
@@ -40,4 +41,6 @@ export class DefaultHeaderComponent extends HeaderComponent implements OnInit{
   async logout() {
     await this.authService.logout();
   }
+
+  protected readonly Translations = Translations;
 }

@@ -1,15 +1,15 @@
 <c-row class="mb-3" [gutter]="3">
   <c-col [xs]="12" [sm]="6" [lg]="3" *ngIf="applications; else loading">
-    <app-widget [title]="'Applications'" [value]="applications.length" icon="cil-gamepad"></app-widget>
+    <app-widget [title]="Translations.applications | translation" [value]="applications.length" icon="cil-gamepad"></app-widget>
   </c-col>
   <c-col [xs]="12" [sm]="6" [lg]="3" *ngIf="employees; else loading">
-    <app-widget [title]="'Employees'" [value]="employees.length" icon="mdi-user"></app-widget>
+    <app-widget [title]="Translations.employees | translation" [value]="employees.length" icon="mdi-user"></app-widget>
   </c-col>
   <c-col [xs]="12" [sm]="6" [lg]="3" *ngIf="participants; else loading">
-    <app-widget [title]="'Participants'" [value]="participants.length" icon="mdi:user-outline"></app-widget>
+    <app-widget [title]="Translations.participants | translation" [value]="participants.length" icon="mdi:user-outline"></app-widget>
   </c-col>
   <c-col [xs]="12" [sm]="6" [lg]="3" *ngIf="activities; else loading">
-    <app-widget [title]="'Activities'" [value]="activities.length" icon="cil:bolt"></app-widget>
+    <app-widget [title]="Translations.activities | translation" [value]="activities.length" icon="cil:bolt"></app-widget>
   </c-col>
 </c-row>
 

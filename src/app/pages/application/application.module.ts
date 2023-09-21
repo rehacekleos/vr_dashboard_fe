@@ -16,6 +16,7 @@ import { ComponentsModule } from "../../components/components.module";
 import { NewApplicationModalComponent } from './new-application-modal/new-application-modal.component';
 import { ApplicationFormComponent } from './application-form/application-form.component';
 import { FormsModule } from "@angular/forms";
+import { SharedModule } from "../../shared/shared.module";
 
 
 @NgModule({
@@ -24,26 +25,27 @@ import { FormsModule } from "@angular/forms";
     NewApplicationModalComponent,
     ApplicationFormComponent
   ],
-  imports: [
-    CommonModule,
-    ApplicationRoutingModule,
-    ContainerComponent,
-    RowComponent,
-    ComponentsModule,
-    ColComponent,
-    ButtonCloseDirective,
-    ButtonDirective,
-    ModalBodyComponent,
-    ModalComponent,
-    ModalFooterComponent,
-    ModalHeaderComponent,
-    ModalTitleDirective,
-    FormControlDirective,
-    FormDirective,
-    FormFeedbackComponent,
-    FormSelectDirective,
-    FormsModule,
-    InputGroupComponent
-  ]
+    imports: [
+        CommonModule,
+        ApplicationRoutingModule,
+        ContainerComponent,
+        RowComponent,
+        ComponentsModule,
+        ColComponent,
+        ButtonCloseDirective,
+        ButtonDirective,
+        ModalBodyComponent,
+        ModalComponent,
+        ModalFooterComponent,
+        ModalHeaderComponent,
+        ModalTitleDirective,
+        FormControlDirective,
+        FormDirective,
+        FormFeedbackComponent,
+        FormSelectDirective,
+        FormsModule,
+        InputGroupComponent,
+        SharedModule
+    ]
 })
 export class ApplicationModule { }

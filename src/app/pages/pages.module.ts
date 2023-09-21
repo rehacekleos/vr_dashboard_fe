@@ -16,10 +16,14 @@ import {
 import { ComponentsModule } from "../components/components.module";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { NgxSkeletonLoaderModule } from "ngx-skeleton-loader";
+import { SharedModule } from "../shared/shared.module";
 
 
 @NgModule({
-  declarations: [DashboardComponent, NoOrganisationComponent],
+    declarations: [DashboardComponent, NoOrganisationComponent],
+    exports: [
+        NoOrganisationComponent
+    ],
     imports: [
         CommonModule,
         PagesRoutingModule,
@@ -38,7 +42,8 @@ import { NgxSkeletonLoaderModule } from "ngx-skeleton-loader";
         InputGroupTextDirective,
         ReactiveFormsModule,
         GutterDirective,
-        NgxSkeletonLoaderModule
+        NgxSkeletonLoaderModule,
+        SharedModule
     ]
 })
 export class PagesModule { }

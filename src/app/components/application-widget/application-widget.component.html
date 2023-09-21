@@ -1,6 +1,7 @@
 <c-card>
-  <c-card-body class="text-center">
+  <c-card-body class="text-center d-flex flex-column">
     <h4>{{application.name}}</h4>
-    <span class="h5">Code | <span class="text-muted">{{application.code}}</span></span>
+    <span class="h5">{{Translations.code | translation | titlecase}} | <span class="text-muted">{{application.code}}</span></span>
+    <button class="btn btn-primary mt-2">{{Translations.Actions.detail | translation | titlecase}}</button>
   </c-card-body>
 </c-card>

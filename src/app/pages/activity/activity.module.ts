@@ -26,6 +26,7 @@ import { ComponentsModule } from "../../components/components.module";
 import { NewActivityModalComponent } from './new-activity-modal/new-activity-modal.component';
 import { ActivityFormComponent } from './activity-form/activity-form.component';
 import { FormsModule } from "@angular/forms";
+import { SharedModule } from "../../shared/shared.module";
 
 
 @NgModule({
@@ -34,28 +35,29 @@ import { FormsModule } from "@angular/forms";
     NewActivityModalComponent,
     ActivityFormComponent
   ],
-  imports: [
-    CommonModule,
-    ActivityRoutingModule,
-    ColComponent,
-    ComponentsModule,
-    ContainerComponent,
-    RowComponent,
-    ButtonCloseDirective,
-    ButtonDirective,
-    ModalBodyComponent,
-    ModalComponent,
-    ModalFooterComponent,
-    ModalHeaderComponent,
-    ModalTitleDirective,
-    FormControlDirective,
-    FormDirective,
-    FormFeedbackComponent,
-    FormSelectDirective,
-    FormsModule,
-    InputGroupComponent,
-    FormCheckComponent,
-    FormCheckInputDirective
-  ]
+    imports: [
+        CommonModule,
+        ActivityRoutingModule,
+        ColComponent,
+        ComponentsModule,
+        ContainerComponent,
+        RowComponent,
+        ButtonCloseDirective,
+        ButtonDirective,
+        ModalBodyComponent,
+        ModalComponent,
+        ModalFooterComponent,
+        ModalHeaderComponent,
+        ModalTitleDirective,
+        FormControlDirective,
+        FormDirective,
+        FormFeedbackComponent,
+        FormSelectDirective,
+        FormsModule,
+        InputGroupComponent,
+        FormCheckComponent,
+        FormCheckInputDirective,
+        SharedModule
+    ]
 })
 export class ActivityModule { }

@@ -18,6 +18,7 @@ import { AuthRoutingModule } from "./auth-routing.module";
 import { AppModule } from "../app.module";
 import { ComponentsModule } from "../components/components.module";
 import { FormsModule } from "@angular/forms";
+import { SharedModule } from "../shared/shared.module";
 
 
 
@@ -26,28 +27,29 @@ import { FormsModule } from "@angular/forms";
     LoginComponent,
     RegisterComponent
   ],
-  imports: [
-    AuthRoutingModule,
-    CommonModule,
-    ButtonDirective,
-    CardBodyComponent,
-    CardComponent,
-    CardGroupComponent,
-    ColComponent,
-    ContainerComponent,
-    FormControlDirective,
-    FormDirective,
-    IconDirective,
-    InputGroupComponent,
-    InputGroupTextDirective,
-    RouterLink,
-    RowComponent,
-    ComponentsModule,
-    FormsModule,
-    FormModule,
-    FormFeedbackComponent,
-    AlertComponent,
-    GutterDirective
-  ]
+    imports: [
+        AuthRoutingModule,
+        CommonModule,
+        ButtonDirective,
+        CardBodyComponent,
+        CardComponent,
+        CardGroupComponent,
+        ColComponent,
+        ContainerComponent,
+        FormControlDirective,
+        FormDirective,
+        IconDirective,
+        InputGroupComponent,
+        InputGroupTextDirective,
+        RouterLink,
+        RowComponent,
+        ComponentsModule,
+        FormsModule,
+        FormModule,
+        FormFeedbackComponent,
+        AlertComponent,
+        GutterDirective,
+        SharedModule
+    ]
 })
 export class AuthModule { }

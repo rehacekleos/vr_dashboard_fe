@@ -3,13 +3,14 @@ import { NewParticipant } from "../../../models/participant.model";
 import { NgForm } from "@angular/forms";
 import dayjs from "dayjs";
 import { Subject } from "rxjs";
+import { TranslateComponent } from "../../../shared/translate/translate.component";
 
 @Component({
   selector: 'app-participant-form',
   templateUrl: './participant-form.component.html',
   styleUrls: ['./participant-form.component.scss']
 })
-export class ParticipantFormComponent implements OnInit{
+export class ParticipantFormComponent extends TranslateComponent implements OnInit{
 
   validated = false;
 

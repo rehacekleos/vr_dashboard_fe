@@ -7,13 +7,14 @@ import { RoleNames } from "../../../../models/role.model";
 import { InvitationService } from "../../../../shared/services/app/invitation.service";
 import { ToastrService } from "ngx-toastr";
 import { CustomToastrService } from "../../../../shared/services/custom-toastr.service";
+import { TranslateComponent } from "../../../../shared/translate/translate.component";
 
 @Component({
   selector: 'app-new-invitation-modal',
   templateUrl: './new-invitation-modal.component.html',
   styleUrls: ['./new-invitation-modal.component.scss']
 })
-export class NewInvitationModalComponent {
+export class NewInvitationModalComponent extends TranslateComponent{
 
   submitForm: Subject<any> = new Subject<any>()
   error: string;
@@ -28,6 +29,7 @@ export class NewInvitationModalComponent {
 
   constructor(private inviteService: InvitationService,
               private toastr: CustomToastrService) {
+    super();
   }
 
   visibleChange($event: boolean) {

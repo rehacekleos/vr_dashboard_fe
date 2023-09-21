@@ -4,7 +4,7 @@
   [validated]="validated"
   (ngSubmit)="onSubmit(newParticipantForm)"
   cForm>
-  <label>Nickname</label>
+  <label>{{Translations.nickname | translation | titlecase}}</label>
   <c-input-group class="mb-2 has-validation">
     <input
       required
@@ -12,29 +12,28 @@
       name="nickname"
       type="text"
       cFormControl
-      placeholder="Nickname"/>
-    <c-form-feedback [valid]="false">Nickname is required!</c-form-feedback>
+      [placeholder]="Translations.nickname | translation | titlecase"
+    />
+    <c-form-feedback [valid]="false">{{Translations.inputErrors.nickname | translation}}</c-form-feedback>
   </c-input-group>
-  <label>Name and Surname <span class="text-muted small">(Optional)</span></label>
+  <label>{{Translations.nameAndSurname | translation}} <span class="text-muted small">({{Translations.optional | translation | titlecase}})</span></label>
   <c-input-group class="mb-2">
     <input
       name="name"
       #name="ngModel"
       [ngModel]="newParticipant.name"
       cFormControl
-      placeholder="Name"/>
+      [placeholder]="Translations.name | translation | titlecase"
+    />
     <input
       name="surname"
       #surname="ngModel"
       [ngModel]="newParticipant.surname"
       cFormControl
-      placeholder="Surname"/>
-    <c-form-feedback class="" *ngIf="(!name.valid || !surname.valid)" [valid]="false">
-      <span class="me-2" *ngIf="!name.valid">Name is required!</span>
-      <span *ngIf="!surname.valid">Surname is required!</span>
-    </c-form-feedback>
+      [placeholder]="Translations.surname | translation | titlecase"
+    />
   </c-input-group>
-  <label>Birthday <span class="text-muted small">(Optional)</span></label>
+  <label>{{Translations.birthday | translation}} <span class="text-muted small">({{Translations.optional | translation | titlecase}})</span></label>
   <c-input-group class="mb-2 has-validation">
     <input
       minlength="6"
@@ -44,7 +43,7 @@
       [max]="getBirthdayMax()"
       type="date"/>
   </c-input-group>
-  <label>Gender <span class="text-muted small">(Optional)</span></label>
+  <label>{{Translations.gender | translation | titlecase}} <span class="text-muted small">({{Translations.optional | translation | titlecase}})</span></label>
   <c-input-group class="mb-2 has-validation">
     <select
       [ngModel]="newParticipant.sex"
@@ -56,7 +55,7 @@
       <option value="other">Other</option>
     </select>
   </c-input-group>
-  <label>Notes <span class="text-muted small">(Optional)</span></label>
+  <label>{{Translations.notes | translation | titlecase}} <span class="text-muted small">({{Translations.optional | translation | titlecase}})</span></label>
   <c-input-group class="mb-2 has-validation">
         <textarea
           [ngModel]="newParticipant.description"

@@ -1,8 +1,10 @@
 <c-container>
   <c-row>
     <div class="d-flex flex-row align-items-center justify-content-between mb-2">
-      <h2 class="m-0">Activities</h2>
-      <button class="btn btn-primary btn-sm" (click)="modalVisibleChange(true)"><iconify icon="mdi:add" />Add activity</button>
+      <h2 class="m-0 text-capitalize">{{Translations.activities | translation}}</h2>
+      <button class="btn btn-primary btn-sm" (click)="modalVisibleChange(true)">
+        <iconify icon="mdi:add"/>
+        {{Translations.add.activity | translation}}</button>
     </div>
   </c-row>
   <c-row>
@@ -10,4 +12,4 @@
   </c-row>
 </c-container>
 
-<app-new-activity-modal [open]="openModal" (visibleChanged)="modalVisibleChange($event)" />
+<app-new-activity-modal [open]="openModal" (visibleChanged)="modalVisibleChange($event)"/>

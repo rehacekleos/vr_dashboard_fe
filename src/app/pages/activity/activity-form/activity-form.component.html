@@ -4,7 +4,7 @@
   [validated]="validated"
   (ngSubmit)="onSubmit(newActivityForm)"
   cForm>
-  <label>Time</label>
+  <label>{{Translations.time | translation | titlecase}}</label>
   <c-input-group class="mb-2 has-validation">
     <input
       [(ngModel)]="newActivity.time"
@@ -13,9 +13,9 @@
       cFormControl
       [max]="getTimeMax()"
       type="datetime-local"/>
-    <c-form-feedback [valid]="false">Time is required!</c-form-feedback>
+    <c-form-feedback [valid]="false">{{Translations.inputErrors.time | translation}}</c-form-feedback>
   </c-input-group>
-  <label>Application</label>
+  <label>{{Translations.application | translation | titlecase}}</label>
   <c-input-group class="mb-2 has-validation">
     <select
       [(ngModel)]="newActivity.applicationId"
@@ -24,9 +24,9 @@
       cSelect>
       <option *ngFor="let app of applications" [value]="app.id">{{app.name}}</option>
     </select>
-    <c-form-feedback [valid]="false">Application is required!</c-form-feedback>
+    <c-form-feedback [valid]="false">{{Translations.inputErrors.application | translation}}</c-form-feedback>
   </c-input-group>
-  <label>File</label>
+  <label>{{Translations.file | translation | titlecase}}</label>
   <c-input-group class="mb-2 has-validation">
     <input
       (change)="onFileSelected($event)"
@@ -34,16 +34,16 @@
       cFormControl
       accept="application/json"
       type="file"/>
-    <c-form-feedback [valid]="false">File is required!</c-form-feedback>
+    <c-form-feedback [valid]="false">{{Translations.inputErrors.file | translation}}</c-form-feedback>
   </c-input-group>
-  <label>Anonymous</label>
+  <label>{{Translations.anonymous | translation | titlecase}}</label>
   <c-input-group class="mb-2 has-validation">
     <c-form-check [switch]="true">
       <input cFormCheckInput [(ngModel)]="newActivity.anonymous" name="anonymous" [checked]="isAnonymous()" type="checkbox" />
     </c-form-check>
   </c-input-group>
   <ng-container *ngIf="!newActivity.anonymous">
-    <label>Participant</label>
+    <label>{{Translations.participant | translation | titlecase}}</label>
     <c-input-group class="mb-2 has-validation">
       <select
         [(ngModel)]="newActivity.participantId"
@@ -52,10 +52,10 @@
         cSelect>
         <option *ngFor="let part of participants" [value]="part.id">{{part.nickname}}</option>
       </select>
-      <c-form-feedback [valid]="false">Application is required!</c-form-feedback>
+      <c-form-feedback [valid]="false">{{Translations.inputErrors.participant | translation}}</c-form-feedback>
     </c-input-group>
   </ng-container>
-  <label>Notes <span class="text-muted small">(Optional)</span></label>
+  <label>{{Translations.notes | translation | titlecase}} <span class="text-muted small">({{Translations.optional | translation | titlecase}})</span></label>
   <c-input-group class="mb-2 has-validation">
         <textarea
           [(ngModel)]="newActivity.notes"

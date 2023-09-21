@@ -3,19 +3,21 @@ import { Participant } from "../../models/participant.model";
 import { ParticipantService } from "../../shared/services/app/participant.service";
 import { Router } from "@angular/router";
 import dayjs from "dayjs";
+import { TranslateComponent } from "../../shared/translate/translate.component";
 
 @Component({
   selector: 'app-participant',
   templateUrl: './participant.component.html',
   styleUrls: ['./participant.component.scss']
 })
-export class ParticipantComponent implements OnInit{
+export class ParticipantComponent extends TranslateComponent implements OnInit{
 
   participants: Participant[];
   openModal = false;
 
   constructor(private participantService: ParticipantService,
               private router: Router) {
+    super()
   }
 
   ngOnInit(): void {

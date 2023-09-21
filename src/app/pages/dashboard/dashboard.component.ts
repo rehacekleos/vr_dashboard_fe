@@ -9,13 +9,14 @@ import { ActivityService } from "../../shared/services/app/activity.service";
 import { Activity } from "../../models/activity.model";
 import { ApplicationService } from "../../shared/services/app/application.service";
 import { Application } from "../../models/application.model";
+import { TranslateComponent } from "../../shared/translate/translate.component";
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent extends TranslateComponent implements OnInit {
 
   applications: Application[];
   participants: Participant[];
@@ -26,6 +27,7 @@ export class DashboardComponent implements OnInit {
               private participantService: ParticipantService,
               private activityService: ActivityService,
               private employeeService: EmployeeService) {
+    super()
   }
 
   async ngOnInit(): Promise<void> {

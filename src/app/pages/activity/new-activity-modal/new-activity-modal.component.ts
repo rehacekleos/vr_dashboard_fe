@@ -3,13 +3,14 @@ import { Subject } from "rxjs";
 import { NewParticipant } from "../../../models/participant.model";
 import { NewActivity } from "../../../models/activity.model";
 import dayjs from "dayjs";
+import { TranslateComponent } from "../../../shared/translate/translate.component";
 
 @Component({
   selector: 'app-new-activity-modal',
   templateUrl: './new-activity-modal.component.html',
   styleUrls: ['./new-activity-modal.component.scss']
 })
-export class NewActivityModalComponent {
+export class NewActivityModalComponent extends TranslateComponent{
 
   submitForm: Subject<any> = new Subject<any>()
 

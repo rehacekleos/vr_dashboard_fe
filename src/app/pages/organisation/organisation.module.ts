@@ -20,13 +20,19 @@ import { ClipboardModule } from "@angular/cdk/clipboard";
 import { NewInvitationModalComponent } from './invitation/new-invitation-modal/new-invitation-modal.component';
 import { NewInvitationFormComponent } from './invitation/new-invitation-form/new-invitation-form.component';
 import { FormsModule } from "@angular/forms";
+import { OrganisationDetailComponent } from './organisation-detail/organisation-detail.component';
+import { CreateOrJoinOrganisationModalComponent } from './create-or-join-organisation-modal/create-or-join-organisation-modal.component';
+import { PagesModule } from "../pages.module";
+import { SharedModule } from "../../shared/shared.module";
 
 
 @NgModule({
   declarations: [
     OrganisationComponent,
     NewInvitationModalComponent,
-    NewInvitationFormComponent
+    NewInvitationFormComponent,
+    OrganisationDetailComponent,
+    CreateOrJoinOrganisationModalComponent
   ],
   imports: [
     CommonModule,
@@ -57,7 +63,9 @@ import { FormsModule } from "@angular/forms";
     InputGroupComponent,
     FormFeedbackComponent,
     AlertComponent,
-    TooltipDirective
+    TooltipDirective,
+    PagesModule,
+    SharedModule
   ]
 })
 export class OrganisationModule { }

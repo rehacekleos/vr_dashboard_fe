@@ -31,6 +31,7 @@ import { FormsModule } from "@angular/forms";
 import { ParticipantFormComponent } from './participant-form/participant-form.component';
 import { ParticipantDetailComponent } from './participant-detail/participant-detail.component';
 import { ParticipantEditComponent } from './participant-edit/participant-edit.component';
+import { SharedModule } from "../../shared/shared.module";
 
 
 @NgModule({
@@ -67,7 +68,8 @@ import { ParticipantEditComponent } from './participant-edit/participant-edit.co
         FormSelectDirective,
         ImgDirective,
         CardFooterComponent,
-        AlertComponent
+        AlertComponent,
+        SharedModule
     ]
 })
 export class ParticipantModule { }

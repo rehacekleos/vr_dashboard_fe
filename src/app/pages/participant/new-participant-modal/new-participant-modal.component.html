@@ -3,7 +3,7 @@
   <c-modal-header>
     <h5 cModalTitle>
       <iconify size="lg" icon="mdi:user-outline"/>
-      Add Participant
+      {{Translations.add.participant | translation}}
     </h5>
     <button (click)="visibleChange(false)" cButtonClose></button>
   </c-modal-header>
@@ -13,9 +13,9 @@
   </c-modal-body>
   <c-modal-footer>
     <button (click)="visibleChange(false)" cButton color="secondary">
-      Close
+      {{Translations.Actions.close | translation | titlecase}}
     </button>
-    <button cButton color="primary" (click)="onSubmit()">Add</button>
+    <button cButton color="primary" (click)="onSubmit()">{{Translations.Actions.add | translation | titlecase}}</button>
   </c-modal-footer>
 </c-modal>
 

@@ -1,98 +1,16 @@
 <c-container>
-  <div class="mb-3">
-    <h2>{{organisation.name}}</h2>
-    <span class="h5">Code | <span class="text-muted">{{organisation.code}}</span>
-      <iconify (click)="copyCode(organisation.code)" class="ms-2 pointer h-75" icon="zondicons:copy"/>
-    </span>
-  </div>
-
   <c-row>
     <div class="d-flex flex-row align-items-center justify-content-between mb-2">
-      <h5 class="m-0">Employees</h5>
-      <button class="btn btn-primary btn-sm" (click)="invitationModalVisibleChange(true)"><iconify icon="mdi:add" />Invite employee</button>
+      <h2 class="m-0 text-capitalize">{{Translations.organisations | translation}}</h2>
+      <button class="btn btn-primary btn-sm" (click)="onOpenModal()"><iconify icon="mdi:add" />{{Translations.createOrJoinOrganisation | translation}}</button>
     </div>
-
-    <c-col>
-      <c-card>
-        <c-card-body>
-          <table cTable>
-            <thead>
-            <tr>
-              <th>Email</th>
-              <th>Name</th>
-              <th>Surname</th>
-              <th>Role</th>
-              <th>Participants</th>
-            </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let emp of employees">
-                <td>{{emp.user.email}}</td>
-                <td>{{emp.user.name}}</td>
-                <td>{{emp.user.surname}}</td>
-                <td>{{emp.role.name}}</td>
-                <td>{{emp.participantIds.length}}</td>
-              </tr>
-            </tbody>
-          </table>
-        </c-card-body>
-      </c-card>
-    </c-col>
   </c-row>
-
-  <c-row class="mt-3">
-    <div class="d-flex flex-row align-items-center justify-content-between mb-2">
-      <h5 class="m-0">Invitations</h5>
-    </div>
-
-    <c-col>
-      <c-card>
-        <c-card-body>
-          <table cTable>
-            <thead>
-            <tr>
-              <th>Email</th>
-              <th>Role</th>
-              <th>Created At</th>
-              <th>Valid</th>
-              <th>Code</th>
-              <th>Actions</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr *ngFor="let inv of invitations">
-              <td>{{inv.email}}</td>
-              <td>{{inv.role}}</td>
-              <td>{{toLocaleTime(inv.time)}}</td>
-              <td>
-                <ng-container *ngIf="isExpired(inv.time); else valid">
-                  <iconify cTooltip="Need to refresh invitation" cTooltipPlacement="top" class="text-danger" icon="gridicons:cross-circle" />
-                </ng-container>
-              </td>
-              <td>{{inv.code}} <iconify (click)="copyCode(inv.code)" class="ms-2 pointer h-75" icon="zondicons:copy"/></td>
-              <td>
-                <iconify (click)="refreshInvitation(inv.id)" cTooltip="Refresh Invitation" cTooltipPlacement="top" class="pointer me-2" icon="mdi:refresh" />
-                <iconify (click)="openDeleteModal(inv)" cTooltip="Delete Invitation" cTooltipPlacement="top" class="text-danger pointer" icon="mdi:trash" />
-              </td>
-            </tr>
-            </tbody>
-          </table>
-        </c-card-body>
-      </c-card>
+  <c-row>
+    <c-col [xs]="12" [sm]="6" [lg]="4" *ngFor="let org of organisations">
+      <app-organisation-widget [organisation]="org" />
     </c-col>
   </c-row>
 </c-container>
 
-<app-new-invitation-modal [open]="openInvitationModal" (visibleChanged)="invitationModalVisibleChange($event)"/>
-<app-confirmation-modal
-  [open]="deleteModalOpen"
-  [title]="'Delete Participant'"
-  [message]="getDeleteMessage()"
-  [confirmButtonText]="'Delete'"
-  (confirm)="deleteInvitation()"
-  (cancel)="closeDeleteModal()"
-  [color]="'danger'"/>
 
-<ng-template #valid>
-  <iconify class="text-success" icon="codicon:pass-filled" />
-</ng-template>
+<app-create-or-join-organisation-modal [open]="openModal" (visibleChanged)="invisibleChanged($event)" />
