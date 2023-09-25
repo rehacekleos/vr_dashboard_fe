@@ -16,6 +16,7 @@ export class NewApplicationModalComponent extends TranslateComponent{
 
   newApplication: NewApplication = {
     name: "",
+    identifier: "",
     setting: ""
   }
 

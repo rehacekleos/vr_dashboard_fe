@@ -60,9 +60,18 @@ export class ActivityFormComponent extends TranslateComponent implements OnInit{
     this.validated = true;
     if (form.valid) {
       try {
+        const textData = await this.file.text();
+        let data: any;
+        try {
+          data = JSON.parse(textData);
+        } catch (e) {
+          console.error("Invalid json file.");
+          throw e;
+        }
+
         const newActivity: NewActivity = {
           time: form.form.controls['time'].value,
-          data: "",
+          data: data,
           anonymous: Boolean(form.form.controls['anonymous'].value),
           notes: form.form.controls['notes'].value,
           applicationId: form.form.controls['application'].value

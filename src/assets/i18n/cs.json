@@ -15,6 +15,7 @@
   "employee": "zaměstnanec",
   "employees": "zaměstnanci",
   "code": "kód",
+  "identifier": "identifikátor",
   "role": "role",
   "valid": "validní",
   "actions": "akce",
@@ -23,6 +24,7 @@
   "file": "soubor",
   "anonymous": "anonym",
   "statistics": "statistiky",
+  "admin": "administrator",
 
   "Actions": {
     "select": "vybrat",
@@ -114,7 +116,8 @@
     "application": "Aplikace je povinná!",
     "time": "Čas je povinný!",
     "participant": "Participant je povinný!",
-    "role": "Role je povinná!"
+    "role": "Role je povinná!",
+    "identifier": "Identifikátor je povinný!"
   },
 
   "messages": {

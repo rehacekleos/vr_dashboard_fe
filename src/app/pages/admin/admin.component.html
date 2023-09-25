@@ -1,0 +1,20 @@
+<c-container>
+  <c-row>
+    <div class="d-flex flex-row align-items-center justify-content-between mb-2">
+      <h2 class="m-0">{{Translations.admin | translation | titlecase}}</h2>
+    </div>
+  </c-row>
+  <c-row>
+    <div class="d-flex flex-row align-items-center justify-content-between mb-2">
+      <h4 class="m-0 text-capitalize">{{Translations.applications | translation}}</h4>
+      <button class="btn btn-primary btn-sm" (click)="onOpenApplicationModal()"><iconify icon="mdi:add" />{{Translations.add.application | translation}}</button>
+    </div>
+  </c-row>
+  <c-row>
+    <c-col [xs]="12" [sm]="6" [lg]="4" *ngFor="let app of applications">
+      <app-application-widget [application]="app" />
+    </c-col>
+  </c-row>
+</c-container>
+
+<app-new-application-modal [open]="openApplicationModal" (visibleChanged)="invisibleApplicationChanged($event)" />

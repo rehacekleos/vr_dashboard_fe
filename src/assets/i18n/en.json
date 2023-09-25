@@ -66,7 +66,8 @@
     "repassword": "The passwords don't match!",
     "role": "The role is mandatory!",
     "surname": "Surname is mandatory!",
-    "time": "Time is mandatory!"
+    "time": "Time is mandatory!",
+    "identifier": "Identifier is mandatory!"
   },
 
   "messages": {
@@ -132,5 +133,7 @@
 	"statistics": "statistics",
 	"surname": "surname",
 	"time": "time",
-	"valid": "valid"
+	"valid": "valid",
+  "admin": "admin",
+  "identifier": "identifier"
 }

@@ -37,6 +37,7 @@ import { HttpLoaderFactory } from "./shared/translate/services/custom-translate.
 import { CustomMissingTranslationHandler } from "./shared/translate/services/missingTranslationHandler.service";
 import { MissingTranslationHandler, TranslateLoader, TranslateModule } from "@ngx-translate/core";
 import { SharedModule } from "./shared/shared.module";
+import { AdminGuard } from "./guards/admin.guard";
 
 
 
@@ -104,6 +105,7 @@ import { SharedModule } from "./shared/shared.module";
     IconSetService,
     Title,
     AuthGuard,
+    AdminGuard,
     OrganisationsGuard
   ],
   exports: [

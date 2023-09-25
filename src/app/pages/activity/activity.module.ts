@@ -4,23 +4,23 @@ import { CommonModule } from '@angular/common';
 import { ActivityRoutingModule } from './activity-routing.module';
 import { ActivityComponent } from './activity.component';
 import {
-  ButtonCloseDirective,
-  ButtonDirective,
-  ColComponent,
-  ContainerComponent,
-  FormCheckComponent,
-  FormCheckInputDirective,
-  FormControlDirective,
-  FormDirective,
-  FormFeedbackComponent,
-  FormSelectDirective,
-  InputGroupComponent,
-  ModalBodyComponent,
-  ModalComponent,
-  ModalFooterComponent,
-  ModalHeaderComponent,
-  ModalTitleDirective,
-  RowComponent
+    ButtonCloseDirective,
+    ButtonDirective, CardBodyComponent, CardComponent,
+    ColComponent,
+    ContainerComponent,
+    FormCheckComponent,
+    FormCheckInputDirective,
+    FormControlDirective,
+    FormDirective,
+    FormFeedbackComponent,
+    FormSelectDirective,
+    InputGroupComponent,
+    ModalBodyComponent,
+    ModalComponent,
+    ModalFooterComponent,
+    ModalHeaderComponent,
+    ModalTitleDirective,
+    RowComponent, TableDirective
 } from "@coreui/angular";
 import { ComponentsModule } from "../../components/components.module";
 import { NewActivityModalComponent } from './new-activity-modal/new-activity-modal.component';
@@ -57,7 +57,10 @@ import { SharedModule } from "../../shared/shared.module";
         InputGroupComponent,
         FormCheckComponent,
         FormCheckInputDirective,
-        SharedModule
+        SharedModule,
+        CardBodyComponent,
+        CardComponent,
+        TableDirective
     ]
 })
 export class ActivityModule { }

@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { DefaultLayoutComponent } from "../containers";
 import { DashboardComponent } from "./dashboard/dashboard.component";
 import { NoOrganisationComponent } from "./no-organisation/no-organisation.component";
+import { AdminGuard } from "../guards/admin.guard";
 
 const routes: Routes = [
   {
@@ -28,6 +29,11 @@ const routes: Routes = [
       {
         path: 'activity',
         loadChildren: () => import('./activity/activity.module').then((m) => m.ActivityModule)
+      },
+      {
+        path: 'admin',
+        canActivate: [AdminGuard],
+        loadChildren: () => import('./admin/admin.module').then((m) => m.AdminModule)
       }
     ]
   }

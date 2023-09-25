@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpService } from "../http.service";
 import { HttpClient } from "@angular/common/http";
 import { BehaviorSubject, firstValueFrom } from "rxjs";
-import { Activity } from "../../../models/activity.model";
+import { Activity, NewActivity } from "../../../models/activity.model";
 import { OrganisationService } from "./organisation.service";
 
 @Injectable({
@@ -26,5 +26,11 @@ export class ActivityService extends HttpService{
   async getActivities(){
     const res = await firstValueFrom(this.http.get<Activity[]>(this.createUrl('')));
     this.$activities.next(res);
+  }
+
+  async createActivity(activity: NewActivity) {
+    const res = await firstValueFrom(this.http.post<Activity>(this.createUrl(''), activity));
+    await this.getActivities();
+    return res;
   }
 }

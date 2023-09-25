@@ -27,4 +27,10 @@ export const navItems: INavData[] = [
     url: '/organisation',
     iconComponent: {name: 'cil-institution'},
   },
+  {
+    name: Translations.admin,
+    url: '/admin',
+    iconComponent: {name: 'cil-settings'},
+  },
+
 ];

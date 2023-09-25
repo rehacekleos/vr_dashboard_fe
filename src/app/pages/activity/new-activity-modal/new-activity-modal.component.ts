@@ -4,6 +4,7 @@ import { NewParticipant } from "../../../models/participant.model";
 import { NewActivity } from "../../../models/activity.model";
 import dayjs from "dayjs";
 import { TranslateComponent } from "../../../shared/translate/translate.component";
+import { ActivityService } from "../../../shared/services/app/activity.service";
 
 @Component({
   selector: 'app-new-activity-modal',
@@ -25,6 +26,10 @@ export class NewActivityModalComponent extends TranslateComponent{
   @Input() open: boolean;
   @Output() visibleChanged: EventEmitter<boolean> = new EventEmitter<boolean>();
 
+  constructor(private activityService: ActivityService) {
+    super();
+  }
+
 
   visibleChange($event: boolean) {
     this.visibleChanged.emit($event);
@@ -35,8 +40,13 @@ export class NewActivityModalComponent extends TranslateComponent{
   }
 
 
-  onSubmitForm($event: NewActivity) {
-    console.log($event);
+  async onSubmitForm($event: NewActivity) {
+    try {
+      await this.activityService.createActivity($event);
+      this.visibleChanged.emit(false);
+    } catch (e) {
+      console.error(e)
+    }
   }
 
 }

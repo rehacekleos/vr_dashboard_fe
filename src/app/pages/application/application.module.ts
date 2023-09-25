@@ -20,11 +20,14 @@ import { SharedModule } from "../../shared/shared.module";
 
 
 @NgModule({
-  declarations: [
-    ApplicationComponent,
-    NewApplicationModalComponent,
-    ApplicationFormComponent
-  ],
+    declarations: [
+        ApplicationComponent,
+        NewApplicationModalComponent,
+        ApplicationFormComponent
+    ],
+    exports: [
+        NewApplicationModalComponent
+    ],
     imports: [
         CommonModule,
         ApplicationRoutingModule,
