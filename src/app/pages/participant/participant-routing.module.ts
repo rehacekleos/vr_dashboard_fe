@@ -10,11 +10,11 @@ const routes: Routes = [
     component: ParticipantComponent,
   },
   {
-    path: ':id',
+    path: ':participantId',
     component: ParticipantDetailComponent,
   },
   {
-    path: ':id/edit',
+    path: ':participantId/edit',
     component: ParticipantEditComponent,
   }
 ];

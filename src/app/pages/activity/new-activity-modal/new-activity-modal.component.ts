@@ -16,7 +16,6 @@ export class NewActivityModalComponent extends TranslateComponent{
   submitForm: Subject<any> = new Subject<any>()
 
   newActivity: NewActivity = {
-    time: dayjs().format('YYYY-MM-DDTHH:mm'),
     data: "",
     anonymous: false,
     notes: "",

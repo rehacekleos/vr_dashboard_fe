@@ -9,6 +9,7 @@ import { OrganisationService } from "../../shared/services/app/organisation.serv
 import { Router } from "@angular/router";
 import { InvitationService } from "../../shared/services/app/invitation.service";
 import { TranslateComponent } from "../../shared/translate/translate.component";
+import { Subject } from "rxjs";
 
 @Component({
   selector: 'app-no-organisation',
@@ -17,7 +18,25 @@ import { TranslateComponent } from "../../shared/translate/translate.component";
 })
 export class NoOrganisationComponent extends TranslateComponent implements OnInit{
 
-  constructor(private authService: AuthService) {
+  newOrg: NewOrganisation = {
+    name: ""
+  }
+  submitCreate: Subject<any> = new Subject<any>();
+  createActive = false;
+  createError: string = null;
+
+
+  acceptInv: AcceptInvitation = {
+    code: ""
+  }
+  submitJoin: Subject<any> = new Subject<any>();
+  joinActive = false;
+  joinError: string = null;
+
+  constructor(private authService: AuthService,
+              private orgService: OrganisationService,
+              private invitationService: InvitationService,
+              private router: Router) {
     super();
   }
 
@@ -27,5 +46,37 @@ export class NoOrganisationComponent extends TranslateComponent implements OnIni
 
   async goToLogin() {
     await this.authService.logout()
+  }
+
+  joinOrg() {
+    this.submitJoin.next(true);
+  }
+
+  createOrg() {
+    this.submitCreate.next(true);
+  }
+
+  async onJoinSubmit($event: AcceptInvitation) {
+    this.joinActive = true;
+    try {
+      await this.invitationService.acceptInvitation($event);
+      this.joinActive = false;
+      await this.router.navigate([""]);
+    } catch (e) {
+      this.joinActive = false;
+      this.joinError = e.error.message;
+    }
+  }
+
+  async onCreateSubmit($event: NewOrganisation) {
+    this.createActive = true;
+    try {
+      await this.orgService.createOrganisation($event);
+      this.createActive = false;
+      await this.router.navigate([""]);
+    } catch (e) {
+      this.createActive = false;
+      this.createError = e.error.message;
+    }
   }
 }

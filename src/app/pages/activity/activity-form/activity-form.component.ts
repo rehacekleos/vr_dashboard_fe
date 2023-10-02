@@ -56,7 +56,6 @@ export class ActivityFormComponent extends TranslateComponent implements OnInit{
   }
 
   async onSubmit(form: NgForm) {
-    console.log(this.newActivity, this.file);
     this.validated = true;
     if (form.valid) {
       try {
@@ -70,7 +69,6 @@ export class ActivityFormComponent extends TranslateComponent implements OnInit{
         }
 
         const newActivity: NewActivity = {
-          time: form.form.controls['time'].value,
           data: data,
           anonymous: Boolean(form.form.controls['anonymous'].value),
           notes: form.form.controls['notes'].value,

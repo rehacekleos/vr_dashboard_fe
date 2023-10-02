@@ -1,0 +1,17 @@
+<c-modal size="lg" alignment="center" [scrollable]="true" [visible]="open" (visibleChange)="visibleChange($event)">
+  <c-modal-header>
+    <h2>{{Translations.joinOrganisation | translation}}</h2>
+    <button (click)="visibleChange(false)" cButtonClose></button>
+  </c-modal-header>
+  <c-modal-body>
+    <app-join-organisation-form *ngIf="open" [acceptInvitation]="acceptInv" [submit]="submitJoin" (onSubmitForm)="onJoinSubmit($event)"/>
+  </c-modal-body>
+  <c-modal-footer>
+    <button (click)="visibleChange(false)" class="btn btn-secondary">
+      {{Translations.Actions.close | translation | titlecase}}
+    </button>
+    <button class="btn btn-primary" [disabled]="joinActive" (click)="joinOrg()">
+      {{Translations.Actions.join | translation}}
+    </button>
+  </c-modal-footer>
+</c-modal>

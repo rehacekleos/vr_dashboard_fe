@@ -4,6 +4,7 @@ import { HttpClient } from "@angular/common/http";
 import { OrganisationService } from "./organisation.service";
 import { BehaviorSubject, firstValueFrom } from "rxjs";
 import { Application, NewApplication } from "../../../models/application.model";
+import { AdminService } from "./admin.service";
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,7 @@ export class ApplicationService extends HttpService{
   $applications: BehaviorSubject<Application[]> = new BehaviorSubject<Application[]>(undefined);
 
   constructor(private http: HttpClient,
+              private adminService: AdminService,
               private orgService: OrganisationService) {
     super('/application');
 
@@ -27,8 +29,13 @@ export class ApplicationService extends HttpService{
   }
 
   async createApplication(body: NewApplication) {
-    const res = await firstValueFrom(this.http.post<Application[]>(this.createUrl(''), body));
+    await firstValueFrom(this.http.post<Application[]>(this.createUrl(''), body));
     await this.getApplications();
-    return res;
+    await this.adminService.getAllApplications();
+  }
+
+  async assignApplication(applicationId: string) {
+    await firstValueFrom(this.http.post<Application[]>(this.createUrl(`/${applicationId}/assign`), null));
+    await this.getApplications();
   }
 }

@@ -2,15 +2,15 @@
   <c-row>
     <div class="d-flex flex-row align-items-center justify-content-between mb-2">
       <h2 class="m-0 text-capitalize">{{Translations.organisations | translation}}</h2>
-      <button class="btn btn-primary btn-sm" (click)="onOpenModal()"><iconify icon="mdi:add" />{{Translations.createOrJoinOrganisation | translation}}</button>
+      <button class="btn btn-primary btn-sm" (click)="onOpenModal()"><iconify icon="mdi:add" />{{Translations.joinOrganisation | translation}}</button>
     </div>
   </c-row>
   <c-row>
-    <c-col [xs]="12" [sm]="6" [lg]="4" *ngFor="let org of organisations">
-      <app-organisation-widget [organisation]="org" />
+    <c-col [xs]="12" [sm]="6" [lg]="4" [gutter]="2" class="d-flex" *ngFor="let org of organisations">
+      <app-organisation-widget class="d-flex flex-grow-1" [organisation]="org" />
     </c-col>
   </c-row>
 </c-container>
 
 
-<app-create-or-join-organisation-modal [open]="openModal" (visibleChanged)="invisibleChanged($event)" />
+<app-join-organisation-modal [open]="openModal" (visibleChanged)="invisibleChanged($event)" />

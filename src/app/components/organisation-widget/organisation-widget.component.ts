@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Application } from "../../models/application.model";
 import { Organisation } from "../../models/organisation.model";
 import { Router } from "@angular/router";
@@ -13,7 +13,10 @@ import { Translations } from "../../shared/translate/translate.model";
   templateUrl: './organisation-widget.component.html',
   styleUrls: ['./organisation-widget.component.scss']
 })
-export class OrganisationWidgetComponent extends TranslateComponent {
+export class OrganisationWidgetComponent extends TranslateComponent implements OnInit{
+
+  selectedOrganisation: Organisation;
+  @Input() organisation: Organisation
 
   constructor(private router: Router,
               private toaster: CustomToastrService,
@@ -22,7 +25,11 @@ export class OrganisationWidgetComponent extends TranslateComponent {
     super()
   }
 
-  @Input() organisation: Organisation
+  ngOnInit(): void {
+    this.organisationService.$selectedOrganisation.subscribe(o => {
+      this.selectedOrganisation = o;
+    })
+  }
 
   async goToOrganisation() {
     await this.router.navigate(['/organisation', this.organisation.id]);
@@ -34,4 +41,6 @@ export class OrganisationWidgetComponent extends TranslateComponent {
       this.toaster.showToastMessage(this.translateService.instant(Translations.messages.selected.organisation$, {param: this.organisation.name}))
     }
   }
+
+
 }

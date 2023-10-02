@@ -20,7 +20,8 @@ export class ParticipantComponent extends TranslateComponent implements OnInit{
     super()
   }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
+    await this.participantService.getParticipants();
     this.participantService.$participants.subscribe(p => {
       this.participants = p;
     })

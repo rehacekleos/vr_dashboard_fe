@@ -37,16 +37,17 @@
     "save": "uložit",
     "delete": "odstranit",
     "create": "vytvořit",
-    "join": "připojit se",
+    "join": "Připojit se",
     "refresh": "obnovit",
-    "invite": "pozvat"
+    "invite": "pozvat",
+    "assign": "přiřadit"
   },
 
-  "createOrJoinOrganisation": "Vytvořit nebo připojit se k organizaci",
   "noOrganisation": "Nemáte žádné organizace.",
   "joinOrganisation": "Připojit se k organizaci",
   "inviteEmployee": "Pozvat zaměstnance",
   "needToRefresh": "Je potřeba obnova",
+  "assignApplication": "Přiřadit aplikaci",
 
   "add": {
     "application": "Přidat aplikaci",
@@ -117,7 +118,10 @@
     "time": "Čas je povinný!",
     "participant": "Participant je povinný!",
     "role": "Role je povinná!",
-    "identifier": "Identifikátor je povinný!"
+    "identifier": "Identifikátor je povinný!",
+    "code": "Kód je povinný!",
+    "organisationName": "Jméno organizace je povinné!",
+    "invitationCode": "Kód pozvánky je povinný!"
   },
 
   "messages": {

@@ -3,10 +3,11 @@ import { CommonModule } from '@angular/common';
 
 import { AdminRoutingModule } from './admin-routing.module';
 import { AdminComponent } from './admin.component';
-import { ColComponent, ContainerComponent, RowComponent } from "@coreui/angular";
+import { ColComponent, ContainerComponent, GutterDirective, RowComponent } from "@coreui/angular";
 import { ComponentsModule } from "../../components/components.module";
 import { SharedModule } from "../../shared/shared.module";
 import { ApplicationModule } from "../application/application.module";
+import { OrganisationModule } from "../organisation/organisation.module";
 
 
 @NgModule({
@@ -21,7 +22,9 @@ import { ApplicationModule } from "../application/application.module";
     ContainerComponent,
     RowComponent,
     SharedModule,
-    ApplicationModule
+    ApplicationModule,
+    OrganisationModule,
+    GutterDirective
   ]
 })
 export class AdminModule { }

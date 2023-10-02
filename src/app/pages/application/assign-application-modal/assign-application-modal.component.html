@@ -1,0 +1,36 @@
+<c-modal size="lg" alignment="center" [scrollable]="true" [visible]="open" (visibleChange)="visibleChange($event)">
+
+  <c-modal-header>
+    <h5 cModalTitle>
+      <iconify size="lg" icon="mdi:add"/>
+      {{Translations.assignApplication | translation}}
+    </h5>
+    <button (click)="visibleChange(false)" cButtonClose></button>
+  </c-modal-header>
+  <c-modal-body>
+    <form
+      *ngIf="init"
+      #assignForm="ngForm"
+      novalidate
+      [validated]="validated"
+      (ngSubmit)="onSubmitForm(assignForm)"
+      cForm>
+      <c-input-group class="mb-2 has-validation">
+        <select
+          [(ngModel)]="selectedApplication"
+          name="application"
+          required
+          cSelect>
+          <option *ngFor="let app of getFilteredApplication()" [value]="app">{{app.name}}</option>
+        </select>
+        <c-form-feedback [valid]="false">{{Translations.inputErrors.application | translation}}</c-form-feedback>
+      </c-input-group>
+    </form>
+  </c-modal-body>
+  <c-modal-footer>
+    <button (click)="visibleChange(false)" cButton color="secondary">
+      {{Translations.Actions.close | translation | titlecase}}
+    </button>
+    <button cButton color="primary" (click)="onSubmit()">{{Translations.Actions.assign | translation | titlecase}}</button>
+  </c-modal-footer>
+</c-modal>

@@ -11,6 +11,7 @@ import { OrganisationService } from "./organisation.service";
 export class ActivityService extends HttpService{
 
   $activities: BehaviorSubject<Activity[]> = new BehaviorSubject<Activity[]>(undefined);
+  $activitiesForParticipant: BehaviorSubject<Activity[]> = new BehaviorSubject<Activity[]>(undefined);
 
   constructor(private http: HttpClient,
               private orgService: OrganisationService) {
@@ -32,5 +33,14 @@ export class ActivityService extends HttpService{
     const res = await firstValueFrom(this.http.post<Activity>(this.createUrl(''), activity));
     await this.getActivities();
     return res;
+  }
+
+  async getActivitiesForParticipant(id: string) {
+    const res = await firstValueFrom(this.http.get<Activity[]>(this.createUrl(`/participant/${id}`)));
+    this.$activitiesForParticipant.next(res);
+  }
+
+  async getActivity(activityId: any) {
+    return await firstValueFrom(this.http.get<Activity>(this.createUrl(`/${activityId}`)));
   }
 }

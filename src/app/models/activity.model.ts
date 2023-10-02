@@ -10,7 +10,6 @@ export class Activity{
 }
 
 export class NewActivity{
-    time: string;
     data: any;
     anonymous: boolean;
     notes: string;

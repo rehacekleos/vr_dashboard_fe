@@ -2,7 +2,34 @@
   <c-container>
     <c-row class="justify-content-center text-center">
       <h2>{{Translations.noOrganisation | translation}}</h2>
-      <app-create-or-join-organisation class="row"/>
+      <c-col class="col-md-6 col-12 mb-2 mb-md-0">
+        <c-card class="align-items-center p-4 h-100">
+          <h4>{{Translations.create.organisation | translation}}</h4>
+            <app-create-organisation-form [newOrganisation]="newOrg" [submit]="submitCreate" (onSubmitForm)="onCreateSubmit($event)" />
+            <c-row *ngIf="createError">
+              <c-col>
+                <c-alert class="py-2" color="danger">{{createError}}</c-alert>
+              </c-col>
+            </c-row>
+            <c-row class="mt-auto">
+              <button class="btn btn-primary" [disabled]="createActive" (click)="createOrg()">{{Translations.Actions.create | translation | titlecase}}</button>
+            </c-row>
+        </c-card>
+      </c-col>
+      <c-col class="col-md-6 col-12">
+        <c-card class="align-items-center p-4 h-100">
+          <h4>{{Translations.joinOrganisation | translation}}</h4>
+            <app-join-organisation-form [acceptInvitation]="acceptInv" [submit]="submitJoin" (onSubmitForm)="onJoinSubmit($event)"/>
+            <c-row *ngIf="joinError">
+              <c-col>
+                <c-alert class="py-2" color="danger">{{joinError}}</c-alert>
+              </c-col>
+            </c-row>
+            <c-row class="mt-auto">
+              <button class="btn btn-primary" [disabled]="joinActive" (click)="joinOrg()" )>{{Translations.Actions.join | translation | titlecase}}</button>
+            </c-row>
+        </c-card>
+      </c-col>
       <p class="mt-4 link-secondary pointer w-auto" (click)="goToLogin()" >{{Translations.goToLogin | translation}}</p>
     </c-row>
   </c-container>

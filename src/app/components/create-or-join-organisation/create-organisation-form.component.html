@@ -1,0 +1,17 @@
+<form #createForm="ngForm"
+      cForm
+      class="h-100 d-flex flex-column"
+      [validated]="createValidated"
+      (ngSubmit)="onSubmit(createForm)">
+  <c-input-group class="mb-2 has-validation">
+    <input
+      name="name"
+      [(ngModel)]="newOrganisation.name"
+      cFormControl
+      type="text"
+      [placeholder]="Translations.organisationName | translation"
+      required
+    />
+    <c-form-feedback [valid]="false">{{Translations.inputErrors.organisationName | translation}}</c-form-feedback>
+  </c-input-group>
+</form>

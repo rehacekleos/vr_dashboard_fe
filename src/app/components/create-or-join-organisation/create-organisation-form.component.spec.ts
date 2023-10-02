@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CreateOrJoinOrganisationComponent } from './create-or-join-organisation.component';
+import { CreateOrganisationFormComponent } from './create-organisation-form.component';
 
 describe('CreateOrJoinOrganisationComponent', () => {
-  let component: CreateOrJoinOrganisationComponent;
-  let fixture: ComponentFixture<CreateOrJoinOrganisationComponent>;
+  let component: CreateOrganisationFormComponent;
+  let fixture: ComponentFixture<CreateOrganisationFormComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [CreateOrJoinOrganisationComponent]
+      declarations: [CreateOrganisationFormComponent]
     });
-    fixture = TestBed.createComponent(CreateOrJoinOrganisationComponent);
+    fixture = TestBed.createComponent(CreateOrganisationFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

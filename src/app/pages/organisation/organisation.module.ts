@@ -21,9 +21,10 @@ import { NewInvitationModalComponent } from './invitation/new-invitation-modal/n
 import { NewInvitationFormComponent } from './invitation/new-invitation-form/new-invitation-form.component';
 import { FormsModule } from "@angular/forms";
 import { OrganisationDetailComponent } from './organisation-detail/organisation-detail.component';
-import { CreateOrJoinOrganisationModalComponent } from './create-or-join-organisation-modal/create-or-join-organisation-modal.component';
+import { CreateOrganisationModalComponent } from './create-organisation-modal/create-organisation-modal.component';
 import { PagesModule } from "../pages.module";
 import { SharedModule } from "../../shared/shared.module";
+import { JoinOrganisationModalComponent } from './join-organisation-modal/join-organisation-modal.component';
 
 
 @NgModule({
@@ -32,7 +33,11 @@ import { SharedModule } from "../../shared/shared.module";
     NewInvitationModalComponent,
     NewInvitationFormComponent,
     OrganisationDetailComponent,
-    CreateOrJoinOrganisationModalComponent
+    CreateOrganisationModalComponent,
+    JoinOrganisationModalComponent
+  ],
+  exports: [
+    CreateOrganisationModalComponent
   ],
   imports: [
     CommonModule,

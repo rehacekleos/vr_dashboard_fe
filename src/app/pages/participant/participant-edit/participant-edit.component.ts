@@ -32,7 +32,7 @@ export class ParticipantEditComponent extends TranslateComponent implements OnIn
 
   ngOnInit(): void {
     this.route.params.subscribe(async p => {
-      this.participant = await this.participantService.getParticipant(p.id)
+      this.participant = await this.participantService.getParticipant(p.participantId)
     })
   }
 

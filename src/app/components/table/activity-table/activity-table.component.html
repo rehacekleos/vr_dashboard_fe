@@ -1,0 +1,18 @@
+<table cTable>
+  <thead>
+  <tr>
+    <th></th>
+    <th class="text-capitalize">{{Translations.time | translation}}</th>
+    <th class="text-capitalize">{{Translations.participant | translation}}</th>
+    <th class="text-capitalize">{{Translations.application | translation}}</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let activity of activities">
+    <td><iconify class="text-primary pointer" icon="bxs:detail" (click)="goToDetail(activity.id)"/></td>
+    <td>{{getTime(activity)}}</td>
+    <td>{{getParticipant(activity)}}</td>
+    <td>{{getApplication(activity)}}</td>
+  </tr>
+  </tbody>
+</table>

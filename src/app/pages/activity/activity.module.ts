@@ -27,13 +27,15 @@ import { NewActivityModalComponent } from './new-activity-modal/new-activity-mod
 import { ActivityFormComponent } from './activity-form/activity-form.component';
 import { FormsModule } from "@angular/forms";
 import { SharedModule } from "../../shared/shared.module";
+import { ActivityDetailComponent } from './activity-detail/activity-detail.component';
 
 
 @NgModule({
   declarations: [
     ActivityComponent,
     NewActivityModalComponent,
-    ActivityFormComponent
+    ActivityFormComponent,
+    ActivityDetailComponent
   ],
     imports: [
         CommonModule,

@@ -3,6 +3,7 @@ import { BehaviorSubject, firstValueFrom } from "rxjs";
 import { HttpClient } from "@angular/common/http";
 import { NewOrganisation, Organisation } from "../../../models/organisation.model";
 import { Injectable } from "@angular/core";
+import { AdminService } from "./admin.service";
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,8 @@ export class OrganisationService extends HttpService{
 
   $selectedOrganisation: BehaviorSubject<Organisation> = new BehaviorSubject<Organisation>(undefined);
 
-  constructor(private http: HttpClient,) {
+  constructor(private http: HttpClient,
+              private adminService: AdminService) {
     super('/organisation');
 
     this.$organisations.subscribe(val => {
@@ -33,9 +35,11 @@ export class OrganisationService extends HttpService{
 
   async createOrganisation(newOrg: NewOrganisation){
     const res = await firstValueFrom(this.http.post<Organisation>(this.createUrl(''), newOrg));
-    await this.getOrganisations();
     this.$selectedOrganisation.next(res);
+    await this.getOrganisations();
+    await this.adminService.getAllOrganisations();
   }
+
 
   async getOrganisation(id: any) {
     const res = await firstValueFrom(this.http.get<Organisation>(this.createUrl(`/${id}`)));

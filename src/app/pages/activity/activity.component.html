@@ -10,24 +10,7 @@
   <c-row>
     <c-card>
       <c-card-body>
-        <table cTable>
-          <thead>
-          <tr>
-            <th></th>
-            <th class="text-capitalize">{{Translations.time | translation}}</th>
-            <th class="text-capitalize">{{Translations.participant | translation}}</th>
-            <th class="text-capitalize">{{Translations.application | translation}}</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr *ngFor="let activity of activities">
-            <td><iconify class="text-primary pointer" icon="bxs:detail" (click)="goToDetail(activity.id)"/></td>
-            <td>{{activity.time}}</td>
-            <td>{{getParticipant(activity)}}</td>
-            <td>{{getApplication(activity)}}</td>
-          </tr>
-          </tbody>
-        </table>
+        <app-activity-table [activities]="activities"/>
       </c-card-body>
     </c-card>
   </c-row>
