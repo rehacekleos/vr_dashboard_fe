@@ -4,19 +4,22 @@ import { LanguageStringPipe } from "./translate/pipes/languageString.pipe";
 import { SelectLanguageComponent } from "./translate/select-language/select-language.component";
 import { TranslatePipeCustom } from "./translate/pipes/translate.pipe";
 import { DropdownComponent, DropdownItemDirective, DropdownMenuDirective, DropdownToggleDirective } from "@coreui/angular";
+import { LocalizedDatePipe } from "./translate/pipes/customDate.pipe";
 
 
 
 @NgModule({
-  declarations: [
-    LanguageStringPipe,
-    SelectLanguageComponent,
-    TranslatePipeCustom,
-  ],
-  exports: [
-    TranslatePipeCustom,
-    SelectLanguageComponent
-  ],
+    declarations: [
+        LanguageStringPipe,
+        SelectLanguageComponent,
+        TranslatePipeCustom,
+        LocalizedDatePipe,
+    ],
+    exports: [
+        TranslatePipeCustom,
+        SelectLanguageComponent,
+        LocalizedDatePipe
+    ],
   imports: [
     CommonModule,
     DropdownComponent,

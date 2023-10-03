@@ -21,22 +21,24 @@ import { SharedModule } from "../shared/shared.module";
 import { JoinOrganisationFormComponent } from './join-organisation-form/join-organisation-form.component';
 import { LoadingPlaceholderComponent } from './loading-placeholder/loading-placeholder.component';
 import { ActivityTableComponent } from './table/activity-table/activity-table.component';
+import { BooleanIconComponent } from './boolean-icon/boolean-icon.component';
 
 
 
 @NgModule({
-  declarations: [IconifyComponent, WidgetComponent, ApplicationWidgetComponent, ConfirmationModalComponent, OrganisationWidgetComponent, CreateOrganisationFormComponent, JoinOrganisationFormComponent, LoadingPlaceholderComponent, ActivityTableComponent],
-  exports: [
-    IconifyComponent,
-    WidgetComponent,
-    ApplicationWidgetComponent,
-    ConfirmationModalComponent,
-    OrganisationWidgetComponent,
-    CreateOrganisationFormComponent,
-    JoinOrganisationFormComponent,
-    LoadingPlaceholderComponent,
-    ActivityTableComponent
-  ],
+  declarations: [IconifyComponent, WidgetComponent, ApplicationWidgetComponent, ConfirmationModalComponent, OrganisationWidgetComponent, CreateOrganisationFormComponent, JoinOrganisationFormComponent, LoadingPlaceholderComponent, ActivityTableComponent, BooleanIconComponent],
+    exports: [
+        IconifyComponent,
+        WidgetComponent,
+        ApplicationWidgetComponent,
+        ConfirmationModalComponent,
+        OrganisationWidgetComponent,
+        CreateOrganisationFormComponent,
+        JoinOrganisationFormComponent,
+        LoadingPlaceholderComponent,
+        ActivityTableComponent,
+        BooleanIconComponent
+    ],
     imports: [
         CommonModule,
         CardComponent,

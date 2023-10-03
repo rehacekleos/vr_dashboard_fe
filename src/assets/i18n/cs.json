@@ -139,5 +139,13 @@
     "selected": {
       "organisation$": "Organizace {{param}} byla vybrána."
     }
+  },
+
+  "times": {
+    "minutes": "minut",
+    "seconds": "vteřin",
+    "start": "začátek",
+    "end": "konec",
+    "duration": "Doba trvání"
   }
 }

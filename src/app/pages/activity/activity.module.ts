@@ -13,7 +13,7 @@ import {
     FormControlDirective,
     FormDirective,
     FormFeedbackComponent,
-    FormSelectDirective,
+    FormSelectDirective, ImgDirective,
     InputGroupComponent,
     ModalBodyComponent,
     ModalComponent,
@@ -28,6 +28,7 @@ import { ActivityFormComponent } from './activity-form/activity-form.component';
 import { FormsModule } from "@angular/forms";
 import { SharedModule } from "../../shared/shared.module";
 import { ActivityDetailComponent } from './activity-detail/activity-detail.component';
+import { NgChartsModule } from "ng2-charts";
 
 
 @NgModule({
@@ -37,32 +38,34 @@ import { ActivityDetailComponent } from './activity-detail/activity-detail.compo
     ActivityFormComponent,
     ActivityDetailComponent
   ],
-    imports: [
-        CommonModule,
-        ActivityRoutingModule,
-        ColComponent,
-        ComponentsModule,
-        ContainerComponent,
-        RowComponent,
-        ButtonCloseDirective,
-        ButtonDirective,
-        ModalBodyComponent,
-        ModalComponent,
-        ModalFooterComponent,
-        ModalHeaderComponent,
-        ModalTitleDirective,
-        FormControlDirective,
-        FormDirective,
-        FormFeedbackComponent,
-        FormSelectDirective,
-        FormsModule,
-        InputGroupComponent,
-        FormCheckComponent,
-        FormCheckInputDirective,
-        SharedModule,
-        CardBodyComponent,
-        CardComponent,
-        TableDirective
-    ]
+  imports: [
+    CommonModule,
+    ActivityRoutingModule,
+    ColComponent,
+    ComponentsModule,
+    ContainerComponent,
+    RowComponent,
+    ButtonCloseDirective,
+    ButtonDirective,
+    ModalBodyComponent,
+    ModalComponent,
+    ModalFooterComponent,
+    ModalHeaderComponent,
+    ModalTitleDirective,
+    FormControlDirective,
+    FormDirective,
+    FormFeedbackComponent,
+    FormSelectDirective,
+    FormsModule,
+    InputGroupComponent,
+    FormCheckComponent,
+    FormCheckInputDirective,
+    SharedModule,
+    CardBodyComponent,
+    CardComponent,
+    TableDirective,
+    ImgDirective,
+    NgChartsModule
+  ]
 })
 export class ActivityModule { }

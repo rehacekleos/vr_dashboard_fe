@@ -1,9 +1,9 @@
-<c-container *ngIf="participant">
+<c-container>
   <div class="d-flex flex-row align-items-center justify-content-between mb-2">
     <h2 class="m-0">{{Translations.participant | translation | titlecase}}</h2>
     <button class="btn btn-light btn-sm" (click)="goToEdit()"><iconify icon="ic:round-edit" />{{Translations.Actions.edit | translation | titlecase}}</button>
   </div>
-  <c-card *ngIf="participant">
+  <c-card *ngIf="participant; else loading">
     <c-card-body>
       <c-row>
         <c-col [xs]="2">

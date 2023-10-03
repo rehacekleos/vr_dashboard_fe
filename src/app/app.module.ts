@@ -38,6 +38,7 @@ import { CustomMissingTranslationHandler } from "./shared/translate/services/mis
 import { MissingTranslationHandler, TranslateLoader, TranslateModule } from "@ngx-translate/core";
 import { SharedModule } from "./shared/shared.module";
 import { AdminGuard } from "./guards/admin.guard";
+import { NgChartsModule } from "ng2-charts";
 
 
 
@@ -93,6 +94,7 @@ import { AdminGuard } from "./guards/admin.guard";
       }
     }),
     SharedModule,
+    NgChartsModule,
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},

@@ -16,7 +16,7 @@ export class NewActivityModalComponent extends TranslateComponent{
   submitForm: Subject<any> = new Subject<any>()
 
   newActivity: NewActivity = {
-    data: "",
+    data: null,
     anonymous: false,
     notes: "",
     applicationId: null
