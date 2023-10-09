@@ -49,3 +49,8 @@ export class Axis {
   y: number;
   z: number;
 }
+
+export class CustomDataDisplay {
+  title: string;
+  value: any;
+}

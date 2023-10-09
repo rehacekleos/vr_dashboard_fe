@@ -61,13 +61,17 @@
 
   "delete": {
     "participant": "Odstranit participanta",
-    "invitation": "Odstranit pozvánku"
+    "invitation": "Odstranit pozvánku",
+    "activity": "Odstranit aktivitu",
+    "application": "odstranit aplikaci"
   },
 
   "confirm": {
     "delete": {
       "participant_$": "Opravdu chcete odstranit participanta s přezdívkou: {{param}}?",
-      "invitation_$": "Opravdu chcete odstranit pozvánku s emailem: {{param}}?"
+      "invitation_$": "Opravdu chcete odstranit pozvánku s emailem: {{param}}?",
+      "activity": "Opravdu chcete odstranit aktivitu?",
+      "application_$": "Opravdu chcete odstranit aplikaci s kódem: {{param}}?\nPo odstranění je možné, že přestanou fungovat VR aplikace!"
     }
   },
 
@@ -92,6 +96,7 @@
 
   "profile": "profil",
   "basicInformation": "Obecné informace",
+  "customData": "Volitelné informace",
   "profilePhoto": "Profilová fotka",
 
   "login": "Přihlásit se",
@@ -130,11 +135,14 @@
     },
     "update": {
       "participant": "Participant byl aktualizován.",
-      "invitation": "Pozvánka byla obnovena."
+      "invitation": "Pozvánka byla obnovena.",
+      "note": "Poznámka byla upravena.",
+      "setting": "Nastavení bylo aktualizováno."
     },
     "delete": {
       "participant": "Participant byl odstraněn!",
-      "invitation": "Pozvánka byla odstraněna!"
+      "invitation": "Pozvánka byla odstraněna!",
+      "activity": "Aktivita byla odstraněna!"
     },
     "selected": {
       "organisation$": "Organizace {{param}} byla vybrána."
@@ -147,5 +155,20 @@
     "start": "začátek",
     "end": "konec",
     "duration": "Doba trvání"
+  },
+
+  "rotation": {
+    "head": {
+      "all": "Rotace hlavy",
+      "x": "Rotace hlavy osa X",
+      "y": "Rotace hlavy osa Y",
+      "z": "Rotace hlavy osa Z"
+    }
+  },
+
+  "position": {
+    "head": {
+      "all": "Pozice hlavy"
+    }
   }
 }

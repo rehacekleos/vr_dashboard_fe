@@ -1,29 +1,43 @@
 <c-container>
   <div class="d-flex flex-row align-items-center justify-content-between mb-2">
     <h2 class="m-0">{{Translations.activity | translation | titlecase}}</h2>
+    <button class="btn btn-danger btn-sm" (click)="openConfirmModal()">
+      <iconify icon="mdi:trash"/>
+      {{Translations.Actions.delete | translation | titlecase}}</button>
   </div>
 
-  <c-card *ngIf="activity && participants && applications; else loading">
+  <c-card *ngIf="activity; else loading">
     <c-card-body>
-      <c-row>
+      <c-row class="flex-column">
         <c-col>
           <h5>{{Translations.basicInformation | translation}}</h5>
           <c-row>
-            <c-col xs="auto"  class="me-5">
+            <c-col xs="auto" class="me-5">
 
-              <p class="m-0"><span class="fw-bolder">{{Translations.times.start | translation | titlecase}} | </span>{{activity.data.start | localizedDate:"medium"}}</p>
-              <p class="m-0"><span class="fw-bolder">{{Translations.times.end | translation | titlecase}} | </span>{{activity.data.end | localizedDate:"medium"}}</p>
+              <p class="m-0"><span class="fw-bolder">{{Translations.times.start | translation | titlecase}}
+                | </span>{{activity.data.start | localizedDate:"medium"}}</p>
+              <p class="m-0"><span class="fw-bolder">{{Translations.times.end | translation | titlecase}}
+                | </span>{{activity.data.end | localizedDate:"medium"}}</p>
               <p class="m-0"><span class="fw-bolder">{{Translations.times.duration | translation}} | </span>{{getDuration()}}</p>
-              <p class="m-0"><span class="fw-bolder">{{Translations.anonymous | translation | titlecase}} | </span><app-boolean-icon [value]="activity.anonymous" /></p>
-              <p class="m-0" *ngIf="activity.participantId"><span class="fw-bolder">{{Translations.participant | translation | titlecase}} | </span>{{getParticipant(activity.participantId).nickname}}</p>
-              <p class="m-0"><span class="fw-bolder">{{Translations.application | translation | titlecase}} | </span>{{getApplication(activity.applicationId).name}}</p>
+              <p class="m-0"><span class="fw-bolder">{{Translations.anonymous | translation | titlecase}} | </span>
+                <app-boolean-icon [value]="activity.anonymous"/>
+              </p>
+              <p class="m-0" *ngIf="activity.participantId"><span class="fw-bolder">{{Translations.participant | translation | titlecase}}
+                | </span>{{participant?.nickname}}</p>
+              <p class="m-0"><span class="fw-bolder">{{Translations.application | translation | titlecase}}
+                | </span>{{application?.name}}</p>
             </c-col>
-            <c-col xs>
-              <p class="m-0 fw-bolder">{{Translations.notes | translation | titlecase}}</p>
-              <p class="m-0 font-monospace small">{{activity.notes}}</p>
+            <c-col xs class="d-flex flex-column">
+              <app-description-detail class="d-flex flex-grow-1" [title]="Translations.notes | translation | titlecase" [value]="activity.notes"
+                                      (changeValue)="onChangeNote($event)"/>
             </c-col>
           </c-row>
 
+        </c-col>
+        <c-col *ngIf="customData.length > 0" class="mt-3">
+          <h5>{{Translations.customData | translation}}</h5>
+          <p class="m-0" *ngFor="let data of customData"><span class="fw-bolder">{{data.title}}
+            | </span>{{data.value}}</p>
         </c-col>
       </c-row>
     </c-card-body>
@@ -33,15 +47,15 @@
     <h2 class="m-0">Graphs</h2>
   </div>
 
-  <c-card class="mb-4">
-    <c-card-body *ngIf="lineChartData">
-      <canvas
-        baseChart
-        class="chart"
-        [data]="lineChartData"
-        [options]="lineChartOptions"
-        type="line"
-      ></canvas>
+  <c-card class="mb-4" *ngIf="activity; else loading">
+    <c-card-body>
+      <app-rotation-chart
+        part="head"
+        [records]="activity.data.records"
+        [xAxisTitle]="Translations.rotation.head.x | translation"
+        [yAxisTitle]="Translations.rotation.head.y | translation"
+        [zAxisTitle]="Translations.rotation.head.z | translation"
+      />
     </c-card-body>
   </c-card>
 
@@ -60,7 +74,17 @@
 
 </c-container>
 
+<c-container *ngIf="deleteModalOpen">
+  <app-confirmation-modal
+    [open]="deleteModalOpen"
+    [title]="Translations.delete.activity | translation | titlecase"
+    [message]="getDeleteMessage()"
+    [confirmButtonText]="Translations.Actions.delete | translation | titlecase"
+    (confirm)="deleteActivity()"
+    (cancel)="closeConfirmModal()"
+    [color]="'danger'"/>
+</c-container>
 
 <ng-template #loading>
-  <app-loading-placeholder />
+  <app-loading-placeholder/>
 </ng-template>

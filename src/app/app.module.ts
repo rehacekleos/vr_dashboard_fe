@@ -39,6 +39,7 @@ import { MissingTranslationHandler, TranslateLoader, TranslateModule } from "@ng
 import { SharedModule } from "./shared/shared.module";
 import { AdminGuard } from "./guards/admin.guard";
 import { NgChartsModule } from "ng2-charts";
+import { MonacoEditorModule } from "ngx-monaco-editor-v2";
 
 
 
@@ -95,6 +96,7 @@ import { NgChartsModule } from "ng2-charts";
     }),
     SharedModule,
     NgChartsModule,
+    MonacoEditorModule.forRoot()
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},

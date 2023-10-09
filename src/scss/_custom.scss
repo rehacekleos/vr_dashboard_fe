@@ -59,3 +59,13 @@
    padding: 0 !important;
   }
 }
+
+.hover-border {
+  &:hover{
+    border: #9da5b1 1px solid;
+  }
+}
+
+.border{
+  border: #9da5b1 1px solid !important;
+}

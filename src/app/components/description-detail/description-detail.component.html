@@ -1,0 +1,12 @@
+<c-col xs class="d-flex flex-column">
+  <p class="m-0 fw-bolder">{{title}}</p>
+  <p *ngIf="edit == false" class="m-0 font-monospace small flex-grow-1 hover-border pointer" (click)="editDescription()">{{value}}</p>
+  <ng-container *ngIf="edit == true">
+    <textarea #textAreaElement class="m-0 font-monospace small flex-grow-1 hover-border" [(ngModel)]="value"></textarea>
+    <div class="flex-row d-flex justify-content-between mt-1">
+      <button class="btn btn-secondary btn-sm w-auto" (click)="cancelEdit()">{{Translations.Actions.cancel | translation | titlecase}}</button>
+      <button class="btn btn-primary btn-sm w-auto" (click)="confirmEdit()">{{Translations.Actions.edit | translation | titlecase}}</button>
+    </div>
+  </ng-container>
+
+</c-col>

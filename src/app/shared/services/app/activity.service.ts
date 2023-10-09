@@ -43,4 +43,13 @@ export class ActivityService extends HttpService{
   async getActivity(activityId: any) {
     return await firstValueFrom(this.http.get<Activity>(this.createUrl(`/${activityId}`)));
   }
+
+  async updateActivityNote(id: string, newNote: string) {
+    await firstValueFrom(this.http.patch(this.createUrl(`/${id}/note`), {note: newNote}));
+  }
+
+  async deleteActivity(id: string) {
+    await firstValueFrom(this.http.delete(this.createUrl(`/${id}`)));
+    await this.getActivities()
+  }
 }

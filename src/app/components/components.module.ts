@@ -22,46 +22,56 @@ import { JoinOrganisationFormComponent } from './join-organisation-form/join-org
 import { LoadingPlaceholderComponent } from './loading-placeholder/loading-placeholder.component';
 import { ActivityTableComponent } from './table/activity-table/activity-table.component';
 import { BooleanIconComponent } from './boolean-icon/boolean-icon.component';
+import { RotationComponent } from './charts/rotation/rotation.component';
+import { NgChartsModule } from "ng2-charts";
+import { DescriptionDetailComponent } from './description-detail/description-detail.component';
+import { JsonEditorComponent } from './json-editor/json-editor.component';
+import { MonacoEditorModule } from "ngx-monaco-editor-v2";
 
 
 
 @NgModule({
-  declarations: [IconifyComponent, WidgetComponent, ApplicationWidgetComponent, ConfirmationModalComponent, OrganisationWidgetComponent, CreateOrganisationFormComponent, JoinOrganisationFormComponent, LoadingPlaceholderComponent, ActivityTableComponent, BooleanIconComponent],
-    exports: [
-        IconifyComponent,
-        WidgetComponent,
-        ApplicationWidgetComponent,
-        ConfirmationModalComponent,
-        OrganisationWidgetComponent,
-        CreateOrganisationFormComponent,
-        JoinOrganisationFormComponent,
-        LoadingPlaceholderComponent,
-        ActivityTableComponent,
-        BooleanIconComponent
-    ],
-    imports: [
-        CommonModule,
-        CardComponent,
-        CardBodyComponent,
-        ButtonCloseDirective,
-        ButtonDirective,
-        ModalBodyComponent,
-        ModalComponent,
-        ModalFooterComponent,
-        ModalHeaderComponent,
-        ModalTitleDirective,
-        AlertComponent,
-        ColComponent,
-        FormControlDirective,
-        FormDirective,
-        FormsModule,
-        ReactiveFormsModule,
-        RowComponent,
-        ButtonGroupComponent,
-        SharedModule,
-        InputGroupComponent,
-        FormFeedbackComponent,
-        TableDirective
-    ]
+  declarations: [IconifyComponent, WidgetComponent, ApplicationWidgetComponent, ConfirmationModalComponent, OrganisationWidgetComponent, CreateOrganisationFormComponent, JoinOrganisationFormComponent, LoadingPlaceholderComponent, ActivityTableComponent, BooleanIconComponent, RotationComponent, DescriptionDetailComponent, JsonEditorComponent],
+  exports: [
+    IconifyComponent,
+    WidgetComponent,
+    ApplicationWidgetComponent,
+    ConfirmationModalComponent,
+    OrganisationWidgetComponent,
+    CreateOrganisationFormComponent,
+    JoinOrganisationFormComponent,
+    LoadingPlaceholderComponent,
+    ActivityTableComponent,
+    BooleanIconComponent,
+    RotationComponent,
+    DescriptionDetailComponent,
+    JsonEditorComponent
+  ],
+  imports: [
+    CommonModule,
+    CardComponent,
+    CardBodyComponent,
+    ButtonCloseDirective,
+    ButtonDirective,
+    ModalBodyComponent,
+    ModalComponent,
+    ModalFooterComponent,
+    ModalHeaderComponent,
+    ModalTitleDirective,
+    AlertComponent,
+    ColComponent,
+    FormControlDirective,
+    FormDirective,
+    FormsModule,
+    ReactiveFormsModule,
+    RowComponent,
+    ButtonGroupComponent,
+    SharedModule,
+    InputGroupComponent,
+    FormFeedbackComponent,
+    TableDirective,
+    NgChartsModule,
+    MonacoEditorModule
+  ]
 })
 export class ComponentsModule { }

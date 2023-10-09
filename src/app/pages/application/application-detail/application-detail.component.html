@@ -1,0 +1,49 @@
+<c-container>
+  <div class="d-flex flex-row align-items-center justify-content-between mb-2">
+    <h2 class="m-0">{{Translations.application | translation | titlecase}}</h2>
+    <button class="btn btn-danger btn-sm" (click)="openConfirmModal()">
+      <iconify icon="mdi:trash"/>
+      {{Translations.Actions.delete | translation | titlecase}}</button>
+  </div>
+
+  <c-card *ngIf="application; else loading">
+    <c-card-body>
+      <c-row>
+        <c-col>
+          <h5>{{Translations.basicInformation | translation}}</h5>
+          <c-row>
+            <c-col [xs]="6">
+              <p class="m-0"><span class="fw-bolder">{{Translations.name | translation | titlecase}} | </span>{{application.name}}</p>
+            </c-col>
+            <c-col [xs]="6">
+              <p class="m-0"><span class="fw-bolder">{{Translations.identifier | translation | titlecase}} | </span>{{application.identifier}}</p>
+            </c-col>
+            <c-col [xs]="12" class="d-flex flex-column">
+              <app-json-editor class="d-flex flex-grow-1"
+                               [title]="Translations.settings | translation | titlecase"
+                               [json]="application.setting"
+                               (onJsonChanged)="onChangeSetting($event)"
+              />
+            </c-col>
+          </c-row>
+        </c-col>
+      </c-row>
+    </c-card-body>
+  </c-card>
+
+</c-container>
+
+<c-container *ngIf="deleteModalOpen">
+  <app-confirmation-modal
+    [open]="deleteModalOpen"
+    [title]="Translations.delete.application | translation | titlecase"
+    [message]="getDeleteMessage()"
+    [confirmButtonText]="Translations.Actions.delete | translation | titlecase"
+    (confirm)="deleteApplication()"
+    (cancel)="closeConfirmModal()"
+    [color]="'danger'"/>
+</c-container>
+
+<ng-template #loading>
+  <app-loading-placeholder/>
+</ng-template>

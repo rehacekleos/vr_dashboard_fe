@@ -9,7 +9,7 @@ import { AdminService } from "./admin.service";
 @Injectable({
   providedIn: 'root'
 })
-export class ApplicationService extends HttpService{
+export class ApplicationService extends HttpService {
 
   $applications: BehaviorSubject<Application[]> = new BehaviorSubject<Application[]>(undefined);
 
@@ -23,7 +23,7 @@ export class ApplicationService extends HttpService{
     })
   }
 
-  async getApplications(){
+  async getApplications() {
     const res = await firstValueFrom(this.http.get<Application[]>(this.createUrl('')));
     this.$applications.next(res);
   }
@@ -37,5 +37,17 @@ export class ApplicationService extends HttpService{
   async assignApplication(applicationId: string) {
     await firstValueFrom(this.http.post<Application[]>(this.createUrl(`/${applicationId}/assign`), null));
     await this.getApplications();
+  }
+
+  async getApplication(applicationId: any) {
+    return await firstValueFrom(this.http.get<Application>(this.createUrl(`/${applicationId}`)));
+  }
+
+  async deleteApplication(id: string) {
+    await firstValueFrom(this.http.delete(this.createUrl(`/${id}`)));
+  }
+
+  async updateApplicationSetting(id: string, settings: any) {
+    await firstValueFrom(this.http.patch(this.createUrl(`/${id}/settings`), {settings: settings}));
   }
 }

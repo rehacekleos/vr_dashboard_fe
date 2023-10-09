@@ -5,7 +5,7 @@ import { ApplicationRoutingModule } from './application-routing.module';
 import { ApplicationComponent } from './application.component';
 import {
     ButtonCloseDirective,
-    ButtonDirective,
+    ButtonDirective, CardBodyComponent, CardComponent,
     ColComponent,
     ContainerComponent, FormControlDirective, FormDirective, FormFeedbackComponent, FormSelectDirective, GutterDirective, InputGroupComponent,
     ModalBodyComponent,
@@ -18,6 +18,7 @@ import { ApplicationFormComponent } from './application-form/application-form.co
 import { FormsModule } from "@angular/forms";
 import { SharedModule } from "../../shared/shared.module";
 import { AssignApplicationModalComponent } from './assign-application-modal/assign-application-modal.component';
+import { ApplicationDetailComponent } from './application-detail/application-detail.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { AssignApplicationModalComponent } from './assign-application-modal/assi
         ApplicationComponent,
         NewApplicationModalComponent,
         ApplicationFormComponent,
-        AssignApplicationModalComponent
+        AssignApplicationModalComponent,
+        ApplicationDetailComponent
     ],
     exports: [
         NewApplicationModalComponent
@@ -51,7 +53,9 @@ import { AssignApplicationModalComponent } from './assign-application-modal/assi
         FormsModule,
         InputGroupComponent,
         SharedModule,
-        GutterDirective
+        GutterDirective,
+        CardBodyComponent,
+        CardComponent
     ]
 })
 export class ApplicationModule { }
