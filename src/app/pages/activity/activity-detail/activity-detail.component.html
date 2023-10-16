@@ -44,34 +44,52 @@
   </c-card>
 
   <div class="d-flex flex-row align-items-center justify-content-between my-2">
-    <h2 class="m-0">Graphs</h2>
+    <h2 class="m-0">Statistiky</h2>
   </div>
 
   <c-card class="mb-4" *ngIf="activity; else loading">
     <c-card-body>
-      <app-rotation-chart
-        part="head"
-        [records]="activity.data.records"
-        [xAxisTitle]="Translations.rotation.head.x | translation"
-        [yAxisTitle]="Translations.rotation.head.y | translation"
-        [zAxisTitle]="Translations.rotation.head.z | translation"
-      />
+      <c-row class="my-2">
+        <c-col class="w-100">
+          <label>Environment</label>
+          <select
+            [(ngModel)]="selectedEnvironment"
+            name="environments"
+            (ngModelChange)="changeEnvironment()"
+            required
+            cSelect>
+            <option *ngFor="let env of environments" [ngValue]="env">{{env}}</option>
+          </select>
+        </c-col>
+      </c-row>
+      <c-row>
+        <c-col class="w-100">
+          <p class="m-0"><span class="fw-bolder">{{Translations.times.duration | translation}} | </span>{{getEnvDuration()}}</p>
+        </c-col>
+      </c-row>
+
+      <c-row *ngIf="environmentsRecords && environmentsRecords.length > 1">
+        <hr class="my-3">
+        <app-rotation-chart
+          part="head"
+          [records]="environmentsRecords"
+          [xAxisTitle]="Translations.rotation.head.x | translation"
+          [yAxisTitle]="Translations.rotation.head.y | translation"
+          [zAxisTitle]="Translations.rotation.head.z | translation"
+        />
+      </c-row>
+
+      <c-row *ngIf="environmentsRecords && environmentsRecords.length > 1">
+        <hr class="my-3">
+        <app-position-chart
+          part="head"
+          [records]="environmentsRecords"
+          [title]="Translations.position.head.all | translation"
+        />
+      </c-row>
+
     </c-card-body>
   </c-card>
-
-  <c-card class="mb-4">
-    <c-card-body *ngIf="lineChartPositionData">
-      <canvas
-        baseChart
-        class="chart"
-        [data]="lineChartPositionData"
-        [options]="lineChartPositionOptions"
-        type="line"
-      ></canvas>
-    </c-card-body>
-  </c-card>
-
-
 </c-container>
 
 <c-container *ngIf="deleteModalOpen">

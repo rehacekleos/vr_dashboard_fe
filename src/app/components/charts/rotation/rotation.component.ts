@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { ChartConfiguration } from "chart.js";
 import { Record } from "../../../models/activity.model";
 
@@ -7,7 +7,7 @@ import { Record } from "../../../models/activity.model";
   templateUrl: './rotation.component.html',
   styleUrls: ['./rotation.component.scss']
 })
-export class RotationComponent implements OnInit{
+export class RotationComponent implements OnInit, OnChanges{
 
   @Input({required: true, alias: "part"}) part: "head" | "left_hand" | "right_hand";
   @Input({required: true}) records: Record[];
@@ -24,16 +24,27 @@ export class RotationComponent implements OnInit{
   rotation_z = [];
 
   ngOnInit(): void {
-    this.prepareData();
-    this.setChartData();
-    this.setChartOptions();
+
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.records){
+      this.prepareData();
+      this.setChartData();
+      this.setChartOptions();
+    }
   }
 
   private prepareData(){
+    this.rotation_x = [];
+    this.rotation_y = [];
+    this.rotation_z = [];
+    let tick = 0;
     for (const record of this.records) {
-      this.rotation_x.push({x: record.tick, y: record[this.part].rotation.x});
-      this.rotation_y.push({x: record.tick, y: record[this.part].rotation.y});
-      this.rotation_z.push({x: record.tick, y: record[this.part].rotation.z});
+      this.rotation_x.push({x: tick, y: Math.cos(record[this.part].rotation.x)});
+      this.rotation_y.push({x: tick, y: Math.cos(record[this.part].rotation.y)});
+      this.rotation_z.push({x: tick, y: Math.cos(record[this.part].rotation.z)});
+      tick++
     }
   }
 
@@ -83,7 +94,7 @@ export class RotationComponent implements OnInit{
         decimation: {
           enabled: true,
           algorithm: "lttb",
-          samples: 20,
+          samples: 50,
           threshold: 50
         }
       },
@@ -94,8 +105,8 @@ export class RotationComponent implements OnInit{
           max: this.records.length
         },
         y: {
-          min: 0,
-          max: 365
+          min: -1,
+          max: 1
         }
       }
     }

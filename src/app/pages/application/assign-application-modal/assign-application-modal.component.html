@@ -21,7 +21,7 @@
           name="application"
           required
           cSelect>
-          <option *ngFor="let app of getFilteredApplication()" [value]="app">{{app.name}}</option>
+          <option *ngFor="let app of getFilteredApplication()" [ngValue]="app">{{app.name}}</option>
         </select>
         <c-form-feedback [valid]="false">{{Translations.inputErrors.application | translation}}</c-form-feedback>
       </c-input-group>

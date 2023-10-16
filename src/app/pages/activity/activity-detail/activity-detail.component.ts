@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TranslateComponent } from "../../../shared/translate/translate.component";
 import { ActivatedRoute, Router } from "@angular/router";
 import { ActivityService } from "../../../shared/services/app/activity.service";
-import { Activity, CustomDataDisplay, Record } from "../../../models/activity.model";
+import { Activity, CustomDataDisplay, Record, VRData } from "../../../models/activity.model";
 import { ParticipantService } from "../../../shared/services/app/participant.service";
 import { ApplicationService } from "../../../shared/services/app/application.service";
 import { Application } from "../../../models/application.model";
@@ -29,8 +29,10 @@ export class ActivityDetailComponent extends TranslateComponent implements OnIni
 
   customData: CustomDataDisplay[] = [];
 
-  lineChartPositionData: ChartConfiguration['data'] = null;
-  lineChartPositionOptions: ChartConfiguration['options'] = null;
+  environments: string[];
+  selectedEnvironment: string;
+  environmentsRecords: Record[];
+
   deleteModalOpen = false;
 
   constructor(private route: ActivatedRoute,
@@ -52,8 +54,9 @@ export class ActivityDetailComponent extends TranslateComponent implements OnIni
         this.participant = participants.find(p => p.id === this.activity.participantId);
         this.application = applications.find(a => a.id === this.activity.applicationId);
 
-        this.setChartData(this.activity.data.records);
-
+        this.environments = this.getEnvironments(this.activity.data);
+        this.selectedEnvironment = this.environments[0];
+        this.getEnvRecords();
         this.customData = this.getCustomData();
       }
     })
@@ -63,58 +66,6 @@ export class ActivityDetailComponent extends TranslateComponent implements OnIni
   getDuration() {
     const diffInMs = dayjs(this.activity.data.end).diff(this.activity.data.start)
     return dayjs.duration(diffInMs).format(`m [${this.translateService.instantTranslation(Translations.times.minutes)}] ss [${this.translateService.instantTranslation(Translations.times.seconds)}]`)
-  }
-
-  private setChartData(records: Record[]) {
-    const head_position = [];
-
-    for (const record of records) {
-      head_position.push({x: record.head.position.x, y: record.head.position.y});
-    }
-
-    this.lineChartPositionData = {
-      datasets: [
-        {
-          type: "line",
-          data: head_position,
-          label: 'Head position',
-          backgroundColor: 'transparent',
-          fill: 'origin',
-        }
-      ]
-    }
-
-    this.lineChartPositionOptions = {
-      animation: false,
-      parsing: false,
-      plugins: {
-        decimation: {
-          enabled: true,
-          algorithm: "lttb",
-          samples: 20,
-          threshold: 50
-        },
-        tooltip: {
-          callbacks: {
-            footer: (items) => {
-              console.log(items)
-              return "Time: " + items[0].dataIndex
-            },
-          }
-        }
-      },
-      scales: {
-        x:{
-          type: "linear",
-          min: Math.min(...head_position.map(p => p.x)),
-          max: Math.max(...head_position.map(p => p.x))
-        },
-        y: {
-          min: Math.min(...head_position.map(p => p.y)),
-          max: Math.max(...head_position.map(p => p.y))
-        }
-      }
-    }
   }
 
   async onChangeNote($event: string) {
@@ -177,5 +128,32 @@ export class ActivityDetailComponent extends TranslateComponent implements OnIni
     } else {
       return [];
     }
+  }
+
+  private getEnvironments(data: VRData) {
+    const environments = new Set<string>();
+
+    for (const record of data.records){
+      environments.add(record.environment);
+    }
+
+    return Array.from(environments);
+  }
+
+  private getEnvRecords() {
+    this.environmentsRecords = this.activity.data.records.filter(r => r.environment === this.selectedEnvironment);
+  }
+
+  getEnvDuration() {
+    if (this.environmentsRecords) {
+      const start = this.environmentsRecords[0].timestamp;
+      const end = this.environmentsRecords[this.environmentsRecords.length - 1].timestamp;
+      const diffInMs = dayjs(end).diff(start)
+      return dayjs.duration(diffInMs).format(`m [${this.translateService.instantTranslation(Translations.times.minutes)}] ss [${this.translateService.instantTranslation(Translations.times.seconds)}]`)
+    }
+  }
+
+  changeEnvironment() {
+    this.getEnvRecords();
   }
 }

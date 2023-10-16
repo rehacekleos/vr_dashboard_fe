@@ -27,26 +27,28 @@ import { NgChartsModule } from "ng2-charts";
 import { DescriptionDetailComponent } from './description-detail/description-detail.component';
 import { JsonEditorComponent } from './json-editor/json-editor.component';
 import { MonacoEditorModule } from "ngx-monaco-editor-v2";
+import { PositionComponent } from './charts/position/position.component';
 
 
 
 @NgModule({
-  declarations: [IconifyComponent, WidgetComponent, ApplicationWidgetComponent, ConfirmationModalComponent, OrganisationWidgetComponent, CreateOrganisationFormComponent, JoinOrganisationFormComponent, LoadingPlaceholderComponent, ActivityTableComponent, BooleanIconComponent, RotationComponent, DescriptionDetailComponent, JsonEditorComponent],
-  exports: [
-    IconifyComponent,
-    WidgetComponent,
-    ApplicationWidgetComponent,
-    ConfirmationModalComponent,
-    OrganisationWidgetComponent,
-    CreateOrganisationFormComponent,
-    JoinOrganisationFormComponent,
-    LoadingPlaceholderComponent,
-    ActivityTableComponent,
-    BooleanIconComponent,
-    RotationComponent,
-    DescriptionDetailComponent,
-    JsonEditorComponent
-  ],
+  declarations: [IconifyComponent, WidgetComponent, ApplicationWidgetComponent, ConfirmationModalComponent, OrganisationWidgetComponent, CreateOrganisationFormComponent, JoinOrganisationFormComponent, LoadingPlaceholderComponent, ActivityTableComponent, BooleanIconComponent, RotationComponent, DescriptionDetailComponent, JsonEditorComponent, PositionComponent],
+    exports: [
+        IconifyComponent,
+        WidgetComponent,
+        ApplicationWidgetComponent,
+        ConfirmationModalComponent,
+        OrganisationWidgetComponent,
+        CreateOrganisationFormComponent,
+        JoinOrganisationFormComponent,
+        LoadingPlaceholderComponent,
+        ActivityTableComponent,
+        BooleanIconComponent,
+        RotationComponent,
+        DescriptionDetailComponent,
+        JsonEditorComponent,
+        PositionComponent
+    ],
   imports: [
     CommonModule,
     CardComponent,

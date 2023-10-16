@@ -14,7 +14,7 @@ import { TranslateComponent } from "../../../shared/translate/translate.componen
   templateUrl: './activity-form.component.html',
   styleUrls: ['./activity-form.component.scss']
 })
-export class ActivityFormComponent extends TranslateComponent implements OnInit{
+export class ActivityFormComponent extends TranslateComponent implements OnInit {
 
   validated = false;
   applications: Application[];
@@ -33,22 +33,24 @@ export class ActivityFormComponent extends TranslateComponent implements OnInit{
   }
 
   ngOnInit(): void {
+    this.newActivity = {...this.newActivity};
+
     this.submit?.subscribe(() => {
       this.form.ngSubmit.emit(true);
     })
     this.participantService.$participants.subscribe(p => {
-      if (p){
+      if (p) {
         this.participants = p;
-        if (!this.newActivity.participantId){
+        if (!this.newActivity.participantId) {
           this.newActivity.participantId = p[0]?.id;
         }
       }
     })
 
     this.applicationService.$applications.subscribe(a => {
-      if (a){
+      if (a) {
         this.applications = a;
-        if (!this.newActivity.applicationId){
+        if (!this.newActivity.applicationId) {
           this.newActivity.applicationId = a[0]?.id
         }
       }
@@ -68,21 +70,15 @@ export class ActivityFormComponent extends TranslateComponent implements OnInit{
           throw e;
         }
 
-        const newActivity: NewActivity = {
-          data: data,
-          anonymous: Boolean(form.form.controls['anonymous'].value),
-          notes: form.form.controls['notes'].value,
-          applicationId: form.form.controls['application'].value
-        }
-
-        this.onSubmitForm.emit(newActivity);
+        this.newActivity.data = data;
+        this.onSubmitForm.emit(this.newActivity);
       } catch (e) {
         this.validated = false;
       }
     }
   }
 
-  onFileSelected($event){
+  onFileSelected($event) {
     this.file = $event.target.files[0];
   }
 
@@ -91,7 +87,7 @@ export class ActivityFormComponent extends TranslateComponent implements OnInit{
   }
 
   isAnonymous() {
-    if (this.newActivity.anonymous == null){
+    if (this.newActivity.anonymous == null) {
       return false
     } else {
       return this.newActivity.anonymous

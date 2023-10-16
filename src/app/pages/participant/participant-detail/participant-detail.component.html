@@ -38,7 +38,7 @@
     <h2 class="m-0">{{Translations.activities | translation | titlecase}}</h2>
     <c-card *ngIf="activities; else loading">
       <c-card-body>
-        <app-activity-table [activities]="activities"/>
+        <app-activity-table [activities]="activities" [showParticipant]="false"/>
       </c-card-body>
     </c-card>
   </div>

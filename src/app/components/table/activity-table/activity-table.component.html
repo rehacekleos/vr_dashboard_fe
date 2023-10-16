@@ -2,8 +2,9 @@
   <thead>
   <tr>
     <th></th>
-    <th class="text-capitalize">{{Translations.time | translation}}</th>
-    <th class="text-capitalize">{{Translations.participant | translation}}</th>
+    <th class="text-capitalize">{{Translations.createdAt | translation}}</th>
+    <th class="text-capitalize">{{Translations.times.start | translation}}</th>
+    <th *ngIf="showParticipant" class="text-capitalize">{{Translations.participant | translation}}</th>
     <th class="text-capitalize">{{Translations.application | translation}}</th>
   </tr>
   </thead>
@@ -11,7 +12,8 @@
   <tr *ngFor="let activity of activities">
     <td><iconify class="text-primary pointer" icon="bxs:detail" (click)="goToDetail(activity.id)"/></td>
     <td>{{getTime(activity)}}</td>
-    <td>{{getParticipant(activity)}}</td>
+    <td>{{getStart(activity)}}</td>
+    <td *ngIf="showParticipant">{{getParticipant(activity)}}</td>
     <td>{{getApplication(activity)}}</td>
   </tr>
   </tbody>

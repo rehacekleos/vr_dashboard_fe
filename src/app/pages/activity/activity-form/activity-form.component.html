@@ -11,7 +11,7 @@
       name="application"
       required
       cSelect>
-      <option *ngFor="let app of applications" [value]="app.id">{{app.name}}</option>
+      <option *ngFor="let app of applications" [ngValue]="app.id">{{app.name}}</option>
     </select>
     <c-form-feedback [valid]="false">{{Translations.inputErrors.application | translation}}</c-form-feedback>
   </c-input-group>
@@ -39,7 +39,7 @@
         name="Participant"
         required
         cSelect>
-        <option *ngFor="let part of participants" [value]="part.id">{{part.nickname}}</option>
+        <option *ngFor="let part of participants" [ngValue]="part.id">{{part.nickname}}</option>
       </select>
       <c-form-feedback [valid]="false">{{Translations.inputErrors.participant | translation}}</c-form-feedback>
     </c-input-group>

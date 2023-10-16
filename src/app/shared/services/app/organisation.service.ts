@@ -22,7 +22,22 @@ export class OrganisationService extends HttpService{
     this.$organisations.subscribe(val => {
       this.organisations = val;
       if (val?.length > 0 && this.$selectedOrganisation.getValue() === undefined){
-        this.$selectedOrganisation.next(val[0]);
+
+        const storageOrgId = window.localStorage.getItem("organisation")
+        if (storageOrgId) {
+          const findOrg = this.organisations.find(o => o.id === storageOrgId);
+          if (findOrg){
+            this.$selectedOrganisation.next(findOrg);
+            return;
+          }
+        }
+        this.$selectedOrganisation.next(this.organisations[0]);
+      }
+    })
+
+    this.$selectedOrganisation.subscribe(val => {
+      if (val) {
+        window.localStorage.setItem("organisation", val.id);
       }
     })
   }

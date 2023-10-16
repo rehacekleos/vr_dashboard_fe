@@ -16,6 +16,7 @@ import { Router } from "@angular/router";
 export class ActivityTableComponent extends TranslateComponent implements OnInit {
 
   @Input() activities: Activity[];
+  @Input() showParticipant: boolean = true;
   applications: Application[];
   participants: Participant[];
 
@@ -42,7 +43,7 @@ export class ActivityTableComponent extends TranslateComponent implements OnInit
 
   getParticipant(activity: Activity) {
     if (activity.participantId) {
-      const participant = this.participants.find(p => p.id = activity.participantId);
+      const participant = this.participants.find(p => p.id === activity.participantId);
       if (participant) {
         return participant.nickname;
       }
@@ -62,6 +63,10 @@ export class ActivityTableComponent extends TranslateComponent implements OnInit
 
   getTime(activity: Activity) {
     return dayjs(activity.time).format("DD.MM.YYYY HH:mm:ss")
+  }
+
+  getStart(activity: Activity){
+    return dayjs(activity.data.start).format("DD.MM.YYYY HH:mm:ss")
   }
 
 }
