@@ -8,6 +8,7 @@ import { CustomToastrService } from "../../../shared/services/custom-toastr.serv
 import { TranslateComponent } from "../../../shared/translate/translate.component";
 import { CustomTranslateService } from "../../../shared/translate/services/custom-translate.service";
 import { Translations } from "../../../shared/translate/translate.model";
+import { FileUtil } from "../../../shared/utils/fileUtil";
 
 @Component({
   selector: 'app-participant-edit',
@@ -18,6 +19,8 @@ export class ParticipantEditComponent extends TranslateComponent implements OnIn
 
   participant: Participant
   submitForm: Subject<any> = new Subject<any>()
+  editImage: boolean = false;
+  file: File;
 
   deleteModalOpen = false;
 
@@ -53,6 +56,14 @@ export class ParticipantEditComponent extends TranslateComponent implements OnIn
       organisationId: this.participant.organisationId,
       ...$event
     }
+
+    if (this.file){
+      const arrayBuffer = await this.file.arrayBuffer();
+      participant.img = FileUtil.arrayBufferToBase64(arrayBuffer);
+    } else {
+      participant.img = this.participant.img;
+    }
+
     try {
       await this.participantService.updateParticipant(participant);
       this.toaster.showToastMessage(this.translationService.instantTranslation(Translations.messages.update.participant));
@@ -83,5 +94,18 @@ export class ParticipantEditComponent extends TranslateComponent implements OnIn
 
   closeConfirmModal() {
     this.deleteModalOpen = false;
+  }
+
+  onFileSelected($event) {
+    this.file = $event.target.files[0];
+  }
+
+  clickChangeImage() {
+    if (this.editImage){
+      this.editImage = false;
+      this.file = undefined;
+    } else {
+      this.editImage = true;
+    }
   }
 }

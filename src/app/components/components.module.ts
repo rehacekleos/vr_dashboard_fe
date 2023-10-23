@@ -3,14 +3,28 @@ import { CommonModule } from '@angular/common';
 import { IconifyComponent } from "./iconify/iconify.component";
 import { WidgetComponent } from './widget/widget.component';
 import {
-    AlertComponent,
-    ButtonCloseDirective,
-    ButtonDirective, ButtonGroupComponent,
-    CardBodyComponent,
-    CardComponent, ColComponent, FormControlDirective, FormDirective, FormFeedbackComponent, InputGroupComponent,
-    ModalBodyComponent,
-    ModalComponent,
-    ModalFooterComponent, ModalHeaderComponent, ModalTitleDirective, RowComponent, TableDirective
+  AlertComponent,
+  ButtonCloseDirective,
+  ButtonDirective,
+  ButtonGroupComponent,
+  CardBodyComponent,
+  CardComponent,
+  CardFooterComponent,
+  ColComponent,
+  FormControlDirective,
+  FormDirective,
+  FormFeedbackComponent,
+  InputGroupComponent,
+  ModalBodyComponent,
+  ModalComponent,
+  ModalFooterComponent,
+  ModalHeaderComponent,
+  ModalTitleDirective,
+  PageItemDirective,
+  PageLinkDirective,
+  PaginationComponent,
+  RowComponent,
+  TableDirective
 } from "@coreui/angular";
 import { ApplicationWidgetComponent } from './application-widget/application-widget.component';
 import { ConfirmationModalComponent } from './confirmation-modal/confirmation-modal.component';
@@ -28,27 +42,33 @@ import { DescriptionDetailComponent } from './description-detail/description-det
 import { JsonEditorComponent } from './json-editor/json-editor.component';
 import { MonacoEditorModule } from "ngx-monaco-editor-v2";
 import { PositionComponent } from './charts/position/position.component';
+import { ApplicationModuleComponent } from './application-module/application-module.component';
+import { RotationPolarChartComponent } from './charts/rotation-polar-chart/rotation-polar-chart.component';
+import { ActivitiesStatisticsComponent } from './activities-statistics/activities-statistics.component';
 
 
 
 @NgModule({
-  declarations: [IconifyComponent, WidgetComponent, ApplicationWidgetComponent, ConfirmationModalComponent, OrganisationWidgetComponent, CreateOrganisationFormComponent, JoinOrganisationFormComponent, LoadingPlaceholderComponent, ActivityTableComponent, BooleanIconComponent, RotationComponent, DescriptionDetailComponent, JsonEditorComponent, PositionComponent],
-    exports: [
-        IconifyComponent,
-        WidgetComponent,
-        ApplicationWidgetComponent,
-        ConfirmationModalComponent,
-        OrganisationWidgetComponent,
-        CreateOrganisationFormComponent,
-        JoinOrganisationFormComponent,
-        LoadingPlaceholderComponent,
-        ActivityTableComponent,
-        BooleanIconComponent,
-        RotationComponent,
-        DescriptionDetailComponent,
-        JsonEditorComponent,
-        PositionComponent
-    ],
+  declarations: [IconifyComponent, WidgetComponent, ApplicationWidgetComponent, ConfirmationModalComponent, OrganisationWidgetComponent, CreateOrganisationFormComponent, JoinOrganisationFormComponent, LoadingPlaceholderComponent, ActivityTableComponent, BooleanIconComponent, RotationComponent, DescriptionDetailComponent, JsonEditorComponent, PositionComponent, ApplicationModuleComponent, RotationPolarChartComponent, ActivitiesStatisticsComponent],
+  exports: [
+    IconifyComponent,
+    WidgetComponent,
+    ApplicationWidgetComponent,
+    ConfirmationModalComponent,
+    OrganisationWidgetComponent,
+    CreateOrganisationFormComponent,
+    JoinOrganisationFormComponent,
+    LoadingPlaceholderComponent,
+    ActivityTableComponent,
+    BooleanIconComponent,
+    RotationComponent,
+    DescriptionDetailComponent,
+    JsonEditorComponent,
+    PositionComponent,
+    ApplicationModuleComponent,
+    RotationPolarChartComponent,
+    ActivitiesStatisticsComponent
+  ],
   imports: [
     CommonModule,
     CardComponent,
@@ -73,7 +93,11 @@ import { PositionComponent } from './charts/position/position.component';
     FormFeedbackComponent,
     TableDirective,
     NgChartsModule,
-    MonacoEditorModule
+    MonacoEditorModule,
+    CardFooterComponent,
+    PaginationComponent,
+    PageItemDirective,
+    PageLinkDirective
   ]
 })
 export class ComponentsModule { }

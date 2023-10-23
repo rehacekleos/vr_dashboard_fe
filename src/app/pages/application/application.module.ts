@@ -19,6 +19,7 @@ import { FormsModule } from "@angular/forms";
 import { SharedModule } from "../../shared/shared.module";
 import { AssignApplicationModalComponent } from './assign-application-modal/assign-application-modal.component';
 import { ApplicationDetailComponent } from './application-detail/application-detail.component';
+import { AddApplicationModuleComponent } from './add-application-module/add-application-module.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { ApplicationDetailComponent } from './application-detail/application-det
         NewApplicationModalComponent,
         ApplicationFormComponent,
         AssignApplicationModalComponent,
-        ApplicationDetailComponent
+        ApplicationDetailComponent,
+        AddApplicationModuleComponent
     ],
     exports: [
         NewApplicationModalComponent

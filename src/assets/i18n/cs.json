@@ -40,7 +40,8 @@
     "join": "Připojit se",
     "refresh": "obnovit",
     "invite": "pozvat",
-    "assign": "přiřadit"
+    "assign": "přiřadit",
+    "addModule": "Přidat aplikační modul"
   },
 
   "noOrganisation": "Nemáte žádné organizace.",
@@ -52,7 +53,8 @@
   "add": {
     "application": "Přidat aplikaci",
     "participant": "Přidat participanta",
-    "activity": "Přidat aktivitu"
+    "activity": "Přidat aktivitu",
+    "module": "Přidat aplikační modul"
   },
 
   "edit": {

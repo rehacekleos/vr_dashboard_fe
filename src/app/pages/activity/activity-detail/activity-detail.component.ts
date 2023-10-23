@@ -14,6 +14,8 @@ import { Translations } from "../../../shared/translate/translate.model";
 import { ChartConfiguration } from "chart.js";
 import { CustomToastrService } from "../../../shared/services/custom-toastr.service";
 import { combineLatest } from "rxjs";
+import { environment } from "../../../../environments/environment";
+import { DomSanitizer } from "@angular/platform-browser";
 dayjs.extend(duration)
 
 @Component({
@@ -33,10 +35,13 @@ export class ActivityDetailComponent extends TranslateComponent implements OnIni
   selectedEnvironment: string;
   environmentsRecords: Record[];
 
+  showModule = false;
+
   deleteModalOpen = false;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
+              private sanitizer: DomSanitizer,
               private participantService: ParticipantService,
               private applicationService: ApplicationService,
               private translateService: CustomTranslateService,
@@ -113,7 +118,6 @@ export class ActivityDetailComponent extends TranslateComponent implements OnIni
         const res: CustomDataDisplay[] = [];
         const data = this.activity.data.custom_data;
         const currentLang = this.translateService.currentLang;
-        console.log(currentLang)
         for (const set of settings.custom_data){
           res.push({
             title: set.languages[currentLang],
@@ -154,6 +158,11 @@ export class ActivityDetailComponent extends TranslateComponent implements OnIni
   }
 
   changeEnvironment() {
+    this.showModule = false;
     this.getEnvRecords();
+  }
+
+  onToggleModule() {
+    this.showModule = !this.showModule;
   }
 }

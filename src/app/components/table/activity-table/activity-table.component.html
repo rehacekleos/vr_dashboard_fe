@@ -1,20 +1,36 @@
-<table cTable>
-  <thead>
-  <tr>
-    <th></th>
-    <th class="text-capitalize">{{Translations.createdAt | translation}}</th>
-    <th class="text-capitalize">{{Translations.times.start | translation}}</th>
-    <th *ngIf="showParticipant" class="text-capitalize">{{Translations.participant | translation}}</th>
-    <th class="text-capitalize">{{Translations.application | translation}}</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr *ngFor="let activity of activities">
-    <td><iconify class="text-primary pointer" icon="bxs:detail" (click)="goToDetail(activity.id)"/></td>
-    <td>{{getTime(activity)}}</td>
-    <td>{{getStart(activity)}}</td>
-    <td *ngIf="showParticipant">{{getParticipant(activity)}}</td>
-    <td>{{getApplication(activity)}}</td>
-  </tr>
-  </tbody>
-</table>
+<c-card class="mb-2">
+  <c-card-body class="pb-0">
+    <table cTable>
+      <thead>
+      <tr>
+        <th></th>
+        <th class="text-capitalize">{{Translations.createdAt | translation}}</th>
+        <th class="text-capitalize">{{Translations.times.start | translation}}</th>
+        <th *ngIf="showParticipant" class="text-capitalize">{{Translations.participant | translation}}</th>
+        <th class="text-capitalize">{{Translations.application | translation}}</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let activity of filteredActivities">
+        <td>
+          <iconify class="text-primary pointer" icon="bxs:detail" (click)="goToDetail(activity.id)"/>
+        </td>
+        <td>{{activity.createdIn}}</td>
+        <td>{{activity.start}}</td>
+        <td *ngIf="showParticipant">{{activity.participant}}</td>
+        <td>{{activity.application}}</td>
+      </tr>
+      </tbody>
+    </table>
+
+
+    <c-pagination align="center" *ngIf="pages > 0">
+      <li cPageItem [disabled]="currentPage <= 0">
+        <a cPageLink (click)="previousPage()">Previous</a>
+      </li>
+      <li cPageItem [disabled]="currentPage > pages">
+        <a cPageLink (click)="nextPage()">Next</a>
+      </li>
+    </c-pagination>
+  </c-card-body>
+</c-card>

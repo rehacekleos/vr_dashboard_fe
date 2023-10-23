@@ -3,7 +3,7 @@ import { HttpService } from "../http.service";
 import { HttpClient } from "@angular/common/http";
 import { OrganisationService } from "./organisation.service";
 import { BehaviorSubject, firstValueFrom } from "rxjs";
-import { Application, NewApplication } from "../../../models/application.model";
+import { AddModule, Application, NewApplication } from "../../../models/application.model";
 import { AdminService } from "./admin.service";
 
 @Injectable({
@@ -49,5 +49,10 @@ export class ApplicationService extends HttpService {
 
   async updateApplicationSetting(id: string, settings: any) {
     await firstValueFrom(this.http.patch(this.createUrl(`/${id}/settings`), {settings: settings}));
+  }
+
+  async addModule(id: string, addModule: AddModule) {
+    console.log(addModule)
+    await firstValueFrom(this.http.put<Application[]>(this.createUrl(`/${id}/add/module`), addModule));
   }
 }

@@ -1,9 +1,14 @@
 <c-container>
   <div class="d-flex flex-row align-items-center justify-content-between mb-2">
     <h2 class="m-0">{{Translations.application | translation | titlecase}}</h2>
-    <button class="btn btn-danger btn-sm" (click)="openConfirmModal()">
-      <iconify icon="mdi:trash"/>
-      {{Translations.Actions.delete | translation | titlecase}}</button>
+    <div>
+      <button class="btn btn-primary btn-sm me-2" (click)="changeModalVisibility(true)">
+        <iconify icon="mdi:add"/>
+        {{Translations.Actions.addModule | translation}}</button>
+      <button class="btn btn-danger btn-sm" (click)="openConfirmModal()">
+        <iconify icon="mdi:trash"/>
+        {{Translations.Actions.delete | translation | titlecase}}</button>
+    </div>
   </div>
 
   <c-card *ngIf="application; else loading">
@@ -47,3 +52,7 @@
 <ng-template #loading>
   <app-loading-placeholder/>
 </ng-template>
+
+<c-container>
+  <app-add-application-module [open]="addModuleModalOpen" [application]="application" (visibleChanged)="changeModalVisibility($event)"/>
+</c-container>

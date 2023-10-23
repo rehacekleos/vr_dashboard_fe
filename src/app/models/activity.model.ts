@@ -1,3 +1,14 @@
+export class ActivityTable{
+  id: string;
+  createdIn: string;
+  start: string;
+  participant: string;
+  application: string;
+  search?: string;
+}
+
+
+
 export class Activity{
     id: string;
     time: string;

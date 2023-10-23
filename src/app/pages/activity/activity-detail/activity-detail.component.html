@@ -68,6 +68,16 @@
         </c-col>
       </c-row>
 
+      <c-row *ngIf="application.hasModule" class="justify-content-center">
+        <hr class="my-3">
+        <ng-container *ngIf="showModule; else toggleModule">
+          <app-application-module [application]="application" />
+        </ng-container>
+        <ng-template #toggleModule>
+          <button class="btn btn-primary w-50" (click)="onToggleModule()">Show module</button>
+        </ng-template>
+      </c-row>
+
       <c-row *ngIf="environmentsRecords && environmentsRecords.length > 1">
         <hr class="my-3">
         <app-rotation-chart
@@ -76,6 +86,15 @@
           [xAxisTitle]="Translations.rotation.head.x | translation"
           [yAxisTitle]="Translations.rotation.head.y | translation"
           [zAxisTitle]="Translations.rotation.head.z | translation"
+        />
+      </c-row>
+
+      <c-row *ngIf="environmentsRecords && environmentsRecords.length > 1">
+        <hr class="my-3">
+        <app-rotation-polar-chart
+          part="head"
+          [records]="environmentsRecords"
+          axis="y"
         />
       </c-row>
 

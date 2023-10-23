@@ -2,17 +2,23 @@
   <c-row>
     <div class="d-flex flex-row align-items-center justify-content-between mb-2">
       <h2 class="m-0 text-capitalize">{{Translations.activities | translation}}</h2>
-      <button class="btn btn-primary btn-sm" (click)="modalVisibleChange(true)">
-        <iconify icon="mdi:add"/>
-        {{Translations.add.activity | translation}}</button>
+      <div class="d-flex flex-row">
+        <input type="text"
+               class="me-2 w-auto"
+               cFormControl
+               placeholder="Search"
+               [ngModel]="searchValue"
+               (ngModelChange)="setSearchValue($event)">
+        <button class="btn btn-primary btn-sm" (click)="modalVisibleChange(true)">
+          <iconify icon="mdi:add"/>
+          {{Translations.add.activity | translation}}
+        </button>
+      </div>
+
     </div>
   </c-row>
   <c-row>
-    <c-card>
-      <c-card-body>
-        <app-activity-table [activities]="activities"/>
-      </c-card-body>
-    </c-card>
+    <app-activity-table [activities]="activities" [searchValue]="searchValue"/>
   </c-row>
 </c-container>
 

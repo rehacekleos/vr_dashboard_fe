@@ -18,6 +18,8 @@ export class ActivityComponent extends TranslateComponent implements OnInit{
   openModal = false;
   activities: Activity[];
 
+  searchValue = "";
+
   constructor(private activityService: ActivityService) {
     super()
   }
@@ -34,4 +36,11 @@ export class ActivityComponent extends TranslateComponent implements OnInit{
     this.openModal = $event;
   }
 
+  setSearchValue($event: any) {
+    if ($event && $event.trim() !== ""){
+      this.searchValue = $event;
+    } else if ($event === ""){
+      this.searchValue = $event;
+    }
+  }
 }

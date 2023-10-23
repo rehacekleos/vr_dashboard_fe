@@ -90,14 +90,7 @@ export class RotationComponent implements OnInit, OnChanges{
     this.lineChartOptions = {
       animation: false,
       parsing: false,
-      plugins: {
-        decimation: {
-          enabled: true,
-          algorithm: "lttb",
-          samples: 50,
-          threshold: 50
-        }
-      },
+
       scales: {
         x:{
           type: "linear",

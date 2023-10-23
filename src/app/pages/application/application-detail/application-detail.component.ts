@@ -17,6 +17,7 @@ export class ApplicationDetailComponent extends TranslateComponent implements On
 
   application: Application;
   deleteModalOpen = false;
+  addModuleModalOpen = false;
   constructor(private applicationService: ApplicationService,
               private translateService: CustomTranslateService,
               private route: ActivatedRoute,
@@ -62,5 +63,9 @@ export class ApplicationDetailComponent extends TranslateComponent implements On
     } catch (e) {
 
     }
+  }
+
+  changeModalVisibility($event: boolean) {
+    this.addModuleModalOpen = $event;
   }
 }

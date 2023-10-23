@@ -7,7 +7,7 @@
     <c-card-body>
       <c-row>
         <c-col [xs]="2">
-          <img class="w-100" alt="Profile photo" cImg rounded [src]="getProfileImage()" />
+          <img class="img-fluid w-100 rounded" alt="Profile photo" cImg rounded [src]="getProfileImage()" />
         </c-col>
         <c-col [xs]="10">
           <h5>{{Translations.basicInformation | translation}}</h5>
@@ -15,10 +15,10 @@
             <c-col xs="auto"  class="me-5">
 
               <p class="m-0"><span class="fw-bolder">{{Translations.nickname | translation | titlecase}} | </span>{{participant.nickname}}</p>
-              <p class="m-0"><span class="fw-bolder">{{Translations.name | translation | titlecase}} | </span>{{participant.name}}</p>
-              <p class="m-0"><span class="fw-bolder">{{Translations.surname | translation | titlecase}} | </span>{{participant.surname}}</p>
-              <p class="m-0"><span class="fw-bolder">{{Translations.age | translation | titlecase}} | </span>{{getAge(participant.birthday)}}</p>
-              <p class="m-0"><span class="fw-bolder">{{Translations.gender | translation | titlecase}} | </span><span class="text-capitalize">{{participant.sex}}</span></p>
+              <p class="m-0" *ngIf="participant.name"><span class="fw-bolder">{{Translations.name | translation | titlecase}} | </span>{{participant.name}}</p>
+              <p class="m-0" *ngIf="participant.surname"><span class="fw-bolder">{{Translations.surname | translation | titlecase}} | </span>{{participant.surname}}</p>
+              <p class="m-0" *ngIf="participant.birthday"><span class="fw-bolder">{{Translations.age | translation | titlecase}} | </span>{{getAge(participant.birthday)}}</p>
+              <p class="m-0" *ngIf="participant.sex"><span class="fw-bolder">{{Translations.gender | translation | titlecase}} | </span><span class="text-capitalize">{{participant.sex}}</span></p>
             </c-col>
             <c-col xs>
               <p class="m-0 fw-bolder">{{Translations.notes | translation | titlecase}}</p>
@@ -30,17 +30,18 @@
       </c-row>
     </c-card-body>
   </c-card>
-  <div class="d-flex flex-row align-items-center justify-content-between my-2">
+  <div class="my-2">
     <h2 class="m-0">{{Translations.statistics | translation | titlecase}}</h2>
+    <ng-container *ngIf="activities; else loading">
+      <app-activities-statistics [activities]="activities"/>
+    </ng-container>
   </div>
 
-  <div class=" my-2">
+  <div class="my-2">
     <h2 class="m-0">{{Translations.activities | translation | titlecase}}</h2>
-    <c-card *ngIf="activities; else loading">
-      <c-card-body>
-        <app-activity-table [activities]="activities" [showParticipant]="false"/>
-      </c-card-body>
-    </c-card>
+    <ng-container *ngIf="activities; else loading">
+      <app-activity-table [activities]="activities" [showParticipant]="false"/>
+    </ng-container>
   </div>
 </c-container>
 

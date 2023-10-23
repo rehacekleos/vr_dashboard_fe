@@ -7,9 +7,19 @@
       <c-card class="h-100">
         <c-card-body class="text-center h-100">
           <h5>{{Translations.profilePhoto | translation}}</h5>
-          <img class="w-75 img-fluid" alt="Profile photo" cImg rounded [src]="getProfileImage()"/>
+          <ng-container *ngIf="editImage == false; else changeImage">
+            <img class="custom_img img-fluid rounded" alt="Profile photo" cImg rounded [src]="getProfileImage()"/>
+          </ng-container>
+          <ng-template #changeImage>
+            <input
+              (change)="onFileSelected($event)"
+              required
+              cFormControl
+              accept="image/jpeg"
+              type="file"/>
+          </ng-template>
           <c-row class="justify-content-center">
-            <button class="btn btn-secondary mt-2 w-auto">{{Translations.Actions.change | translation | titlecase}}</button>
+            <button class="btn btn-secondary mt-2 w-auto" (click)="clickChangeImage()">{{Translations.Actions.change | translation | titlecase}}</button>
           </c-row>
         </c-card-body>
         <c-card-footer class="text-center bg-white">
