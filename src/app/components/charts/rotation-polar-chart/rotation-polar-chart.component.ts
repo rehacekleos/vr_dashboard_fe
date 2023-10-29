@@ -16,7 +16,6 @@ export class RotationPolarChartComponent implements OnChanges {
   lineChartData: ChartConfiguration['data'] = null;
   lineChartOptions: ChartConfiguration['options'] = null;
   rotation = [];
-  triggers = [];
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.records) {
@@ -28,49 +27,35 @@ export class RotationPolarChartComponent implements OnChanges {
 
   private prepareData() {
     this.rotation = [0, 0, 0, 0, 0, 0, 0, 0];
-    this.triggers = [0, 0, 0, 0, 0, 0, 0, 0];
 
     for (const record of this.records) {
       const rotation = record[this.part].rotation[this.axis];
-      let index;
 
       switch (true) {
         case rotation < 45:
           this.rotation[7] = this.rotation[7] + 1;
-          index = 7;
           break;
         case rotation < 90:
           this.rotation[6] = this.rotation[6] + 1;
-          index = 6;
           break;
         case rotation < 135:
           this.rotation[5] = this.rotation[5] + 1;
-          index = 5;
           break;
         case rotation < 180:
           this.rotation[4] = this.rotation[4] + 1;
-          index = 4;
           break;
         case rotation < 225:
           this.rotation[3] = this.rotation[3] + 1;
-          index = 3;
           break;
         case rotation < 270:
           this.rotation[2] = this.rotation[2] + 1;
-          index = 2;
           break;
         case rotation < 315:
           this.rotation[1] = this.rotation[1] + 1;
-          index = 1;
           break;
         default:
           this.rotation[0] = this.rotation[0] + 1;
-          index = 0;
           break;
-      }
-
-      if (record.custom_data?.collision){
-        this.triggers[index] = this.triggers[index] + 1;
       }
 
     }
@@ -84,12 +69,6 @@ export class RotationPolarChartComponent implements OnChanges {
 
 
     const datasets = [
-      {
-        data: this.triggers,
-        label: "Triggers",
-        borderColor: "transparent",
-        backgroundColor: ["#E9142D", "#D67615", "#EAA928", "#63E617", "#00B490", "#E9142D", "#00A8B4", "#006AA7"]
-      },
       {
         data: this.rotation,
         label: "Rotation",

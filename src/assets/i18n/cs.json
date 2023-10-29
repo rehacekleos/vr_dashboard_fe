@@ -25,6 +25,8 @@
   "anonymous": "anonym",
   "statistics": "statistiky",
   "admin": "administrator",
+  "environment": "prostředí",
+  "events": "události",
 
   "Actions": {
     "select": "vybrat",
@@ -155,6 +157,8 @@
     "minutes": "minut",
     "seconds": "vteřin",
     "start": "začátek",
+    "from": "od",
+    "to": "do",
     "end": "konec",
     "duration": "Doba trvání"
   },

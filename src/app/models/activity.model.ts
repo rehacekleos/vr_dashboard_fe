@@ -1,10 +1,10 @@
 export class ActivityTable{
   id: string;
-  createdIn: string;
   start: string;
   participant: string;
   application: string;
-  search?: string;
+  participantId: string;
+  applicationId: string;
 }
 
 
@@ -48,6 +48,7 @@ export class Record{
   left_hand?: PositionAndRotation;
   right_hand?: PositionAndRotation;
   custom_data?: any;
+  event?: string[];
 }
 
 export class PositionAndRotation {

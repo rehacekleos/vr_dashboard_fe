@@ -13,8 +13,8 @@ import {
   ColComponent,
   FormControlDirective,
   FormDirective,
-  FormFeedbackComponent,
-  InputGroupComponent,
+  FormFeedbackComponent, FormSelectDirective,
+  InputGroupComponent, InputGroupTextDirective,
   ModalBodyComponent,
   ModalComponent,
   ModalFooterComponent,
@@ -45,30 +45,32 @@ import { PositionComponent } from './charts/position/position.component';
 import { ApplicationModuleComponent } from './application-module/application-module.component';
 import { RotationPolarChartComponent } from './charts/rotation-polar-chart/rotation-polar-chart.component';
 import { ActivitiesStatisticsComponent } from './activities-statistics/activities-statistics.component';
+import { RecordsStatisticsComponent } from "./records-statistics/records-statistics.component";
 
 
 
 @NgModule({
-  declarations: [IconifyComponent, WidgetComponent, ApplicationWidgetComponent, ConfirmationModalComponent, OrganisationWidgetComponent, CreateOrganisationFormComponent, JoinOrganisationFormComponent, LoadingPlaceholderComponent, ActivityTableComponent, BooleanIconComponent, RotationComponent, DescriptionDetailComponent, JsonEditorComponent, PositionComponent, ApplicationModuleComponent, RotationPolarChartComponent, ActivitiesStatisticsComponent],
-  exports: [
-    IconifyComponent,
-    WidgetComponent,
-    ApplicationWidgetComponent,
-    ConfirmationModalComponent,
-    OrganisationWidgetComponent,
-    CreateOrganisationFormComponent,
-    JoinOrganisationFormComponent,
-    LoadingPlaceholderComponent,
-    ActivityTableComponent,
-    BooleanIconComponent,
-    RotationComponent,
-    DescriptionDetailComponent,
-    JsonEditorComponent,
-    PositionComponent,
-    ApplicationModuleComponent,
-    RotationPolarChartComponent,
-    ActivitiesStatisticsComponent
-  ],
+  declarations: [IconifyComponent, WidgetComponent, ApplicationWidgetComponent, ConfirmationModalComponent, OrganisationWidgetComponent, CreateOrganisationFormComponent, JoinOrganisationFormComponent, LoadingPlaceholderComponent, ActivityTableComponent, BooleanIconComponent, RotationComponent, DescriptionDetailComponent, JsonEditorComponent, PositionComponent, ApplicationModuleComponent, RotationPolarChartComponent, ActivitiesStatisticsComponent, RecordsStatisticsComponent],
+    exports: [
+        IconifyComponent,
+        WidgetComponent,
+        ApplicationWidgetComponent,
+        ConfirmationModalComponent,
+        OrganisationWidgetComponent,
+        CreateOrganisationFormComponent,
+        JoinOrganisationFormComponent,
+        LoadingPlaceholderComponent,
+        ActivityTableComponent,
+        BooleanIconComponent,
+        RotationComponent,
+        DescriptionDetailComponent,
+        JsonEditorComponent,
+        PositionComponent,
+        ApplicationModuleComponent,
+        RotationPolarChartComponent,
+        ActivitiesStatisticsComponent,
+        RecordsStatisticsComponent
+    ],
   imports: [
     CommonModule,
     CardComponent,
@@ -97,7 +99,9 @@ import { ActivitiesStatisticsComponent } from './activities-statistics/activitie
     CardFooterComponent,
     PaginationComponent,
     PageItemDirective,
-    PageLinkDirective
+    PageLinkDirective,
+    FormSelectDirective,
+    InputGroupTextDirective
   ]
 })
 export class ComponentsModule { }

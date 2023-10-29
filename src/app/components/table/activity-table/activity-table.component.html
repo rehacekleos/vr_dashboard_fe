@@ -1,10 +1,56 @@
 <c-card class="mb-2">
   <c-card-body class="pb-0">
+    <c-row>
+      <c-input-group class="w-auto m-1 p-0">
+        <span cInputGroupText>{{Translations.times.from | translation | titlecase}}</span>
+        <input
+          class="w-auto"
+          [(ngModel)]="fromDate"
+          name="fromDate"
+          (ngModelChange)="filterActivities()"
+          cFormControl
+          [max]="toDate"
+          type="date">
+        <span cInputGroupText>{{Translations.times.to | translation | titlecase}}</span>
+        <input
+          class="w-auto"
+          [(ngModel)]="toDate"
+          name="toDate"
+          (ngModelChange)="filterActivities()"
+          cFormControl
+          [min]="fromDate"
+          type="date">
+      </c-input-group>
+
+      <c-input-group class="w-auto m-1 p-0" *ngIf="showParticipant">
+        <span cInputGroupText>{{Translations.participant | translation | titlecase}}</span>
+        <select
+          [(ngModel)]="participant"
+          (ngModelChange)="filterActivities()"
+          name="Participant"
+          cSelect>
+          <option [ngValue]="''"></option>
+          <option *ngFor="let par of participants" [ngValue]="par.id">{{par.nickname}}</option>
+        </select>
+      </c-input-group>
+
+      <c-input-group class="w-auto m-1 p-0">
+        <span cInputGroupText>{{Translations.application | translation | titlecase}}</span>
+        <select
+          [(ngModel)]="application"
+          (ngModelChange)="filterActivities()"
+          name="Application"
+          cSelect>
+          <option [ngValue]="''"></option>
+          <option *ngFor="let app of applications" [ngValue]="app.id">{{app.name}}</option>
+        </select>
+      </c-input-group>
+
+    </c-row>
     <table cTable>
       <thead>
       <tr>
         <th></th>
-        <th class="text-capitalize">{{Translations.createdAt | translation}}</th>
         <th class="text-capitalize">{{Translations.times.start | translation}}</th>
         <th *ngIf="showParticipant" class="text-capitalize">{{Translations.participant | translation}}</th>
         <th class="text-capitalize">{{Translations.application | translation}}</th>
@@ -15,7 +61,6 @@
         <td>
           <iconify class="text-primary pointer" icon="bxs:detail" (click)="goToDetail(activity.id)"/>
         </td>
-        <td>{{activity.createdIn}}</td>
         <td>{{activity.start}}</td>
         <td *ngIf="showParticipant">{{activity.participant}}</td>
         <td>{{activity.application}}</td>

@@ -7,7 +7,11 @@ import { ParticipantService } from "../../../shared/services/app/participant.ser
 import { Application } from "../../../models/application.model";
 import { Participant } from "../../../models/participant.model";
 import { Router } from "@angular/router";
-import { cibFSecure } from "@coreui/icons";
+import isSameOrBefore from "dayjs/plugin/isSameOrBefore";
+import isSameOrAfter from "dayjs/plugin/isSameOrAfter";
+
+dayjs.extend(isSameOrBefore)
+dayjs.extend(isSameOrAfter)
 
 @Component({
   selector: 'app-activity-table',
@@ -19,13 +23,17 @@ export class ActivityTableComponent extends TranslateComponent implements OnInit
   @Input({required: true}) activities: Activity[];
   @Input() showParticipant: boolean = true;
   @Input() pagination: boolean = false;
-  @Input() searchValue: string = ""
   applications: Application[];
   participants: Participant[];
 
+  application = "";
+  participant = "";
+  toDate = "";
+  fromDate = "";
+
   filteredActivities: ActivityTable[];
 
-  itemsPerPage = 10
+  itemsPerPage = 20
   pages = 0;
   currentPage = 0;
 
@@ -55,39 +63,42 @@ export class ActivityTableComponent extends TranslateComponent implements OnInit
       }
       this.filterActivities();
     }
-
-    if (changes.searchValue){
-      this.filterActivities();
-    }
   }
 
   filterActivities(){
-    if (this.activities) {
-      let converted = this.convertToActivityTable(this.activities);
-      console.log(this.searchValue)
-      if (this.searchValue !== "") {
-        converted = converted.filter(c => c.search.includes(this.searchValue))
-      }
+    if (this.activities && this.applications && this.participants) {
+      let converted = this.filteringFunctions(this.convertToActivityTable(this.activities));
       if (this.pages > 0) {
         this.filteredActivities = converted.slice(this.currentPage * this.itemsPerPage, this.currentPage * this.itemsPerPage + this.itemsPerPage);
       } else {
-        console.log()
         this.filteredActivities = converted;
       }
     }
   }
 
+  private filteringFunctions(activities: ActivityTable[]): ActivityTable[]{
+
+    return activities.filter(a => {
+      return (this.participant !== "" ? a.participantId === this.participant : true) &&
+        (this.application !== "" ? a.applicationId === this.application : true) &&
+        (dayjs(this.fromDate).isValid() ? dayjs(this.fromDate).isSameOrBefore(a.start, "day") : true) &&
+        (dayjs(this.toDate).isValid() ? dayjs(this.toDate).isSameOrAfter(a.start, "day") : true)
+    })
+  }
+
   convertToActivityTable(activities: Activity[]): ActivityTable[]{
     return activities.map(a => {
+      const application = this.getApplication(a);
+      const participant = this.getParticipant(a);
+
       const activity: ActivityTable = {
         id: a.id,
-        createdIn: this.getTime(a),
         start: this.getStart(a),
-        participant: this.getParticipant(a),
-        application: this.getApplication(a)
+        participant: participant.nickname || "",
+        application: application.name || "",
+        applicationId: application.id,
+        participantId: participant.id
       }
-
-      activity.search = `${activity.createdIn.toLowerCase()} ${activity.start.toLowerCase()} ${activity.participant.toLowerCase()} ${activity.application.toLowerCase()}`
 
       return activity;
     })
@@ -101,20 +112,20 @@ export class ActivityTableComponent extends TranslateComponent implements OnInit
     if (activity.participantId) {
       const participant = this.participants?.find(p => p.id === activity.participantId);
       if (participant) {
-        return participant.nickname;
+        return participant;
       }
     }
-    return "";
+    return null;
   }
 
   getApplication(activity: Activity) {
     if (activity.applicationId) {
       const application = this.applications?.find(a => a.id === activity.applicationId);
       if (application) {
-        return application.name;
+        return application;
       }
     }
-    return "";
+    return null;
   }
 
   getTime(activity: Activity) {
@@ -136,5 +147,5 @@ export class ActivityTableComponent extends TranslateComponent implements OnInit
   }
 
 
-  protected readonly cibFSecure = cibFSecure;
+
 }

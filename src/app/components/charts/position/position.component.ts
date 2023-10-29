@@ -57,15 +57,11 @@ export class PositionComponent implements OnInit, OnChanges{
 
   setChartOptions() {
     this.lineChartOptions = {
+      responsive: true,
+      maintainAspectRatio: false,
       animation: false,
       parsing: false,
       plugins: {
-        decimation: {
-          enabled: false,
-          algorithm: "lttb",
-          samples: 1000,
-          threshold: 1000
-        },
         tooltip: {
           callbacks: {
             footer: (items) => {

@@ -1,6 +1,9 @@
 <canvas
+  (wheel)="$event.stopPropagation()"
   baseChart
   class="chart"
   [data]="lineChartData"
   [options]="lineChartOptions"
 ></canvas>
+
+

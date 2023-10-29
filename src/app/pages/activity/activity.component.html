@@ -3,12 +3,6 @@
     <div class="d-flex flex-row align-items-center justify-content-between mb-2">
       <h2 class="m-0 text-capitalize">{{Translations.activities | translation}}</h2>
       <div class="d-flex flex-row">
-        <input type="text"
-               class="me-2 w-auto"
-               cFormControl
-               placeholder="Search"
-               [ngModel]="searchValue"
-               (ngModelChange)="setSearchValue($event)">
         <button class="btn btn-primary btn-sm" (click)="modalVisibleChange(true)">
           <iconify icon="mdi:add"/>
           {{Translations.add.activity | translation}}
@@ -18,7 +12,7 @@
     </div>
   </c-row>
   <c-row>
-    <app-activity-table [activities]="activities" [searchValue]="searchValue"/>
+    <app-activity-table [activities]="activities"/>
   </c-row>
 </c-container>
 
