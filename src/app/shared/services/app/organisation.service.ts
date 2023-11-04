@@ -42,8 +42,8 @@ export class OrganisationService extends HttpService{
     })
   }
 
-  async getOrganisations(){
-    const res = await firstValueFrom(this.http.get<Organisation[]>(this.createUrl('')));
+  async getOrganisations(): Promise<Organisation[]>{
+    const res = await firstValueFrom(this.http.get(this.createUrl(''))) as Organisation[];
     this.$organisations.next(res);
     return res;
   }

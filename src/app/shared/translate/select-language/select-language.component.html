@@ -10,8 +10,9 @@
         <button cDropdownItem *ngFor="let language of availableLangs" (click)="selectLanguage(language)"
                 class="rounded d-flex text-center"
         >
-            <img class="mx-0 shadow-md border" src="../../../../assets/img/flags/{{language}}.svg"
-                 style="width: 20px; border-radius: 100%;"
+            <img class="mx-0 shadow-md me-2"
+                 src="../../../../assets/img/flags/{{language}}.svg"
+                 style="width: 20px;"
                  alt="{{language | getLanguageString}}">
                 <span class="small ml-2 mt-auto mb-auto">{{language | getLanguageString}}</span>
         </button>

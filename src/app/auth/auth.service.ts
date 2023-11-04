@@ -30,6 +30,7 @@ export class AuthService extends HttpService{
         this.token = val.token;
         SessionStorageUtil.saveValue("auth", val);
         await this.orgService.getOrganisations();
+        console.log("route")
         await this.router.navigate(['']);
       } else if (val === null) {
         this.user = undefined;

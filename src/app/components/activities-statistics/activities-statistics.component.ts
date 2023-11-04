@@ -16,6 +16,7 @@ export class ActivitiesStatisticsComponent extends TranslateComponent implements
 
   totalDuration = "";
   avgDuration = "";
+  lastActivityBefore = "";
 
   constructor(private translateService: CustomTranslateService) {
     super()
@@ -38,8 +39,11 @@ export class ActivitiesStatisticsComponent extends TranslateComponent implements
       totalDuration += diffInMs;
     }
 
-    this.totalDuration = dayjs.duration(totalDuration).format(`m [min] ss [s]`)
-    this.avgDuration = dayjs.duration(totalDuration / this.activities.length).format(`m [min] ss [s]`)
+    this.totalDuration = dayjs.duration(totalDuration).format(`m [min] s [s]`)
+    this.avgDuration = dayjs.duration(totalDuration / this.activities.length).format(`m [min] s [s]`)
+    if (this.activities.length > 0) {
+      this.lastActivityBefore = dayjs.duration(dayjs().diff(this.activities[0].data.start)).format(`D [d] H [h]`)
+    }
   }
 
   protected readonly TranslateService = TranslateService;

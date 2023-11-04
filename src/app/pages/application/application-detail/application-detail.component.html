@@ -38,7 +38,7 @@
 
 </c-container>
 
-<c-container *ngIf="deleteModalOpen">
+<c-container fluid *ngIf="deleteModalOpen">
   <app-confirmation-modal
     [open]="deleteModalOpen"
     [title]="Translations.delete.application | translation | titlecase"

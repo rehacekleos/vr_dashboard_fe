@@ -74,11 +74,11 @@
           <app-application-module [application]="application" [logVersion]="activity.data.log_version" />
         </ng-container>
         <ng-template #toggleModule>
-          <button class="btn btn-primary w-50" (click)="onToggleModule()">Show module</button>
+          <button class="btn btn-primary w-50" (click)="onToggleModule()">{{Translations.Actions.showModule | translation}}</button>
         </ng-template>
       </c-row>
 
-      <c-container *ngIf="environmentsRecords && environmentsRecords.length > 1 && application.setting.graphs">
+      <c-container fluid *ngIf="environmentsRecords && environmentsRecords.length > 1 && application.setting.graphs">
         <c-row *ngFor="let graph of application.setting.graphs">
           <hr class="my-3">
           <app-rotation-chart
@@ -120,7 +120,7 @@
   </c-card>
 </c-container>
 
-<c-container *ngIf="deleteModalOpen">
+<c-container fluid *ngIf="deleteModalOpen">
   <app-confirmation-modal
     [open]="deleteModalOpen"
     [title]="Translations.delete.activity | translation | titlecase"

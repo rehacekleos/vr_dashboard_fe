@@ -1,7 +1,7 @@
 <c-card class="mb-2">
   <c-card-body class="pb-0">
     <c-row class="mx-0">
-      <c-input-group class="w-auto m-1 p-0">
+      <c-input-group  sizing="sm" class="w-auto m-1 p-0">
         <span cInputGroupText>{{Translations.times.from | translation | titlecase}}</span>
         <input
           class="w-auto"
@@ -22,9 +22,10 @@
           type="date">
       </c-input-group>
 
-      <c-input-group class="w-auto m-1 p-0" *ngIf="showParticipant">
+      <c-input-group sizing="sm" class="w-auto m-1 p-0" *ngIf="showParticipant">
         <span cInputGroupText>{{Translations.participant | translation | titlecase}}</span>
         <select
+          sizing="sm"
           [(ngModel)]="participant"
           (ngModelChange)="filterActivities()"
           name="Participant"
@@ -34,9 +35,10 @@
         </select>
       </c-input-group>
 
-      <c-input-group class="w-auto m-1 p-0">
+      <c-input-group sizing="sm" class="w-auto m-1 p-0">
         <span cInputGroupText>{{Translations.application | translation | titlecase}}</span>
         <select
+          sizing="sm"
           [(ngModel)]="application"
           (ngModelChange)="filterActivities()"
           name="Application"
@@ -47,26 +49,28 @@
       </c-input-group>
 
     </c-row>
-    <table cTable>
-      <thead>
-      <tr>
-        <th></th>
-        <th class="text-capitalize">{{Translations.times.start | translation}}</th>
-        <th *ngIf="showParticipant" class="text-capitalize">{{Translations.participant | translation}}</th>
-        <th class="text-capitalize">{{Translations.application | translation}}</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let activity of filteredActivities">
-        <td>
-          <iconify class="text-primary pointer" icon="bxs:detail" (click)="goToDetail(activity.id)"/>
-        </td>
-        <td>{{activity.start}}</td>
-        <td *ngIf="showParticipant">{{activity.participant}}</td>
-        <td>{{activity.application}}</td>
-      </tr>
-      </tbody>
-    </table>
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+        <tr>
+          <th></th>
+          <th class="text-capitalize">{{Translations.times.start | translation}}</th>
+          <th *ngIf="showParticipant" class="text-capitalize">{{Translations.participant | translation}}</th>
+          <th class="text-capitalize">{{Translations.application | translation}}</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let activity of filteredActivities">
+          <td nowrap>
+            <iconify class="text-primary pointer" icon="bxs:detail" (click)="goToDetail(activity.id)"/>
+          </td>
+          <td nowrap>{{activity.start}}</td>
+          <td nowrap *ngIf="showParticipant">{{activity.participant}}</td>
+          <td nowrap>{{activity.application}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
 
 
     <c-pagination align="center" *ngIf="pages > 0">

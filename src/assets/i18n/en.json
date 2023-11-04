@@ -1,139 +1,209 @@
 {
-	"actions": "Events",
+  "dashboard": "dashboard",
+  "activity": "activity",
+  "activities": "activities",
+  "participant": "participant",
+  "participants": "participants",
+  "application": "application",
+  "applications": "applications",
+  "organisation": "organisation",
+  "organisationName": "Organisation name",
+  "organisations": "organisations",
+  "invitation": "invitation",
+  "invitationCode": "Invitation code",
+  "invitations": "invitations",
+  "employee": "employee",
+  "employees": "employees",
+  "code": "code",
+  "identifier": "identifier",
+  "role": "role",
+  "valid": "valid",
+  "actions": "actions",
+  "createdAt": "Created at",
+  "time": "time",
+  "file": "file",
+  "anonymous": "anonymous",
+  "statistics": "statistics",
+  "admin": "admin",
+  "environment": "environment",
+  "events": "events",
+  "event": "event",
+  "log_version": "Log version",
+
   "Actions": {
-    "add": "add",
-    "cancel": "cancel",
-    "change": "change",
-    "close": "close",
-    "create": "create",
-    "delete": "remove",
+    "select": "select",
     "detail": "detail",
+    "add": "add",
+    "close": "close",
     "edit": "edit",
-    "invite": "invite",
-    "join": "join",
-    "refresh": "refresh",
+    "change": "change",
+    "cancel": "cancel",
     "save": "save",
-    "select": "select"
+    "delete": "delete",
+    "create": "create",
+    "join": "Join",
+    "refresh": "refresh",
+    "invite": "invite",
+    "assign": "assign",
+    "addModule": "Add application module",
+    "showModule": "Show module"
   },
 
-	"activities": "activities",
-	"activity": "activity",
-	"add": {
-    "activity": "Add an activity",
-    "application": "Add an application",
-    "participant": "Add a participant"
-  },
+  "noOrganisation": "You dont have any organisations.",
+  "joinOrganisation": "Join to organisation",
+  "inviteEmployee": "Invite employee",
+  "needToRefresh": "Need to refresh",
+  "assignApplication": "Assign application",
 
-	"age": "age",
-	"alreadyAccount": "Already have an account?",
-	"anonymous": "anonymous",
-	"application": "applications",
-	"applications": "applications",
-	"basicInformation": "General information",
-	"birthday": "Date of Birth",
-	"code": "code",
-  "confirm": {
-    "delete": {
-      "invitation_$": "Do you really want to remove the email invitation: {{param}}?",
-      "participant_$": "Do you really want to remove a participant with a nickname: {{param}}?"
-    }
-  },
-
-  "create": {
-    "account": "Create an account",
-    "organisation": "Create an organization"
-  },
-
-  "delete": {
-    "invitation": "Remove invitation",
-    "participant": "Remove a participant"
+  "add": {
+    "application": "Add application",
+    "participant": "Add participant",
+    "activity": "Add activity",
+    "module": "Add application module"
   },
 
   "edit": {
     "participant": "Edit participant"
   },
 
+  "delete": {
+    "participant": "Delete participant",
+    "invitation": "Delete invitation",
+    "activity": "Delete activity",
+    "application": "Delete application"
+  },
+
+  "confirm": {
+    "delete": {
+      "participant_$": "Do you really want to remove the participant with nickname: {{param}}?",
+      "invitation_$": "Do you really want to remove the invitation with email: {{param}}?",
+      "activity": "Do you really want to remove the activity?",
+      "application_$": "Do you really want to remove the application with code: {{param}}?\nAfter the remove, maybe your VR application stop working!"
+    }
+  },
+
+  "create": {
+    "organisation": "Create organisation",
+    "account": "Create account"
+  },
+
+  "nickname": "nickname",
+  "name": "name",
+  "surname": "surname",
+  "nameAndSurname": "Name and Surname",
+  "age": "age",
+  "notes": "notes",
+  "email": "email",
+  "password": "password",
+  "repassword": "Repeat password",
+  "birthday": "birthday",
+  "gender": "gender",
+  "settings": "settings",
+  "optional": "optional",
+
+  "profile": "profile",
+  "basicInformation": "Basic information",
+  "customData": "Optional information",
+  "profilePhoto": "Profile photo",
+
+  "login": "Login",
+  "logout": "Logout",
+  "loginToAccount": "Login to the account",
+  "register": "Register",
+  "registerMessage": "Don't have an account yet? Simply create one.",
+  "forgotPassword": "Forgot password?",
+  "alreadyAccount": "Already have an account?",
+  "createAccountMessage": "Create your account",
+  "goToLogin": "Back to the login screen",
+
   "inputErrors": {
-    "age": "Age is mandatory!",
-    "application": "The application is mandatory!",
-    "email": "Wrong email format!",
-    "file": "The file is mandatory!",
-    "name": "Name is required!",
     "nickname": "Nickname is mandatory!",
-    "notes": "Notes are required!",
-    "participant": "Participation is mandatory!",
-    "password": "The password must be at least 6 characters long!",
-    "repassword": "The passwords don't match!",
-    "role": "The role is mandatory!",
+    "name": "Name is mandatory!",
     "surname": "Surname is mandatory!",
+    "age": "Age is mandatory!",
+    "notes": "Notes is mandatory!",
+    "email": "Wrong email format!",
+    "password": "Password must be at least 6 characters long!",
+    "repassword": "Passwords do not match!",
+    "file": "File is mandatory!",
+    "application": "Application is mandatory!",
     "time": "Time is mandatory!",
-    "identifier": "Identifier is mandatory!"
+    "participant": "Participant is mandatory!",
+    "role": "Role is mandatory!",
+    "identifier": "Identifier is mandatory!",
+    "code": "Code is mandatory!",
+    "organisationName": "Organisation name is mandatory!",
+    "invitationCode": "Invitation code is mandatory!",
+    "log_version": "Log version is mandatory and must be in the format: 0.0.0!"
   },
 
   "messages": {
     "copy": {
-      "code": "The code has been copied."
-    },
-    "delete": {
-      "invitation": "The invitation has been removed!",
-      "participant": "Participant has been removed!"
-    },
-    "selected": {
-      "organisation$": "Organization {{param}} has been selected."
+      "code": "Code has been copied."
     },
     "update": {
-      "invitation": "The invitation has been refreshed.",
-      "participant": "Participant has been updated."
+      "participant": "Participant has been updated.",
+      "invitation": "Invitation has been restored.",
+      "note": "Note has been updated.",
+      "setting": "Settings have been updated."
+    },
+    "delete": {
+      "participant": "Participant has been removed!",
+      "invitation": "Invitation has been removed!",
+      "activity": "Activity has been removed!"
+    },
+    "selected": {
+      "organisation$": "Organisation {{param}} has been selected."
     }
   },
 
-	"createAccountMessage": "Create your account",
-	"createdAt": "Created at",
-	"createOrJoinOrganisation": "Create or join to organisation",
-	"dashboard": "dashboard",
+  "times": {
+    "minutes": "minutes",
+    "seconds": "seconds",
+    "start": "start",
+    "from": "from",
+    "to": "to",
+    "end": "end",
+    "duration": "duration",
+    "totalDuration": "Total duration",
+    "avgDuration": "Average duration",
+    "lastActivityBefore": "Last activity before"
+  },
 
-	"email": "email",
-	"employee": "employee",
-	"employees": "employees",
-	"file": "file",
-	"forgotPassword": "Forgot your password?",
-	"gender": "gender",
-	"goToLogin": "Back to the login page",
+  "axis": {
+    "x": "X-axis",
+    "y": "Y-axis",
+    "z": "Z-axis"
+  },
 
+  "numbers": {
+    "activities": "Number of activities"
+  },
 
-	"invitation": "invitation",
-	"invitationCode": "Invitation code",
-	"invitations": "invitations",
-	"inviteEmployee": "Invite employees",
-	"joinOrganisation": "Join to the organisation",
-	"login": "Log in",
-	"loginToAccount": "Log in to your account",
-	"logout": "Log out",
+  "rotation": {
+    "head": {
+      "all": "Head rotation"
+    },
+    "left_hand": {
+      "all": "Left hand rotation"
+    },
+    "right_hand": {
+      "all": "Right hand rotation"
+    }
+  },
 
-	"name": "name",
-	"nameAndSurname": "Name and surname",
-	"needToRefresh": "Refresh is needed",
-	"nickname": "nickname",
-	"noOrganisation": "You have no organization.",
-	"notes": "notes",
-	"optional": "optional",
-	"organisation": "organisation",
-	"organisationName": "Name of organisation",
-	"organisations": "organisations",
-	"participant": "participant",
-	"participants": "participants",
-	"password": "password",
-	"profile": "profile",
-	"profilePhoto": "Profile photo",
-	"register": "Register now",
-	"registerMessage": "Don't have an account yet? Simply create one.",
-	"repassword": "Repeat password",
-	"role": "role",
-	"settings": "settings",
-	"statistics": "statistics",
-	"surname": "surname",
-	"time": "time",
-	"valid": "valid",
-  "admin": "admin",
-  "identifier": "identifier"
+  "position": {
+    "head": {
+      "all": "Head position",
+      "difference": "Head swings"
+    },
+    "left_hand": {
+      "all": "Left hand position",
+      "difference": "Left hand swings"
+    },
+    "right_hand": {
+      "all": "Right hand position",
+      "difference": "Right hand swings"
+    }
+  }
 }

@@ -1,23 +1,23 @@
 <!--<c-header class="mb-4 d-print-none" position="sticky">-->
 <ng-container>
-  <c-container [fluid]="true">
+  <c-container fluid>
     <button
       toggle="visible"
       cHeaderToggler
       [cSidebarToggle]="sidebarId"
       class="p-0"
     >
-      <iconify icon="mdi:menu" size="md" />
+      <iconify icon="mdi:menu" size="md"/>
     </button>
 
     <c-header-nav class="ms-3 align-items-center">
       <div class="me-2">
-        <iconify [icon]="'cil-institution'" />
+        <iconify [icon]="'cil-institution'"/>
         {{organisation.name}}
       </div>
       <ng-container *ngTemplateOutlet="userDropdown"></ng-container>
 
-      <app-select-language />
+      <app-select-language/>
     </c-header-nav>
 
   </c-container>
@@ -25,37 +25,39 @@
 <!--</c-header>-->
 
 <ng-template #userDropdown>
-  <c-dropdown [cTooltip]="user.email" cTooltipPlacement="left" alignment="end" variant="nav-item">
-    <button
-      cButton
-      color=""
-      [caret]="false"
-      cDropdownToggle
-      class="py-0"
-    >
-      <iconify icon="mdi:user" size="md" />
-    </button>
-    <ul cDropdownMenu class="pt-0 pr-5 w-auto">
-      <li>
-        <h6 cDropdownHeader class="bg-light fw-semibold py-2">{{getName()}}</h6>
-      </li>
-      <li></li>
-      <li class="mt-2">
-        <a routerLink="./" cDropdownItem>
-          <iconify icon="mdi:user" />
-          {{Translations.profile | translation | titlecase}}
-        </a>
-      </li>
-      <li>
-        <hr cDropdownDivider/>
-      </li>
-      <li>
-        <a (click)="logout()" class="pointer" cDropdownItem>
-          <iconify icon="mdi:logout" />
-          {{Translations.logout | translation}}
-        </a>
-      </li>
-    </ul>
-  </c-dropdown>
+  <ng-container *ngIf="user">
+    <c-dropdown [cTooltip]="user.email" cTooltipPlacement="left" alignment="end" variant="nav-item">
+      <button
+        cButton
+        color=""
+        [caret]="false"
+        cDropdownToggle
+        class="py-0"
+      >
+        <iconify icon="mdi:user" size="md"/>
+      </button>
+      <ul cDropdownMenu class="pt-0 pr-5 w-auto">
+        <li>
+          <h6 cDropdownHeader class="bg-light fw-semibold py-2">{{getName()}}</h6>
+        </li>
+        <li></li>
+        <li class="mt-2">
+          <a routerLink="./" cDropdownItem>
+            <iconify icon="mdi:user"/>
+            {{Translations.profile | translation | titlecase}}
+          </a>
+        </li>
+        <li>
+          <hr cDropdownDivider/>
+        </li>
+        <li>
+          <a (click)="logout()" class="pointer" cDropdownItem>
+            <iconify icon="mdi:logout"/>
+            {{Translations.logout | translation}}
+          </a>
+        </li>
+      </ul>
+    </c-dropdown>
+  </ng-container>
 </ng-template>
 

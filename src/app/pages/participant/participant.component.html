@@ -2,34 +2,40 @@
   <c-row>
     <div class="d-flex flex-row align-items-center justify-content-between mb-2">
       <h2 class="m-0 text-capitalize">{{Translations.participants | translation}}</h2>
-      <button class="btn btn-primary btn-sm" (click)="modalVisibleChange(true)"><iconify icon="mdi:add" />{{Translations.add.participant | translation}}</button>
+      <button class="btn btn-primary btn-sm" (click)="modalVisibleChange(true)">
+        <iconify icon="mdi:add"/>
+        {{Translations.add.participant | translation}}</button>
     </div>
 
     <c-col>
       <c-card>
         <c-card-body>
-          <table cTable>
-            <thead>
-            <tr>
-              <th></th>
-              <th class="text-capitalize">{{Translations.nickname | translation}}</th>
-              <th class="text-capitalize">{{Translations.name | translation}}</th>
-              <th class="text-capitalize">{{Translations.surname | translation}}</th>
-              <th class="text-capitalize">{{Translations.age | translation}}</th>
-              <th class="text-capitalize">{{Translations.notes | translation}}</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr *ngFor="let part of participants">
-              <td><iconify class="text-primary pointer" icon="bxs:detail" (click)="goToDetail(part.id)"/></td>
-              <td>{{part.nickname}}</td>
-              <td>{{part.name || ''}}</td>
-              <td>{{part.surname || ''}}</td>
-              <td>{{getAge(part.birthday)}}</td>
-              <td>{{part.description || ''}}</td>
-            </tr>
-            </tbody>
-          </table>
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+              <tr>
+                <th></th>
+                <th class="text-capitalize">{{Translations.nickname | translation}}</th>
+                <th class="text-capitalize">{{Translations.name | translation}}</th>
+                <th class="text-capitalize">{{Translations.surname | translation}}</th>
+                <th class="text-capitalize">{{Translations.age | translation}}</th>
+                <th class="text-capitalize">{{Translations.notes | translation}}</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let part of participants">
+                <td nowrap>
+                  <iconify class="text-primary pointer" icon="bxs:detail" (click)="goToDetail(part.id)"/>
+                </td>
+                <td nowrap>{{part.nickname}}</td>
+                <td nowrap>{{part.name || ''}}</td>
+                <td nowrap>{{part.surname || ''}}</td>
+                <td nowrap>{{getAge(part.birthday)}}</td>
+                <td nowrap>{{part.description || ''}}</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
         </c-card-body>
       </c-card>
     </c-col>

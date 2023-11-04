@@ -45,7 +45,8 @@
     "refresh": "obnovit",
     "invite": "pozvat",
     "assign": "přiřadit",
-    "addModule": "Přidat aplikační modul"
+    "addModule": "Přidat aplikační modul",
+    "showModule": "Zobrazit modul"
   },
 
   "noOrganisation": "Nemáte žádné organizace.",
@@ -165,7 +166,8 @@
     "end": "konec",
     "duration": "Doba trvání",
     "totalDuration": "Celková doba trvání",
-    "avgDuration": "Průměrná doba trvání"
+    "avgDuration": "Průměrná doba trvání",
+    "lastActivityBefore": "Poslední aktivita před"
   },
 
   "axis": {
@@ -181,6 +183,12 @@
   "rotation": {
     "head": {
       "all": "Rotace hlavy"
+    },
+    "left_hand": {
+      "all": "Rotace levé ruky"
+    },
+    "right_hand": {
+      "all": "Rotace pravé ruky"
     }
   },
 
@@ -188,6 +196,14 @@
     "head": {
       "all": "Pozice hlavy",
       "difference": "Výkyvy hlavy"
+    },
+    "left_hand": {
+      "all": "Pozice levé ruky",
+      "difference": "Výkyvy levé ruky"
+    },
+    "right_hand": {
+      "all": "Pozice pravé ruky",
+      "difference": "Výkyvy pravé ruky"
     }
   }
 }

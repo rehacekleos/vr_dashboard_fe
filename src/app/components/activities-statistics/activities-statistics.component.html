@@ -1,9 +1,10 @@
 <c-card>
   <c-card-body>
     <c-row>
-        <p class="m-0"><span class="fw-bolder">{{Translations.numbers.activities | translation}} | </span><span class="text-capitalize">{{activities.length}}</span></p>
-        <p class="m-0"><span class="fw-bolder">{{Translations.times.totalDuration | translation}} | </span>{{totalDuration}}</p>
-        <p class="m-0"><span class="fw-bolder">{{Translations.times.avgDuration | translation}} | </span>{{avgDuration}}</p>
+      <c-col class="text-nowrap"><p class="m-0"><span class="fw-bolder">{{Translations.numbers.activities | translation}} | </span><span class="text-capitalize">{{activities.length}}</span></p></c-col>
+      <c-col class="text-nowrap"><p class="m-0"><span class="fw-bolder">{{Translations.times.totalDuration | translation}} | </span>{{totalDuration}}</p></c-col>
+      <c-col class="text-nowrap"><p class="m-0"><span class="fw-bolder">{{Translations.times.avgDuration | translation}} | </span>{{avgDuration}}</p></c-col>
+      <c-col class="text-nowrap" *ngIf="lastActivityBefore !== ''"><p class="m-0"><span class="fw-bolder">{{Translations.times.lastActivityBefore | translation}} | </span>{{lastActivityBefore}}</p></c-col>
     </c-row>
   </c-card-body>
 </c-card>
