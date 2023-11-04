@@ -1,0 +1,229 @@
+{
+  "$ref": "#/definitions/ApplicationSetting",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "definitions": {
+    "ApplicationSetting": {
+      "additionalProperties": false,
+      "properties": {
+        "custom_data": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "languages": {
+                "additionalProperties": false,
+                "properties": {
+                  "cs": {
+                    "type": "string"
+                  },
+                  "en": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "cs",
+                  "en"
+                ],
+                "type": "object"
+              },
+              "path": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "path",
+              "languages"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "graphs": {
+          "items": {
+            "$ref": "#/definitions/GraphSetting"
+          },
+          "type": "array"
+        },
+        "records_custom_data": {}
+      },
+      "required": [
+        "custom_data",
+        "records_custom_data",
+        "graphs"
+      ],
+      "type": "object"
+    },
+    "Axis": {
+      "enum": [
+        "x",
+        "y",
+        "z"
+      ],
+      "type": "string"
+    },
+    "DifferenceGraph": {
+      "additionalProperties": false,
+      "properties": {
+        "axis": {
+          "additionalProperties": false,
+          "properties": {
+            "x": {
+              "type": "boolean"
+            },
+            "y": {
+              "type": "boolean"
+            },
+            "z": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "x",
+            "y",
+            "z"
+          ],
+          "type": "object"
+        },
+        "diff": {
+          "enum": [
+            "absolute",
+            "avg"
+          ],
+          "type": "string"
+        },
+        "display": {
+          "type": "boolean"
+        },
+        "part": {
+          "$ref": "#/definitions/GraphPart"
+        },
+        "type": {
+          "const": "position-differential",
+          "type": "string"
+        }
+      },
+      "required": [
+        "type",
+        "part",
+        "diff",
+        "display",
+        "axis"
+      ],
+      "type": "object"
+    },
+    "GraphPart": {
+      "enum": [
+        "head",
+        "left_hand",
+        "right_hand"
+      ],
+      "type": "string"
+    },
+    "GraphSetting": {
+      "anyOf": [
+        {
+          "$ref": "#/definitions/PositionGraph"
+        },
+        {
+          "$ref": "#/definitions/MultipleAxisGraph"
+        },
+        {
+          "$ref": "#/definitions/RotationPolarGraph"
+        },
+        {
+          "$ref": "#/definitions/DifferenceGraph"
+        }
+      ]
+    },
+    "MultipleAxisGraph": {
+      "additionalProperties": false,
+      "properties": {
+        "axis": {
+          "additionalProperties": false,
+          "properties": {
+            "x": {
+              "type": "boolean"
+            },
+            "y": {
+              "type": "boolean"
+            },
+            "z": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "x",
+            "y",
+            "z"
+          ],
+          "type": "object"
+        },
+        "display": {
+          "type": "boolean"
+        },
+        "part": {
+          "$ref": "#/definitions/GraphPart"
+        },
+        "type": {
+          "const": "rotation",
+          "type": "string"
+        }
+      },
+      "required": [
+        "type",
+        "part",
+        "display",
+        "axis"
+      ],
+      "type": "object"
+    },
+    "PositionGraph": {
+      "additionalProperties": false,
+      "properties": {
+        "display": {
+          "type": "boolean"
+        },
+        "part": {
+          "$ref": "#/definitions/GraphPart"
+        },
+        "type": {
+          "enum": [
+            "position",
+            "position-heatmap"
+          ],
+          "type": "string"
+        }
+      },
+      "required": [
+        "type",
+        "part",
+        "display"
+      ],
+      "type": "object"
+    },
+    "RotationPolarGraph": {
+      "additionalProperties": false,
+      "properties": {
+        "axis": {
+          "$ref": "#/definitions/Axis"
+        },
+        "display": {
+          "type": "boolean"
+        },
+        "part": {
+          "$ref": "#/definitions/GraphPart"
+        },
+        "type": {
+          "const": "rotation-polar",
+          "type": "string"
+        }
+      },
+      "required": [
+        "type",
+        "part",
+        "display",
+        "axis"
+      ],
+      "type": "object"
+    }
+  }
+}

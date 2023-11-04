@@ -38,8 +38,8 @@ import { CustomMissingTranslationHandler } from "./shared/translate/services/mis
 import { MissingTranslationHandler, TranslateLoader, TranslateModule } from "@ngx-translate/core";
 import { SharedModule } from "./shared/shared.module";
 import { AdminGuard } from "./guards/admin.guard";
-import { NgChartsModule } from "ng2-charts";
 import { MonacoEditorModule } from "ngx-monaco-editor-v2";
+import { NgApexchartsModule } from "ng-apexcharts";
 
 
 
@@ -95,8 +95,8 @@ import { MonacoEditorModule } from "ngx-monaco-editor-v2";
       }
     }),
     SharedModule,
-    NgChartsModule,
-    MonacoEditorModule.forRoot()
+    MonacoEditorModule.forRoot(),
+    NgApexchartsModule,
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},

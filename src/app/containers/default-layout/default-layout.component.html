@@ -39,11 +39,11 @@
 <div class="wrapper d-flex flex-column min-vh-100 bg-light dark:bg-transparent">
 
 
-  <app-default-header class="mb-4 d-print-none header header-sticky" position="sticky" sidebarId="sidebar" />
+  <app-default-header class="mb-2 d-print-none header header-sticky p-0 py-2" position="sticky" sidebarId="sidebar" />
 
 
-  <div class="body flex-grow-1 px-3">
-    <c-container breakpoint="lg" class="h-auto">
+  <div class="body d-flex flex-grow-1 px-3">
+    <c-container breakpoint="lg" class="flex-grow-1 d-flex flex-column">
       <router-outlet/>
     </c-container>
   </div>

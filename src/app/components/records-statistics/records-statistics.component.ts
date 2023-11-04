@@ -32,7 +32,7 @@ export class RecordsStatisticsComponent extends TranslateComponent implements On
       const start = this.records[0].timestamp;
       const end = this.records[this.records.length - 1].timestamp;
       const diffInMs = dayjs(end).diff(start)
-      this.duration = dayjs.duration(diffInMs).format(`m [${this.translateService.instantTranslation(Translations.times.minutes)}] ss [${this.translateService.instantTranslation(Translations.times.seconds)}]`)
+      this.duration = dayjs.duration(diffInMs).format(`m [min] ss [s]`)
     }
   }
 

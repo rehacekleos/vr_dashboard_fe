@@ -27,6 +27,8 @@
   "admin": "administrator",
   "environment": "prostředí",
   "events": "události",
+  "event": "událost",
+  "log_version": "Verze logů",
 
   "Actions": {
     "select": "vybrat",
@@ -130,7 +132,8 @@
     "identifier": "Identifikátor je povinný!",
     "code": "Kód je povinný!",
     "organisationName": "Jméno organizace je povinné!",
-    "invitationCode": "Kód pozvánky je povinný!"
+    "invitationCode": "Kód pozvánky je povinný!",
+    "log_version": "Verze logů je povinná a musí mít formát: 0.0.0 !"
   },
 
   "messages": {
@@ -160,21 +163,31 @@
     "from": "od",
     "to": "do",
     "end": "konec",
-    "duration": "Doba trvání"
+    "duration": "Doba trvání",
+    "totalDuration": "Celková doba trvání",
+    "avgDuration": "Průměrná doba trvání"
+  },
+
+  "axis": {
+    "x": "Osa X",
+    "y": "Osa Y",
+    "z": "Osa Z"
+  },
+
+  "numbers": {
+    "activities": "Počet aktivit"
   },
 
   "rotation": {
     "head": {
-      "all": "Rotace hlavy",
-      "x": "Rotace hlavy osa X",
-      "y": "Rotace hlavy osa Y",
-      "z": "Rotace hlavy osa Z"
+      "all": "Rotace hlavy"
     }
   },
 
   "position": {
     "head": {
-      "all": "Pozice hlavy"
+      "all": "Pozice hlavy",
+      "difference": "Výkyvy hlavy"
     }
   }
 }

@@ -1,39 +1,38 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Record } from "../../../models/activity.model";
 import { TranslateComponent } from "../../../shared/translate/translate.component";
-import { CustomTranslateService } from "../../../shared/translate/services/custom-translate.service";
 import { Translations } from "../../../shared/translate/translate.model";
+import { CustomTranslateService } from "../../../shared/translate/services/custom-translate.service";
 import { TitleCasePipe } from "@angular/common";
 import {
   ApexAnnotations,
   ApexAxisChartSeries,
   ApexChart,
   ApexDataLabels,
-  ApexFill, ApexLegend,
+  ApexFill,
+  ApexLegend,
   ApexMarkers,
-  ApexTitleSubtitle,
-  ApexTooltip,
+  ApexTitleSubtitle, ApexTooltip,
   ApexXAxis,
-  ApexYAxis,
-  ChartComponent
+  ApexYAxis
 } from "ng-apexcharts";
 import { ChartUtil } from "../../../shared/utils/chartUtil";
-import { GraphPart, GraphSetting, MultipleAxisGraph } from "../../../models/graph.model";
+import { DifferenceGraph, GraphPart, GraphSetting } from "../../../models/graph.model";
 
 @Component({
-  selector: 'app-rotation-chart',
-  templateUrl: './rotation.component.html',
-  styleUrls: ['./rotation.component.scss']
+  selector: 'app-positional-differential-chart',
+  templateUrl: './positional-differential.component.html',
+  styleUrls: ['./positional-differential.component.scss']
 })
-export class RotationComponent extends TranslateComponent implements OnInit, OnChanges {
+export class PositionalDifferentialComponent extends TranslateComponent implements OnInit, OnChanges{
 
   @Input({required: true, alias: "part"}) part: GraphPart;
   @Input({required: true}) records: Record[];
   @Input({required: true}) graphSetting: GraphSetting
 
-  rotation_x = [];
-  rotation_y = [];
-  rotation_z = [];
+  difference_x = [];
+  difference_y = [];
+  difference_z = [];
   events = [];
 
   series: ApexAxisChartSeries;
@@ -53,13 +52,13 @@ export class RotationComponent extends TranslateComponent implements OnInit, OnC
     super();
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.chart = {
       type: "line",
       height: ChartUtil.CHART_HEIGHT,
       zoom: {
         type: "x",
-        enabled: true
+        enabled: true,
       },
       toolbar: {
         autoSelected: "zoom"
@@ -68,15 +67,15 @@ export class RotationComponent extends TranslateComponent implements OnInit, OnC
         enabled: false
       }
     }
-    this.xAxis = {
-      type: "numeric"
-    }
     this.title = {
-      text: this.translateService.instantTranslation(Translations.rotation[this.part].all),
+      text: this.translateService.instantTranslation(Translations.position[this.part].difference),
       align: "center",
       style: {
         fontSize: "16px"
       }
+    }
+    this.xAxis = {
+      type: "numeric"
     }
     this.yAxis = {}
     this.dataLabels = {enabled: false}
@@ -85,53 +84,54 @@ export class RotationComponent extends TranslateComponent implements OnInit, OnC
       position: "top"
     }
     this.tooltip = {
-      y: {
-        formatter(val: number, opts?: any): string {
-          const degree =  ((Math.acos(val)) * (180/Math.PI)).toFixed(2)
-          return `± ${degree}°`
-        }
-      }
     }
   }
 
-  async ngOnChanges(changes: SimpleChanges) {
+  ngOnChanges(changes: SimpleChanges): void {
     if (changes.records) {
       this.prepareData();
-      await this.setChartData();
+      this.setChartData();
     }
   }
 
-  private degreeToRadian(degree: number): number {
-    return degree * Math.PI / 180;
-  }
-
-  private prepareData() {
-    this.rotation_x = [];
-    this.rotation_y = [];
-    this.rotation_z = [];
+  private prepareData(){
+    const setting: DifferenceGraph = this.graphSetting as DifferenceGraph;
+    this.difference_x = [];
+    this.difference_y = [];
+    this.difference_z = [];
     this.events = [];
+
+    let x_base = 0;
+    let y_base = 0;
+    let z_base = 0;
+
+    if (setting.diff === "avg"){
+      x_base = this.records.reduce((a, b) => a + b[this.part].position.x, 0) / this.records.length
+      y_base = this.records.reduce((a, b) => a + b[this.part].position.y, 0) / this.records.length
+      z_base = this.records.reduce((a, b) => a + b[this.part].position.z, 0) / this.records.length
+    }
+
     let tick = 0;
     for (const record of this.records) {
-      this.rotation_x.push({x: tick, y: Math.cos(this.degreeToRadian(record[this.part].rotation.x)).toFixed(2)});
-      this.rotation_y.push({x: tick, y: Math.cos(this.degreeToRadian(record[this.part].rotation.y)).toFixed(2)});
-      this.rotation_z.push({x: tick, y: Math.cos(this.degreeToRadian(record[this.part].rotation.z)).toFixed(2)});
+      this.difference_x.push({x: tick, y: (-(x_base - record[this.part].position.x)).toFixed(2)});
+      this.difference_y.push({x: tick, y: (-(y_base - record[this.part].position.y)).toFixed(2)});
+      this.difference_z.push({x: tick, y: (-(z_base - record[this.part].position.z)).toFixed(2)});
 
       if (record.event){
         this.events.push(ChartUtil.createEvent(tick, this.titleCasePipe.transform(this.translateService.instantTranslation(Translations.event))));
       }
-
       tick++
     }
   }
 
-  private async setChartData() {
-    const setting: MultipleAxisGraph = this.graphSetting as MultipleAxisGraph;
+  setChartData() {
+    const setting: DifferenceGraph = this.graphSetting as DifferenceGraph;
     const series: ApexAxisChartSeries = [];
 
     if (setting.axis.x && setting.axis.x === true) {
       series.push({
         name: this.translateService.instantTranslation(Translations.axis.x),
-        data: this.rotation_x,
+        data: this.difference_x,
         color: "#E9142D"
       })
     }
@@ -139,7 +139,7 @@ export class RotationComponent extends TranslateComponent implements OnInit, OnC
     if (setting.axis.y && setting.axis.y === true) {
       series.push({
         name: this.translateService.instantTranslation(Translations.axis.y),
-        data: this.rotation_y,
+        data: this.difference_y,
         color: "#63E617"
       })
     }
@@ -147,7 +147,7 @@ export class RotationComponent extends TranslateComponent implements OnInit, OnC
     if (setting.axis.z && setting.axis.z === true) {
       series.push({
         name: this.translateService.instantTranslation(Translations.axis.z),
-        data: this.rotation_z,
+        data: this.difference_z,
         color: "#006AA7"
       })
     }
@@ -157,4 +157,5 @@ export class RotationComponent extends TranslateComponent implements OnInit, OnC
       xaxis: this.events
     }
   }
+
 }

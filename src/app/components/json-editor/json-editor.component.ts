@@ -1,5 +1,11 @@
-import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { TranslateComponent } from "../../shared/translate/translate.component";
+import { editor } from "monaco-editor";
+import IStandaloneEditorConstructionOptions = editor.IStandaloneEditorConstructionOptions;
+import IStandaloneCodeEditor = editor.IStandaloneCodeEditor;
+
+import * as settingSchema from '../../../assets/monaco-editor/settings-type.json';
+import { ChangeDetection } from "@angular/cli/lib/config/workspace-schema";
 
 @Component({
   selector: 'app-json-editor',
@@ -17,18 +23,24 @@ export class JsonEditorComponent extends TranslateComponent implements OnInit {
 
   edit = false;
   notValidJson = false;
+  warning = false;
 
-  editorOptions = {
+  editorOptions: IStandaloneEditorConstructionOptions = {
     theme: 'functionTheme',
     fontFamily: '"JetBrains Mono", monaco, courier, monospace',
     language: 'json',
-    minimap: {enabled: false},
+    minimap: {enabled: true},
     scrollbar: {alwaysConsumeMouseWheel: false},
     fixedOverflowWidgets: true,
+    automaticLayout: true,
   };
 
   @ViewChild('editorContainer') editorContainer;
   editor: any;
+
+  constructor(private cd: ChangeDetectorRef) {
+    super();
+  }
 
   ngOnInit(): void {
     if (this.json == null || this.json == "") {
@@ -45,16 +57,42 @@ export class JsonEditorComponent extends TranslateComponent implements OnInit {
     this.notValidJson = !this.isValidJson($event) && $event !== "";
   }
 
-  updateHeight() {
-    const contentHeight = 200;
-    this.editorContainer.nativeElement.style.height = contentHeight + 'px';
-  }
-
-
-  async editorInit(editor: any) {
+  async editorInit(editor: IStandaloneCodeEditor) {
     this.editor = editor;
     this.editor.onDidContentSizeChange(() => {
-      this.updateHeight();
+    })
+
+    window.onresize = function (){
+      editor.layout({} as any);
+    };
+
+    editor.onDidChangeModelDecorations(() => {
+      const model = this.editor.getModel();
+      if (model === null ) {
+        return;
+      }
+      const owner = model.getLanguageId();
+      // @ts-ignore
+      const markers = monaco.editor.getModelMarkers({owner});
+
+      setTimeout(() => {
+        this.warning = markers.length > 0;
+        this.cd.detectChanges()
+      }, 100)
+
+    });
+
+
+    // @ts-ignore
+    monaco.languages.json.jsonDefaults.setDiagnosticsOptions({
+      validate: true,
+      schemas: [
+        {
+          uri: "http://localhost/applicationSetting.json",
+          fileMatch: ['*'],
+          schema: settingSchema
+        }
+      ]
     })
   }
 

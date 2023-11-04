@@ -1,12 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Application } from "../../models/application.model";
 import { Activity } from "../../models/activity.model";
 import { ActivityService } from "../../shared/services/app/activity.service";
 import { TranslateComponent } from "../../shared/translate/translate.component";
-import { ApplicationService } from "../../shared/services/app/application.service";
-import { ParticipantService } from "../../shared/services/app/participant.service";
-import { Participant } from "../../models/participant.model";
-import dayjs from "dayjs";
 
 @Component({
   selector: 'app-activity',

@@ -52,7 +52,6 @@ export class ApplicationService extends HttpService {
   }
 
   async addModule(id: string, addModule: AddModule) {
-    console.log(addModule)
     await firstValueFrom(this.http.put<Application[]>(this.createUrl(`/${id}/add/module`), addModule));
   }
 }

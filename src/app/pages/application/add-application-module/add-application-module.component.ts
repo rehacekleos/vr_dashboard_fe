@@ -16,6 +16,8 @@ export class AddApplicationModuleComponent extends TranslateComponent{
   validated = false;
   file: File;
 
+  logVersion: string;
+
   @Input({required: true}) open: boolean;
   @Input({required: true}) application: Application;
   @Output() visibleChanged: EventEmitter<boolean> = new EventEmitter<boolean>();
@@ -24,8 +26,14 @@ export class AddApplicationModuleComponent extends TranslateComponent{
     super()
   }
 
+  private resetForm(){
+    this.file = undefined;
+    this.logVersion = undefined;
+    this.validated = false;
+  }
 
   visibleChange($event: boolean) {
+    this.resetForm();
     this.visibleChanged.emit($event);
   }
 
@@ -36,11 +44,12 @@ export class AddApplicationModuleComponent extends TranslateComponent{
         const arrayBuffer = await this.file.arrayBuffer();
         const base64String = FileUtil.arrayBufferToBase64(arrayBuffer);
         const addModule: AddModule = {
-          module: base64String
+          module: base64String,
+          log_version: this.logVersion
         }
         await this.applicationService.addModule(this.application.id, addModule);
         this.visibleChanged.emit(false);
-        this.file = undefined;
+        this.resetForm();
       } catch (e) {
         this.validated = false;
       }

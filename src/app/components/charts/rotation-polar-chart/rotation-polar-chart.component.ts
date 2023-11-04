@@ -1,27 +1,109 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Record } from "../../../models/activity.model";
-import { ChartConfiguration } from "chart.js";
+import { Axis, GraphPart } from "../../../models/graph.model";
+import {
+  ApexAnnotations,
+  ApexAxisChartSeries,
+  ApexChart,
+  ApexDataLabels,
+  ApexFill,
+  ApexLegend,
+  ApexMarkers, ApexPlotOptions, ApexStroke,
+  ApexTitleSubtitle, ApexTooltip,
+  ApexXAxis,
+  ApexYAxis
+} from "ng-apexcharts";
+import { ChartUtil } from "../../../shared/utils/chartUtil";
+import { Translations } from "../../../shared/translate/translate.model";
+import { CustomTranslateService } from "../../../shared/translate/services/custom-translate.service";
+import { TranslateComponent } from "../../../shared/translate/translate.component";
 
 @Component({
   selector: 'app-rotation-polar-chart',
   templateUrl: './rotation-polar-chart.component.html',
   styleUrls: ['./rotation-polar-chart.component.scss']
 })
-export class RotationPolarChartComponent implements OnChanges {
+export class RotationPolarChartComponent extends TranslateComponent implements OnInit, OnChanges {
 
-  @Input({required: true, alias: "part"}) part: "head" | "left_hand" | "right_hand";
+  @Input({required: true, alias: "part"}) part: GraphPart;
   @Input({required: true}) records: Record[];
-  @Input({required: true}) axis: "x" | "y" | "z";
+  @Input({required: true}) axis: Axis;
 
-  lineChartData: ChartConfiguration['data'] = null;
-  lineChartOptions: ChartConfiguration['options'] = null;
   rotation = [];
+
+  series: ApexAxisChartSeries;
+  chart: ApexChart;
+  dataLabels: ApexDataLabels;
+  markers: ApexMarkers;
+  title: ApexTitleSubtitle;
+  fill: ApexFill;
+  yAxis: ApexYAxis;
+  xAxis: ApexXAxis;
+  legend: ApexLegend;
+  annotations: ApexAnnotations;
+  tooltip: ApexTooltip;
+  labels: string[];
+  plotOptions: ApexPlotOptions;
+  stroke: ApexStroke;
+
+  constructor(private translateService: CustomTranslateService) {
+    super();
+  }
+
+  ngOnInit() {
+    this.chart = {
+      type: "polarArea",
+      height: ChartUtil.CHART_HEIGHT,
+      animations: {
+        enabled: false
+      }
+    }
+    this.xAxis = {
+      type: "numeric"
+    }
+    this.title = {
+      text: this.translateService.instantTranslation(Translations.rotation[this.part].all),
+      align: "center",
+      style: {
+        fontSize: "16px"
+      }
+    }
+    this.yAxis = {
+      show: false
+    }
+    this.dataLabels = {enabled: false}
+    this.markers = {size: 0}
+    this.legend = {
+      position: "top"
+    }
+    this.tooltip = {
+      y: {
+        formatter(val: number, opts?: any): string {
+          return val + "%"
+        }
+      }
+    }
+    this.labels = ["315-360°", "270-315°", "225-270°", "180-225°", "135-180°", "90-135°", "45-90°", "0-45°"]
+    this.plotOptions = {
+      polarArea: {
+        rings: {
+          strokeWidth: 0
+        }
+      }
+    }
+    this.fill = {
+      opacity: 1
+    }
+    this.stroke = {
+      width: 1,
+      colors: undefined
+    }
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.records) {
       this.prepareData();
       this.setChartData();
-      this.setChartOptions();
     }
   }
 
@@ -60,31 +142,12 @@ export class RotationPolarChartComponent implements OnChanges {
 
     }
 
-    this.rotation = this.rotation.map(r => r / this.records.length * 100);
+    this.rotation = this.rotation.map(r => (r / this.records.length * 100).toFixed(2));
   }
 
 
   private setChartData() {
-    const labels = ["315-360", "270-315", "225-270", "180-225", "135-180", "90-135", "45-90", "0-45"]
-
-
-    const datasets = [
-      {
-        data: this.rotation,
-        label: "Rotation",
-        borderColor: "transparent",
-        backgroundColor: ["#FF96A3", "#FFC78E", "#EAA928", "#FFDF9F", "#BDFF96", "#77FFE4", "#77F6FF", "#73CCFF"]
-      }
-    ];
-
-    this.lineChartData = {
-      datasets: datasets,
-      labels: labels
-    };
-  }
-
-  setChartOptions() {
-    this.lineChartOptions = {}
+    this.series = this.rotation
   }
 
 }

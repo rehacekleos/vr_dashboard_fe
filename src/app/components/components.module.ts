@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, TitleCasePipe } from '@angular/common';
 import { IconifyComponent } from "./iconify/iconify.component";
 import { WidgetComponent } from './widget/widget.component';
 import {
@@ -37,7 +37,6 @@ import { LoadingPlaceholderComponent } from './loading-placeholder/loading-place
 import { ActivityTableComponent } from './table/activity-table/activity-table.component';
 import { BooleanIconComponent } from './boolean-icon/boolean-icon.component';
 import { RotationComponent } from './charts/rotation/rotation.component';
-import { NgChartsModule } from "ng2-charts";
 import { DescriptionDetailComponent } from './description-detail/description-detail.component';
 import { JsonEditorComponent } from './json-editor/json-editor.component';
 import { MonacoEditorModule } from "ngx-monaco-editor-v2";
@@ -46,62 +45,70 @@ import { ApplicationModuleComponent } from './application-module/application-mod
 import { RotationPolarChartComponent } from './charts/rotation-polar-chart/rotation-polar-chart.component';
 import { ActivitiesStatisticsComponent } from './activities-statistics/activities-statistics.component';
 import { RecordsStatisticsComponent } from "./records-statistics/records-statistics.component";
+import { PositionalDifferentialComponent } from './charts/positional-differential/positional-differential.component';
+import { HeatmapComponent } from './charts/heatmap/heatmap.component';
+import { NgApexchartsModule } from "ng-apexcharts";
 
 
 
 @NgModule({
-  declarations: [IconifyComponent, WidgetComponent, ApplicationWidgetComponent, ConfirmationModalComponent, OrganisationWidgetComponent, CreateOrganisationFormComponent, JoinOrganisationFormComponent, LoadingPlaceholderComponent, ActivityTableComponent, BooleanIconComponent, RotationComponent, DescriptionDetailComponent, JsonEditorComponent, PositionComponent, ApplicationModuleComponent, RotationPolarChartComponent, ActivitiesStatisticsComponent, RecordsStatisticsComponent],
-    exports: [
-        IconifyComponent,
-        WidgetComponent,
-        ApplicationWidgetComponent,
-        ConfirmationModalComponent,
-        OrganisationWidgetComponent,
-        CreateOrganisationFormComponent,
-        JoinOrganisationFormComponent,
-        LoadingPlaceholderComponent,
-        ActivityTableComponent,
-        BooleanIconComponent,
-        RotationComponent,
-        DescriptionDetailComponent,
-        JsonEditorComponent,
-        PositionComponent,
-        ApplicationModuleComponent,
-        RotationPolarChartComponent,
-        ActivitiesStatisticsComponent,
-        RecordsStatisticsComponent
+  declarations: [IconifyComponent, WidgetComponent, ApplicationWidgetComponent, ConfirmationModalComponent, OrganisationWidgetComponent, CreateOrganisationFormComponent, JoinOrganisationFormComponent, LoadingPlaceholderComponent, ActivityTableComponent, BooleanIconComponent, RotationComponent, DescriptionDetailComponent, JsonEditorComponent, PositionComponent, ApplicationModuleComponent, RotationPolarChartComponent, ActivitiesStatisticsComponent, RecordsStatisticsComponent, PositionalDifferentialComponent, HeatmapComponent],
+  exports: [
+    IconifyComponent,
+    WidgetComponent,
+    ApplicationWidgetComponent,
+    ConfirmationModalComponent,
+    OrganisationWidgetComponent,
+    CreateOrganisationFormComponent,
+    JoinOrganisationFormComponent,
+    LoadingPlaceholderComponent,
+    ActivityTableComponent,
+    BooleanIconComponent,
+    RotationComponent,
+    DescriptionDetailComponent,
+    JsonEditorComponent,
+    PositionComponent,
+    ApplicationModuleComponent,
+    RotationPolarChartComponent,
+    ActivitiesStatisticsComponent,
+    RecordsStatisticsComponent,
+    PositionalDifferentialComponent,
+    HeatmapComponent
+  ],
+    imports: [
+        CommonModule,
+        CardComponent,
+        CardBodyComponent,
+        ButtonCloseDirective,
+        ButtonDirective,
+        ModalBodyComponent,
+        ModalComponent,
+        ModalFooterComponent,
+        ModalHeaderComponent,
+        ModalTitleDirective,
+        AlertComponent,
+        ColComponent,
+        FormControlDirective,
+        FormDirective,
+        FormsModule,
+        ReactiveFormsModule,
+        RowComponent,
+        ButtonGroupComponent,
+        SharedModule,
+        InputGroupComponent,
+        FormFeedbackComponent,
+        TableDirective,
+        MonacoEditorModule,
+        CardFooterComponent,
+        PaginationComponent,
+        PageItemDirective,
+        PageLinkDirective,
+        FormSelectDirective,
+        InputGroupTextDirective,
+        NgApexchartsModule
     ],
-  imports: [
-    CommonModule,
-    CardComponent,
-    CardBodyComponent,
-    ButtonCloseDirective,
-    ButtonDirective,
-    ModalBodyComponent,
-    ModalComponent,
-    ModalFooterComponent,
-    ModalHeaderComponent,
-    ModalTitleDirective,
-    AlertComponent,
-    ColComponent,
-    FormControlDirective,
-    FormDirective,
-    FormsModule,
-    ReactiveFormsModule,
-    RowComponent,
-    ButtonGroupComponent,
-    SharedModule,
-    InputGroupComponent,
-    FormFeedbackComponent,
-    TableDirective,
-    NgChartsModule,
-    MonacoEditorModule,
-    CardFooterComponent,
-    PaginationComponent,
-    PageItemDirective,
-    PageLinkDirective,
-    FormSelectDirective,
-    InputGroupTextDirective
+  providers: [
+    TitleCasePipe
   ]
 })
 export class ComponentsModule { }

@@ -5,16 +5,14 @@ import { ActivityService } from "../../../shared/services/app/activity.service";
 import { Activity, CustomDataDisplay, Record, VRData } from "../../../models/activity.model";
 import { ParticipantService } from "../../../shared/services/app/participant.service";
 import { ApplicationService } from "../../../shared/services/app/application.service";
-import { Application } from "../../../models/application.model";
+import { Application, ApplicationSetting } from "../../../models/application.model";
 import { Participant } from "../../../models/participant.model";
 import dayjs from "dayjs";
 import duration from "dayjs/plugin/duration";
 import { CustomTranslateService } from "../../../shared/translate/services/custom-translate.service";
 import { Translations } from "../../../shared/translate/translate.model";
-import { ChartConfiguration } from "chart.js";
 import { CustomToastrService } from "../../../shared/services/custom-toastr.service";
 import { combineLatest } from "rxjs";
-import { environment } from "../../../../environments/environment";
 import { DomSanitizer } from "@angular/platform-browser";
 dayjs.extend(duration)
 
@@ -70,7 +68,7 @@ export class ActivityDetailComponent extends TranslateComponent implements OnIni
 
   getDuration() {
     const diffInMs = dayjs(this.activity.data.end).diff(this.activity.data.start)
-    return dayjs.duration(diffInMs).format(`m [${this.translateService.instantTranslation(Translations.times.minutes)}] ss [${this.translateService.instantTranslation(Translations.times.seconds)}]`)
+    return dayjs.duration(diffInMs).format(`m [min] ss [s]`)
   }
 
   async onChangeNote($event: string) {
@@ -108,12 +106,12 @@ export class ActivityDetailComponent extends TranslateComponent implements OnIni
   }
 
   hasCustomData(){
-    return this.activity.data.custom_data && this.application?.setting && this.application?.setting !== ""
+    return this.activity.data.custom_data && this.application?.setting && typeof this.application?.setting === "object"
   }
 
   getCustomData(): CustomDataDisplay[]  {
     if (this.hasCustomData()){
-      const settings = this.application.setting;
+      const settings = this.application.setting as ApplicationSetting;
       if (settings.custom_data){
         const res: CustomDataDisplay[] = [];
         const data = this.activity.data.custom_data;
@@ -148,15 +146,6 @@ export class ActivityDetailComponent extends TranslateComponent implements OnIni
     this.environmentsRecords = this.activity.data.records.filter(r => r.environment === this.selectedEnvironment);
   }
 
-  getEnvDuration() {
-    if (this.environmentsRecords) {
-      const start = this.environmentsRecords[0].timestamp;
-      const end = this.environmentsRecords[this.environmentsRecords.length - 1].timestamp;
-      const diffInMs = dayjs(end).diff(start)
-      return dayjs.duration(diffInMs).format(`m [${this.translateService.instantTranslation(Translations.times.minutes)}] ss [${this.translateService.instantTranslation(Translations.times.seconds)}]`)
-    }
-  }
-
   changeEnvironment() {
     this.showModule = false;
     this.getEnvRecords();
@@ -164,5 +153,9 @@ export class ActivityDetailComponent extends TranslateComponent implements OnIni
 
   onToggleModule() {
     this.showModule = !this.showModule;
+  }
+
+  hasApplicationModule() {
+    return this.application.modules?.find(m => m.toLowerCase() === this.activity.data.log_version.toString())
   }
 }

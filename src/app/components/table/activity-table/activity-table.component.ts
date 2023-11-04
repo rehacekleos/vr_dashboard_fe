@@ -9,6 +9,7 @@ import { Participant } from "../../../models/participant.model";
 import { Router } from "@angular/router";
 import isSameOrBefore from "dayjs/plugin/isSameOrBefore";
 import isSameOrAfter from "dayjs/plugin/isSameOrAfter";
+import { combineLatest, forkJoin } from "rxjs";
 
 dayjs.extend(isSameOrBefore)
 dayjs.extend(isSameOrAfter)
@@ -45,17 +46,17 @@ export class ActivityTableComponent extends TranslateComponent implements OnInit
 
   ngOnInit(): void {
 
-    this.applicationService.$applications.subscribe(a => {
+    combineLatest([this.applicationService.$applications, this.participantService.$participants]).subscribe(([a, p]) => {
       this.applications = a;
+      this.participants = p;
+      this.filterActivities()
     })
 
-    this.participantService.$participants.subscribe(p => {
-      this.participants = p;
-    })
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.activities){
+      this.activities = changes.activities.currentValue;
       if (this.activities && this.pagination) {
         if (this.itemsPerPage < this.activities.length) {
           this.pages = Math.ceil(this.activities.length / this.itemsPerPage);

@@ -14,7 +14,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "check-translation": "node Prompts/translate-check.js"
+    "check-translation": "node Prompts/translate-check.js",
+    "generateApplicationSettingSchema": "npx ts-json-schema-generator --path './src/app/models/application.model.ts' --type 'ApplicationSetting' --out './src/assets/monaco-editor/settings-type.json'"
   },
   "private": true,
   "dependencies": {
@@ -36,9 +37,10 @@
     "@iconify/iconify": "^3.1.0",
     "@ngx-translate/core": "^15.0.0",
     "@ngx-translate/http-loader": "^8.0.0",
+    "apexcharts": "^3.44.0",
     "dayjs": "^1.11.9",
     "monaco-editor": "^0.41.0",
-    "ng2-charts": "^5.0.3",
+    "ng-apexcharts": "^1.8.0",
     "ngx-monaco-editor-v2": "^16.0.1",
     "ngx-scrollbar": "^12.0.0",
     "ngx-skeleton-loader": "^8.1.0",

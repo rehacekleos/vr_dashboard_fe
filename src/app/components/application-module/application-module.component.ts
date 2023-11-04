@@ -14,8 +14,9 @@ export class ApplicationModuleComponent {
   }
 
   @Input({required: true}) application: Application;
+  @Input({required: true}) logVersion: string;
 
   getApplicationModule() {
-    return this.sanitizer.bypassSecurityTrustResourceUrl(`${environment.apiUrl}/public/modules/${this.application.id}/`);
+    return this.sanitizer.bypassSecurityTrustResourceUrl(`${environment.apiUrl}/public/modules/${this.application.id}/${this.logVersion}/`);
   }
 }

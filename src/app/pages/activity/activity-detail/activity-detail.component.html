@@ -68,46 +68,54 @@
         </c-col>
       </c-row>
 
-      <c-row *ngIf="application.hasModule" class="justify-content-center">
+      <c-row *ngIf="hasApplicationModule()" class="justify-content-center">
         <hr class="my-3">
         <ng-container *ngIf="showModule; else toggleModule">
-          <app-application-module [application]="application" />
+          <app-application-module [application]="application" [logVersion]="activity.data.log_version" />
         </ng-container>
         <ng-template #toggleModule>
           <button class="btn btn-primary w-50" (click)="onToggleModule()">Show module</button>
         </ng-template>
       </c-row>
 
-      <c-row *ngIf="environmentsRecords && environmentsRecords.length > 1">
-        <hr class="my-3">
-        <app-rotation-chart
-          part="head"
-          [records]="environmentsRecords"
-          [xAxisTitle]="Translations.rotation.head.x | translation"
-          [yAxisTitle]="Translations.rotation.head.y | translation"
-          [zAxisTitle]="Translations.rotation.head.z | translation"
-          [eventsTitle]="Translations.events | translation | titlecase"
-        />
-      </c-row>
+      <c-container *ngIf="environmentsRecords && environmentsRecords.length > 1 && application.setting.graphs">
+        <c-row *ngFor="let graph of application.setting.graphs">
+          <hr class="my-3">
+          <app-rotation-chart
+            *ngIf="graph.type === 'rotation' && graph.display === true"
+            [part]="graph.part"
+            [records]="environmentsRecords"
+            [graphSetting]="graph"
+          />
 
-      <c-row *ngIf="environmentsRecords && environmentsRecords.length > 1">
-        <hr class="my-3">
-        <app-rotation-polar-chart
-          part="head"
-          [records]="environmentsRecords"
-          axis="y"
-        />
-      </c-row>
+          <app-rotation-polar-chart
+            *ngIf="graph.type === 'rotation-polar' && graph.display === true"
+            [part]="graph.part"
+            [records]="environmentsRecords"
+            [axis]="graph.axis"
+          />
 
-      <c-row *ngIf="environmentsRecords && environmentsRecords.length > 1">
-        <hr class="my-3">
-        <app-position-chart
-          part="head"
-          [records]="environmentsRecords"
-          [title]="Translations.position.head.all | translation"
-        />
-      </c-row>
+          <app-position-chart
+            *ngIf="graph.type === 'position' && graph.display === true"
+            [part]="graph.part"
+            [records]="environmentsRecords"
+          />
 
+          <app-positional-differential-chart
+            *ngIf="graph.type === 'position-differential' && graph.display === true"
+            [part]="graph.part"
+            [graphSetting]="graph"
+            [records]="environmentsRecords"
+          />
+
+          <app-heatmap-chart
+            *ngIf="graph.type === 'position-heatmap' && graph.display === true"
+            [records]="environmentsRecords"
+            [part]="graph.part"
+          />
+
+        </c-row>
+      </c-container>
     </c-card-body>
   </c-card>
 </c-container>

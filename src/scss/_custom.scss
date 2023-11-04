@@ -68,6 +68,8 @@
 
 .border{
   border: #9da5b1 1px solid !important;
+  flex: 1;
+  min-width: 0;
 }
 
 .iframe{
@@ -78,4 +80,27 @@
 .custom_img{
   max-height: 150px;
   max-width: 150px;
+}
+
+.header{
+
+  min-height: 0;
+
+  .container-fluid:first-child{
+    min-height: 0;
+  }
+}
+
+.monacoEditor{
+  height: 60vh !important;
+  resize: vertical;
+  overflow: auto;
+  width: 100%;
+  flex: 1;
+  min-width: 0;
+
+    .editor-container {
+      flex: 1;
+      min-width: 0;
+    }
 }
