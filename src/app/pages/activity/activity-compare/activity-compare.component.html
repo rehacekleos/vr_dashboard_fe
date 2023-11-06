@@ -1,0 +1,54 @@
+<c-container fluid *ngIf="loaded; else loading">
+  <div class="d-flex flex-row align-items-center justify-content-between my-2">
+    <h2 class="m-0">{{Translations.compare | translation | titlecase}}</h2>
+  </div>
+
+  <c-card class="mb-4" *ngIf="activities; else loading">
+    <c-card-body class="overflow-auto d-flex flex-column">
+      <div class="w-fit-content">
+        <c-row class="flex-nowrap">
+          <c-col class="text-nowrap compare-col" *ngFor="let activity of activities">
+            <p class="m-0"><span class="fw-bolder">{{Translations.times.start | translation | titlecase}}
+              | </span>{{activity.data.start | localizedDate:"medium"}}</p>
+            <p class="m-0"><span class="fw-bolder">{{Translations.times.end | translation | titlecase}}
+              | </span>{{activity.data.end | localizedDate:"medium"}}</p>
+            <p class="m-0"><span class="fw-bolder">{{Translations.times.duration | translation}} | </span>{{getDuration(activity)}}</p>
+            <p class="m-0"><span class="fw-bolder">{{Translations.anonymous | translation | titlecase}} | </span>
+              <app-boolean-icon [value]="activity.anonymous"/>
+            </p>
+            <p class="m-0" *ngIf="activity.participantId"><span class="fw-bolder">{{Translations.participant | translation | titlecase}}
+              | </span>{{getParticipant(activity)?.nickname}}</p>
+            <p class="m-0"><span class="fw-bolder">{{Translations.application | translation | titlecase}}
+              | </span>{{getApplication(activity)?.name}}</p>
+            <p class="m-0 text-wrap"><span class="fw-bolder">{{Translations.notes | translation | titlecase}}
+              | </span>{{activity.notes}}</p>
+          </c-col>
+        </c-row>
+        <hr class="my-3 w-100">
+        <c-row class="my-2">
+          <c-col>
+            <h5>{{Translations.environment | translation | titlecase}}</h5>
+            <select
+              [(ngModel)]="selectedEnvironment"
+              name="environments"
+              (ngModelChange)="changeEnvironment()"
+              required
+              cSelect>
+              <option *ngFor="let env of environments" [ngValue]="env">{{env}}</option>
+            </select>
+          </c-col>
+        </c-row>
+        <hr class="my-3">
+        <c-row class="flex-nowrap">
+          <c-col class="compare-col text-nowrap" *ngFor="let envRecords of environmentsRecords">
+            <app-records-statistics [records]="envRecords"/>
+          </c-col>
+        </c-row>
+      </div>
+    </c-card-body>
+  </c-card>
+</c-container>
+
+<ng-template #loading>
+  <app-loading-placeholder/>
+</ng-template>

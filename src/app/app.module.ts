@@ -42,11 +42,11 @@ import { MonacoEditorModule } from "ngx-monaco-editor-v2";
 import { NgApexchartsModule } from "ng-apexcharts";
 
 
-
 @NgModule({
   declarations: [AppComponent,
     DefaultHeaderComponent,
-    DefaultLayoutComponent],
+    DefaultLayoutComponent,
+  ],
   imports: [
     CommonModule,
     BrowserModule,
@@ -112,8 +112,7 @@ import { NgApexchartsModule } from "ng-apexcharts";
     AdminGuard,
     OrganisationsGuard
   ],
-  exports: [
-  ],
+  exports: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {

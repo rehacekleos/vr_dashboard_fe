@@ -14,6 +14,7 @@ import { Translations } from "../../../shared/translate/translate.model";
 import { CustomToastrService } from "../../../shared/services/custom-toastr.service";
 import { combineLatest } from "rxjs";
 import { DomSanitizer } from "@angular/platform-browser";
+
 dayjs.extend(duration)
 
 @Component({
@@ -21,7 +22,7 @@ dayjs.extend(duration)
   templateUrl: './activity-detail.component.html',
   styleUrls: ['./activity-detail.component.scss']
 })
-export class ActivityDetailComponent extends TranslateComponent implements OnInit{
+export class ActivityDetailComponent extends TranslateComponent implements OnInit {
 
   activity: Activity;
   application: Application;
@@ -47,6 +48,7 @@ export class ActivityDetailComponent extends TranslateComponent implements OnIni
               private activityService: ActivityService) {
     super();
   }
+
   ngOnInit(): void {
     this.participantService.getParticipants().then();
     this.applicationService.getApplications().then();
@@ -105,18 +107,18 @@ export class ActivityDetailComponent extends TranslateComponent implements OnIni
     this.deleteModalOpen = true;
   }
 
-  hasCustomData(){
+  hasCustomData() {
     return this.activity.data.custom_data && this.application?.setting && typeof this.application?.setting === "object"
   }
 
-  getCustomData(): CustomDataDisplay[]  {
-    if (this.hasCustomData()){
+  getCustomData(): CustomDataDisplay[] {
+    if (this.hasCustomData()) {
       const settings = this.application.setting as ApplicationSetting;
-      if (settings.custom_data){
+      if (settings.custom_data) {
         const res: CustomDataDisplay[] = [];
         const data = this.activity.data.custom_data;
         const currentLang = this.translateService.currentLang;
-        for (const set of settings.custom_data){
+        for (const set of settings.custom_data) {
           res.push({
             title: set.languages[currentLang],
             value: data[set.path]
@@ -135,7 +137,7 @@ export class ActivityDetailComponent extends TranslateComponent implements OnIni
   private getEnvironments(data: VRData) {
     const environments = new Set<string>();
 
-    for (const record of data.records){
+    for (const record of data.records) {
       environments.add(record.environment);
     }
 

@@ -8,7 +8,7 @@ import { OrganisationService } from "./organisation.service";
 @Injectable({
   providedIn: 'root'
 })
-export class ActivityService extends HttpService{
+export class ActivityService extends HttpService {
 
   $activities: BehaviorSubject<Activity[]> = new BehaviorSubject<Activity[]>(undefined);
   $activitiesForParticipant: BehaviorSubject<Activity[]> = new BehaviorSubject<Activity[]>(undefined);
@@ -24,9 +24,17 @@ export class ActivityService extends HttpService{
     })
   }
 
-  async getActivities(){
+  async getActivities() {
     const res = await firstValueFrom(this.http.get<Activity[]>(this.createUrl('')));
     this.$activities.next(res);
+  }
+
+  async getActivitiesByIds(ids: string[]): Promise<Activity[]> {
+    return await firstValueFrom(this.http.get<Activity[]>(this.createUrl(''), {
+      params: {
+        ids
+      }
+    }));
   }
 
   async createActivity(activity: NewActivity) {

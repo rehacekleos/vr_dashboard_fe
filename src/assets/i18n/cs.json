@@ -29,6 +29,9 @@
   "events": "události",
   "event": "událost",
   "log_version": "Verze logů",
+  "compare": "porovnání",
+  "cancelCompare": "Zrušit porovnání",
+  "submitCompare": "porovnat",
 
   "Actions": {
     "select": "vybrat",

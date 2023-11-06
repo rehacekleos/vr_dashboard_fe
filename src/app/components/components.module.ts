@@ -3,28 +3,28 @@ import { CommonModule, TitleCasePipe } from '@angular/common';
 import { IconifyComponent } from "./iconify/iconify.component";
 import { WidgetComponent } from './widget/widget.component';
 import {
-  AlertComponent,
-  ButtonCloseDirective,
-  ButtonDirective,
-  ButtonGroupComponent,
-  CardBodyComponent,
-  CardComponent,
-  CardFooterComponent,
-  ColComponent,
-  FormControlDirective,
-  FormDirective,
-  FormFeedbackComponent, FormSelectDirective,
-  InputGroupComponent, InputGroupTextDirective,
-  ModalBodyComponent,
-  ModalComponent,
-  ModalFooterComponent,
-  ModalHeaderComponent,
-  ModalTitleDirective,
-  PageItemDirective,
-  PageLinkDirective,
-  PaginationComponent,
-  RowComponent,
-  TableDirective
+    AlertComponent,
+    ButtonCloseDirective,
+    ButtonDirective,
+    ButtonGroupComponent,
+    CardBodyComponent,
+    CardComponent,
+    CardFooterComponent,
+    ColComponent, FormCheckInputDirective,
+    FormControlDirective,
+    FormDirective,
+    FormFeedbackComponent, FormSelectDirective,
+    InputGroupComponent, InputGroupTextDirective,
+    ModalBodyComponent,
+    ModalComponent,
+    ModalFooterComponent,
+    ModalHeaderComponent,
+    ModalTitleDirective,
+    PageItemDirective,
+    PageLinkDirective,
+    PaginationComponent,
+    RowComponent,
+    TableDirective
 } from "@coreui/angular";
 import { ApplicationWidgetComponent } from './application-widget/application-widget.component';
 import { ConfirmationModalComponent } from './confirmation-modal/confirmation-modal.component';
@@ -105,7 +105,8 @@ import { NgApexchartsModule } from "ng-apexcharts";
         PageLinkDirective,
         FormSelectDirective,
         InputGroupTextDirective,
-        NgApexchartsModule
+        NgApexchartsModule,
+        FormCheckInputDirective
     ],
   providers: [
     TitleCasePipe

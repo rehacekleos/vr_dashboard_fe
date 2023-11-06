@@ -1,68 +1,95 @@
 <c-card class="mb-2">
   <c-card-body class="pb-0">
-    <c-row class="mx-0">
-      <c-input-group  sizing="sm" class="w-auto m-1 p-0">
-        <span cInputGroupText>{{Translations.times.from | translation | titlecase}}</span>
-        <input
-          class="w-auto"
-          [(ngModel)]="fromDate"
-          name="fromDate"
-          (ngModelChange)="filterActivities()"
-          cFormControl
-          [max]="toDate"
-          type="date">
-        <span cInputGroupText>{{Translations.times.to | translation | titlecase}}</span>
-        <input
-          class="w-auto"
-          [(ngModel)]="toDate"
-          name="toDate"
-          (ngModelChange)="filterActivities()"
-          cFormControl
-          [min]="fromDate"
-          type="date">
-      </c-input-group>
+    <c-row class="mx-0 justify-content-between">
+      <c-col class="px-0 d-flex flex-row flex-wrap">
+        <c-input-group sizing="sm" class="w-auto m-1 p-0">
+          <span cInputGroupText>{{Translations.times.from | translation | titlecase}}</span>
+          <input
+            class="w-auto"
+            [(ngModel)]="fromDate"
+            name="fromDate"
+            (ngModelChange)="filterActivities()"
+            cFormControl
+            [max]="toDate"
+            type="date">
+          <span cInputGroupText>{{Translations.times.to | translation | titlecase}}</span>
+          <input
+            class="w-auto"
+            [(ngModel)]="toDate"
+            name="toDate"
+            (ngModelChange)="filterActivities()"
+            cFormControl
+            [min]="fromDate"
+            type="date">
+        </c-input-group>
 
-      <c-input-group sizing="sm" class="w-auto m-1 p-0" *ngIf="showParticipant">
-        <span cInputGroupText>{{Translations.participant | translation | titlecase}}</span>
-        <select
-          sizing="sm"
-          [(ngModel)]="participant"
-          (ngModelChange)="filterActivities()"
-          name="Participant"
-          cSelect>
-          <option [ngValue]="''"></option>
-          <option *ngFor="let par of participants" [ngValue]="par.id">{{par.nickname}}</option>
-        </select>
-      </c-input-group>
+        <c-input-group sizing="sm" class="w-auto m-1 p-0" *ngIf="showParticipant">
+          <span cInputGroupText>{{Translations.participant | translation | titlecase}}</span>
+          <select
+            sizing="sm"
+            [(ngModel)]="participant"
+            (ngModelChange)="filterActivities()"
+            name="Participant"
+            cSelect>
+            <option [ngValue]="''"></option>
+            <option *ngFor="let par of participants" [ngValue]="par.id">{{par.nickname}}</option>
+          </select>
+        </c-input-group>
 
-      <c-input-group sizing="sm" class="w-auto m-1 p-0">
-        <span cInputGroupText>{{Translations.application | translation | titlecase}}</span>
-        <select
-          sizing="sm"
-          [(ngModel)]="application"
-          (ngModelChange)="filterActivities()"
-          name="Application"
-          cSelect>
-          <option [ngValue]="''"></option>
-          <option *ngFor="let app of applications" [ngValue]="app.id">{{app.name}}</option>
-        </select>
-      </c-input-group>
+        <c-input-group sizing="sm" class="w-auto m-1 p-0">
+          <span cInputGroupText>{{Translations.application | translation | titlecase}}</span>
+          <select
+            sizing="sm"
+            [(ngModel)]="application"
+            (ngModelChange)="filterActivities()"
+            name="Application"
+            cSelect>
+            <option [ngValue]="''"></option>
+            <option *ngFor="let app of applications" [ngValue]="app.id">{{app.name}}</option>
+          </select>
+        </c-input-group>
+      </c-col>
+      <div class="col-auto p-0">
+        <button
+          (click)="setComparing()"
+          [class.btn-outline-secondary]="!comparing"
+          [class.btn-outline-danger]="comparing"
+          class="btn btn-sm m-1">
+          <span *ngIf="!comparing"><iconify class="me-1" icon="fluent-mdl2:compare"/> {{Translations.compare | translation | titlecase}}</span>
+          <span *ngIf="comparing">{{Translations.cancelCompare | translation}}</span>
+        </button>
+        <button
+          *ngIf="comparing"
+          (click)="compare()"
+          class="btn btn-outline-primary btn-sm m-1">
+          {{Translations.submitCompare | translation | titlecase}}
+        </button>
+      </div>
 
     </c-row>
     <div class="table-responsive">
       <table class="table">
         <thead>
         <tr>
-          <th></th>
-          <th class="text-capitalize">{{Translations.times.start | translation}}</th>
+          <th class="w-0"></th>
+          <th *ngIf="comparing" class="text-center w-0">{{Translations.compare | translation | titlecase}}</th>
+          <th>{{Translations.times.start | translation | titlecase}}</th>
           <th *ngIf="showParticipant" class="text-capitalize">{{Translations.participant | translation}}</th>
-          <th class="text-capitalize">{{Translations.application | translation}}</th>
+          <th>{{Translations.application | translation | titlecase}}</th>
         </tr>
         </thead>
         <tbody>
         <tr *ngFor="let activity of filteredActivities">
           <td nowrap>
             <iconify class="text-primary pointer" icon="bxs:detail" (click)="goToDetail(activity.id)"/>
+          </td>
+          <td *ngIf="comparing" nowrap class="text-center">
+            <input
+              [disabled]="canCompare(activity) && !isComparing(activity.id)"
+              type="checkbox"
+              cFormCheckInput
+              [checked]="isComparing(activity.id)"
+              (click)="setCompare(activity)">
           </td>
           <td nowrap>{{activity.start}}</td>
           <td nowrap *ngIf="showParticipant">{{activity.participant}}</td>

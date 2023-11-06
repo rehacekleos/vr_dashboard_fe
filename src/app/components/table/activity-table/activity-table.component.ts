@@ -27,6 +27,9 @@ export class ActivityTableComponent extends TranslateComponent implements OnInit
   applications: Application[];
   participants: Participant[];
 
+  comparing = false;
+  compareMap: Map<string, ActivityTable> = new Map();
+
   application = "";
   participant = "";
   toDate = "";
@@ -45,6 +48,8 @@ export class ActivityTableComponent extends TranslateComponent implements OnInit
   }
 
   ngOnInit(): void {
+
+    this.compareMap = new Map();
 
     combineLatest([this.applicationService.$applications, this.participantService.$participants]).subscribe(([a, p]) => {
       this.applications = a;
@@ -148,5 +153,40 @@ export class ActivityTableComponent extends TranslateComponent implements OnInit
   }
 
 
+  isComparing(id: string) {
+    return this.compareMap.has(id);
+  }
 
+  canCompare(activity: ActivityTable){
+    if (this.compareMap.size > 0){
+      const [act] = this.compareMap.values()
+      return activity.applicationId !== act.applicationId || this.compareMap.size >= 4;
+    }
+    return false;
+  }
+
+  setCompare(activity: ActivityTable) {
+    if (this.compareMap.has(activity.id)){
+      this.compareMap.delete(activity.id);
+    } else {
+      this.compareMap.set(activity.id, activity);
+    }
+  }
+
+  setComparing(){
+    if (this.comparing){
+      this.comparing = false;
+      this.compareMap = new Map();
+    } else {
+      this.comparing = true;
+      this.compareMap = new Map();
+    }
+  }
+
+  async compare() {
+    const ids = Array.from(this.compareMap.keys());
+    if (ids.length > 0) {
+      await this.router.navigate(['activity', 'compare'], {queryParams: {ids: JSON.stringify(ids)}});
+    }
+  }
 }
