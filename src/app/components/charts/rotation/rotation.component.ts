@@ -18,7 +18,8 @@ import {
   ChartComponent
 } from "ng-apexcharts";
 import { ChartUtil } from "../../../shared/utils/chartUtil";
-import { GraphPart, GraphSetting, MultipleAxisGraph } from "../../../models/graph.model";
+import { GraphPart, GraphSetting, RotationGraph } from "../../../models/graph.model";
+import { ApplicationSetting } from "../../../models/application.model";
 
 @Component({
   selector: 'app-rotation-chart',
@@ -30,6 +31,7 @@ export class RotationComponent extends TranslateComponent implements OnInit, OnC
   @Input({required: true, alias: "part"}) part: GraphPart;
   @Input({required: true}) records: Record[];
   @Input({required: true}) graphSetting: GraphSetting
+  @Input({required: true}) appSetting: ApplicationSetting
 
   rotation_x = [];
   rotation_y = [];
@@ -37,16 +39,43 @@ export class RotationComponent extends TranslateComponent implements OnInit, OnC
   events = [];
 
   series: ApexAxisChartSeries;
-  chart: ApexChart;
-  dataLabels: ApexDataLabels;
-  markers: ApexMarkers;
+  chart: ApexChart = {
+    type: "line",
+    height: ChartUtil.CHART_HEIGHT,
+    zoom: {
+      type: "x",
+      enabled: true
+    },
+    toolbar: {
+      autoSelected: "zoom"
+    },
+    animations: {
+      enabled: false
+    }
+  };
+  dataLabels: ApexDataLabels = {enabled: false};
+  markers: ApexMarkers = {size: 0};
   title: ApexTitleSubtitle;
   fill: ApexFill;
-  yAxis: ApexYAxis;
-  xAxis: ApexXAxis;
-  legend: ApexLegend;
+  yAxis: ApexYAxis = {
+    min: -1,
+    max: 1
+  };
+  xAxis: ApexXAxis = {
+    type: "numeric"
+  };
+  legend: ApexLegend = {
+    position: "top"
+  };
   annotations: ApexAnnotations;
-  tooltip: ApexTooltip;
+  tooltip: ApexTooltip = {
+    y: {
+      formatter(val: number, opts?: any): string {
+        const degree =  ((Math.acos(val)) * (180/Math.PI)).toFixed(2)
+        return `± ${degree}°`
+      }
+    }
+  };
 
   constructor(private translateService: CustomTranslateService,
               private titleCasePipe: TitleCasePipe) {
@@ -54,42 +83,11 @@ export class RotationComponent extends TranslateComponent implements OnInit, OnC
   }
 
   ngOnInit(): void {
-    this.chart = {
-      type: "line",
-      height: ChartUtil.CHART_HEIGHT,
-      zoom: {
-        type: "x",
-        enabled: true
-      },
-      toolbar: {
-        autoSelected: "zoom"
-      },
-      animations: {
-        enabled: false
-      }
-    }
-    this.xAxis = {
-      type: "numeric"
-    }
     this.title = {
       text: this.translateService.instantTranslation(Translations.rotation[this.part].all),
       align: "center",
       style: {
         fontSize: "16px"
-      }
-    }
-    this.yAxis = {}
-    this.dataLabels = {enabled: false}
-    this.markers = {size: 0}
-    this.legend = {
-      position: "top"
-    }
-    this.tooltip = {
-      y: {
-        formatter(val: number, opts?: any): string {
-          const degree =  ((Math.acos(val)) * (180/Math.PI)).toFixed(2)
-          return `± ${degree}°`
-        }
       }
     }
   }
@@ -116,8 +114,9 @@ export class RotationComponent extends TranslateComponent implements OnInit, OnC
       this.rotation_y.push({x: tick, y: Math.cos(this.degreeToRadian(record[this.part].rotation.y)).toFixed(2)});
       this.rotation_z.push({x: tick, y: Math.cos(this.degreeToRadian(record[this.part].rotation.z)).toFixed(2)});
 
-      if (record.event){
-        this.events.push(ChartUtil.createEvent(tick, this.titleCasePipe.transform(this.translateService.instantTranslation(Translations.event))));
+      if (record.events){
+        const defaultText = this.titleCasePipe.transform(this.translateService.instantTranslation(Translations.event));
+        this.events.push(ChartUtil.createEvent(tick, this.appSetting, record.events, defaultText, this.translateService.currentLang));
       }
 
       tick++
@@ -125,7 +124,7 @@ export class RotationComponent extends TranslateComponent implements OnInit, OnC
   }
 
   private async setChartData() {
-    const setting: MultipleAxisGraph = this.graphSetting as MultipleAxisGraph;
+    const setting: RotationGraph = this.graphSetting as RotationGraph;
     const series: ApexAxisChartSeries = [];
 
     if (setting.axis.x && setting.axis.x === true) {

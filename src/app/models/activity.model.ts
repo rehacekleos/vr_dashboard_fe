@@ -48,7 +48,7 @@ export class Record{
   left_hand?: PositionAndRotation;
   right_hand?: PositionAndRotation;
   custom_data?: any;
-  event?: string[];
+  events?: string[];
 }
 
 export class PositionAndRotation {

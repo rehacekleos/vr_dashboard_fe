@@ -29,6 +29,7 @@ export class ActivityDetailComponent extends TranslateComponent implements OnIni
   participant: Participant;
 
   customData: CustomDataDisplay[] = [];
+  applicationModuleVersion: string;
 
   environments: string[];
   selectedEnvironment: string;
@@ -40,7 +41,6 @@ export class ActivityDetailComponent extends TranslateComponent implements OnIni
 
   constructor(private route: ActivatedRoute,
               private router: Router,
-              private sanitizer: DomSanitizer,
               private participantService: ParticipantService,
               private applicationService: ApplicationService,
               private translateService: CustomTranslateService,
@@ -59,6 +59,7 @@ export class ActivityDetailComponent extends TranslateComponent implements OnIni
         this.participant = participants.find(p => p.id === this.activity.participantId);
         this.application = applications.find(a => a.id === this.activity.applicationId);
 
+        this.getApplicationModuleVersion();
         this.environments = this.getEnvironments(this.activity.data);
         this.selectedEnvironment = this.environments[0];
         this.getEnvRecords();
@@ -66,6 +67,24 @@ export class ActivityDetailComponent extends TranslateComponent implements OnIni
       }
     })
 
+  }
+
+  getApplicationModuleVersion() {
+    const appModules = this.application.modules;
+    const appSetting = this.application.setting;
+    const logVersion = this.activity.data.log_version.toString();
+
+    if (appSetting.module_version_mapping == null){
+      return;
+    }
+    for (const [key, value] of Object.entries(appSetting.module_version_mapping)){
+      if (value.includes(logVersion.toString())){
+        if (appModules.includes(key.toString())){
+          this.applicationModuleVersion = key;
+          return;
+        }
+      }
+    }
   }
 
   getDuration() {
@@ -155,9 +174,5 @@ export class ActivityDetailComponent extends TranslateComponent implements OnIni
 
   onToggleModule() {
     this.showModule = !this.showModule;
-  }
-
-  hasApplicationModule() {
-    return this.application.modules?.find(m => m.toLowerCase() === this.activity.data.log_version.toString())
   }
 }

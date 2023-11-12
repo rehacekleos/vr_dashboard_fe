@@ -37,7 +37,7 @@ export class RecordsStatisticsComponent extends TranslateComponent implements On
   }
 
   private getEvents(){
-    const recordsWithEvents = this.records.filter(r => r.event);
+    const recordsWithEvents = this.records.filter(r => r.events);
     this.events = recordsWithEvents.length;
   }
 

@@ -37,16 +37,46 @@
           },
           "type": "array"
         },
+        "events_map": {
+          "additionalProperties": {
+            "additionalProperties": false,
+            "properties": {
+              "cs": {
+                "type": "string"
+              },
+              "en": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "cs",
+              "en"
+            ],
+            "type": "object"
+          },
+          "type": "object"
+        },
         "graphs": {
           "items": {
             "$ref": "#/definitions/GraphSetting"
           },
           "type": "array"
         },
+        "module_version_mapping": {
+          "additionalProperties": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "type": "object"
+        },
         "records_custom_data": {}
       },
       "required": [
         "custom_data",
+        "events_map",
+        "module_version_mapping",
         "records_custom_data",
         "graphs"
       ],
@@ -96,8 +126,17 @@
         "part": {
           "$ref": "#/definitions/GraphPart"
         },
+        "recommended_max": {
+          "type": "number"
+        },
+        "recommended_min": {
+          "type": "number"
+        },
         "type": {
           "const": "position-differential",
+          "type": "string"
+        },
+        "unit": {
           "type": "string"
         }
       },
@@ -124,17 +163,68 @@
           "$ref": "#/definitions/PositionGraph"
         },
         {
-          "$ref": "#/definitions/MultipleAxisGraph"
+          "$ref": "#/definitions/RotationGraph"
         },
         {
           "$ref": "#/definitions/RotationPolarGraph"
         },
         {
           "$ref": "#/definitions/DifferenceGraph"
+        },
+        {
+          "$ref": "#/definitions/PositionHeatMapGraph"
         }
       ]
     },
-    "MultipleAxisGraph": {
+    "PositionGraph": {
+      "additionalProperties": false,
+      "properties": {
+        "display": {
+          "type": "boolean"
+        },
+        "part": {
+          "$ref": "#/definitions/GraphPart"
+        },
+        "type": {
+          "const": "position",
+          "type": "string"
+        }
+      },
+      "required": [
+        "type",
+        "part",
+        "display"
+      ],
+      "type": "object"
+    },
+    "PositionHeatMapGraph": {
+      "additionalProperties": false,
+      "properties": {
+        "display": {
+          "type": "boolean"
+        },
+        "part": {
+          "$ref": "#/definitions/GraphPart"
+        },
+        "type": {
+          "const": "position-heatmap",
+          "type": "string"
+        },
+        "x_axis_unit": {
+          "type": "string"
+        },
+        "y_axis_unit": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "type",
+        "part",
+        "display"
+      ],
+      "type": "object"
+    },
+    "RotationGraph": {
       "additionalProperties": false,
       "properties": {
         "axis": {
@@ -173,30 +263,6 @@
         "part",
         "display",
         "axis"
-      ],
-      "type": "object"
-    },
-    "PositionGraph": {
-      "additionalProperties": false,
-      "properties": {
-        "display": {
-          "type": "boolean"
-        },
-        "part": {
-          "$ref": "#/definitions/GraphPart"
-        },
-        "type": {
-          "enum": [
-            "position",
-            "position-heatmap"
-          ],
-          "type": "string"
-        }
-      },
-      "required": [
-        "type",
-        "part",
-        "display"
       ],
       "type": "object"
     },

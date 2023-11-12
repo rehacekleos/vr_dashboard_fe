@@ -1,19 +1,27 @@
-export type GraphSetting = PositionGraph | MultipleAxisGraph | RotationPolarGraph | DifferenceGraph;
+export type GraphSetting = PositionGraph | RotationGraph | RotationPolarGraph | DifferenceGraph | PositionHeatMapGraph;
 export type GraphPart = "head" | "left_hand" | "right_hand"
 export type GraphType = "position" | "position-differential" | "position-heatmap" | "rotation" | "rotation-polar"
 export type Axis = "x" | "y" | "z";
 
 
 export type PositionGraph = {
-  type: "position" | "position-heatmap"
+  type: "position"
   part: GraphPart
   display: boolean
 }
 
-export type MultipleAxisGraph = {
-  type: "rotation"
+export type PositionHeatMapGraph = {
+  type: "position-heatmap"
   part: GraphPart
   display: boolean
+  x_axis_unit?: string;
+  y_axis_unit?: string
+}
+
+export type RotationGraph = {
+  type: "rotation"
+  part: GraphPart
+  display: boolean,
   axis: {
     x: boolean
     y: boolean
@@ -26,6 +34,9 @@ export type DifferenceGraph = {
   part: GraphPart
   diff: "absolute" | "avg"
   display: boolean
+  recommended_max?: number,
+  recommended_min?: number,
+  unit?: string,
   axis: {
     x: boolean
     y: boolean

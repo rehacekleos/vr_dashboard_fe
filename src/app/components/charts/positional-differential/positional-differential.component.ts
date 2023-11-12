@@ -18,6 +18,7 @@ import {
 } from "ng-apexcharts";
 import { ChartUtil } from "../../../shared/utils/chartUtil";
 import { DifferenceGraph, GraphPart, GraphSetting } from "../../../models/graph.model";
+import { ApplicationSetting } from "../../../models/application.model";
 
 @Component({
   selector: 'app-positional-differential-chart',
@@ -29,6 +30,7 @@ export class PositionalDifferentialComponent extends TranslateComponent implemen
   @Input({required: true, alias: "part"}) part: GraphPart;
   @Input({required: true}) records: Record[];
   @Input({required: true}) graphSetting: GraphSetting
+  @Input({required: true}) appSetting: ApplicationSetting
 
   difference_x = [];
   difference_y = [];
@@ -36,37 +38,41 @@ export class PositionalDifferentialComponent extends TranslateComponent implemen
   events = [];
 
   series: ApexAxisChartSeries;
-  chart: ApexChart;
-  dataLabels: ApexDataLabels;
-  markers: ApexMarkers;
+  chart: ApexChart = {
+    type: "line",
+    height: ChartUtil.CHART_HEIGHT,
+    zoom: {
+      type: "x",
+      enabled: true,
+    },
+    toolbar: {
+      autoSelected: "zoom"
+    },
+    animations: {
+      enabled: false
+    }
+  };
+  dataLabels: ApexDataLabels = {enabled: false};
+  markers: ApexMarkers = {size: 0};
   title: ApexTitleSubtitle;
   fill: ApexFill;
-  yAxis: ApexYAxis;
+  yAxis: ApexYAxis = {}
   xAxis: ApexXAxis;
-  legend: ApexLegend;
+  legend: ApexLegend = {
+    position: "top"
+  };
   annotations: ApexAnnotations;
   tooltip: ApexTooltip;
 
   constructor(private translateService: CustomTranslateService,
               private titleCasePipe: TitleCasePipe) {
     super();
+
   }
 
   ngOnInit() {
-    this.chart = {
-      type: "line",
-      height: ChartUtil.CHART_HEIGHT,
-      zoom: {
-        type: "x",
-        enabled: true,
-      },
-      toolbar: {
-        autoSelected: "zoom"
-      },
-      animations: {
-        enabled: false
-      }
-    }
+    const setting: DifferenceGraph = this.graphSetting as DifferenceGraph;
+
     this.title = {
       text: this.translateService.instantTranslation(Translations.position[this.part].difference),
       align: "center",
@@ -74,17 +80,30 @@ export class PositionalDifferentialComponent extends TranslateComponent implemen
         fontSize: "16px"
       }
     }
+
     this.xAxis = {
-      type: "numeric"
+      type: "numeric",
+      title: {
+        text: this.titleCasePipe.transform(this.translateService.instantTranslation(Translations.time))
+      }
     }
-    this.yAxis = {}
-    this.dataLabels = {enabled: false}
-    this.markers = {size: 0}
-    this.legend = {
-      position: "top"
+
+    if (setting.unit){
+      this.yAxis.title = {
+        text: `[${setting.unit}]`
+      }
     }
+
     this.tooltip = {
-    }
+      y: {
+        formatter(val: number, opts?: any): string {
+          if (setting.unit){
+            return `${val} [${setting.unit}]`
+          }
+          return val.toString();
+        }
+      }
+    };
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -117,8 +136,9 @@ export class PositionalDifferentialComponent extends TranslateComponent implemen
       this.difference_y.push({x: tick, y: (-(y_base - record[this.part].position.y)).toFixed(2)});
       this.difference_z.push({x: tick, y: (-(z_base - record[this.part].position.z)).toFixed(2)});
 
-      if (record.event){
-        this.events.push(ChartUtil.createEvent(tick, this.titleCasePipe.transform(this.translateService.instantTranslation(Translations.event))));
+      if (record.events){
+        const defaultText = this.titleCasePipe.transform(this.translateService.instantTranslation(Translations.event));
+        this.events.push(ChartUtil.createEvent(tick, this.appSetting, record.events, defaultText, this.translateService.currentLang));
       }
       tick++
     }
@@ -150,6 +170,18 @@ export class PositionalDifferentialComponent extends TranslateComponent implemen
         data: this.difference_z,
         color: "#006AA7"
       })
+    }
+
+    if (setting.recommended_min){
+      this.yAxis.min = (actualMin) => {
+        return Math.min(actualMin, setting.recommended_min);
+      }
+    }
+
+    if (setting.recommended_max){
+      this.yAxis.max = (actualMax) => {
+        return Math.max(actualMax, setting.recommended_max);
+      }
     }
 
     this.series = series

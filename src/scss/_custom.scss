@@ -81,8 +81,10 @@
 }
 
 .iframe{
-  min-height: 400px !important;
+  min-height: 420px !important;
+  max-height: 420px !important;
   width: 100%;
+  overflow-y: hidden;
 }
 
 .custom_img{

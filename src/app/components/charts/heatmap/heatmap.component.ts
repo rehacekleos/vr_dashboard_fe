@@ -4,6 +4,8 @@ import { Record } from "../../../models/activity.model";
 import { Translations } from "../../../shared/translate/translate.model";
 import { CustomTranslateService } from "../../../shared/translate/services/custom-translate.service";
 import { TranslateComponent } from "../../../shared/translate/translate.component";
+import { ApplicationSetting } from "../../../models/application.model";
+import { GraphSetting, PositionHeatMapGraph } from "../../../models/graph.model";
 
 @Component({
   selector: 'app-heatmap-chart',
@@ -16,6 +18,8 @@ export class HeatmapComponent extends TranslateComponent implements OnChanges {
 
   @Input({required: true, alias: "part"}) part: "head" | "left_hand" | "right_hand";
   @Input({required: true}) records: Record[];
+  @Input({required: true}) graphSetting: GraphSetting
+  @Input({required: true}) appSetting: ApplicationSetting
 
   yAxis: ApexYAxis;
   xAxis: ApexXAxis;
@@ -46,6 +50,8 @@ export class HeatmapComponent extends TranslateComponent implements OnChanges {
   }
 
   setTitle() {
+    const setting: PositionHeatMapGraph = this.graphSetting as PositionHeatMapGraph;
+
     this.title = {
       text: this.translateService.instantTranslation(Translations.position[this.part].all),
       align: "center",
@@ -55,12 +61,12 @@ export class HeatmapComponent extends TranslateComponent implements OnChanges {
     }
     this.yAxis = {
       title: {
-        text: this.translateService.instantTranslation(Translations.axis.x)
+        text: this.translateService.instantTranslation(Translations.axis.x) + (setting.y_axis_unit ? ` [${setting.y_axis_unit}]` : "")
       }
     }
     this.xAxis = {
       title: {
-        text: this.translateService.instantTranslation(Translations.axis.z)
+        text: this.translateService.instantTranslation(Translations.axis.z) + (setting.x_axis_unit ? ` [${setting.x_axis_unit}]` : "")
       }
     }
   }

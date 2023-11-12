@@ -1,1 +1,4 @@
-<iframe class="iframe" [src]="getApplicationModule()" scrolling="no" onload="resizeIframe(this)"></iframe>
+<ng-container *ngIf="organisation">
+  <iframe class="iframe" [src]="getApplicationModule()"></iframe>
+</ng-container>
+

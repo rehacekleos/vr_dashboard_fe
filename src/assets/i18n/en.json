@@ -29,6 +29,10 @@
   "events": "events",
   "event": "event",
   "log_version": "Log version",
+  "module_version": "Module version",
+  "compare": "comparison",
+  "cancelCompare": "Cancel comparison",
+  "submitCompare": "compare",
 
   "Actions": {
     "select": "select",
@@ -134,7 +138,8 @@
     "code": "Code is mandatory!",
     "organisationName": "Organisation name is mandatory!",
     "invitationCode": "Invitation code is mandatory!",
-    "log_version": "Log version is mandatory and must be in the format: 0.0.0!"
+    "log_version": "Log version is mandatory and must be in the format: 0.0.0!",
+    "module_version": "Module version is mandatory and must be in the format: 0.0.0!"
   },
 
   "messages": {

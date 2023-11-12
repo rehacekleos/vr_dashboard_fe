@@ -16,7 +16,7 @@ export class NewApplication {
 
 export class AddModule {
   module: string;
-  log_version: string;
+  module_version: string;
 }
 
 
@@ -28,6 +28,15 @@ export type ApplicationSetting = {
       "en": string;
     }
   }[]
+  events_map: {
+    [key: string]: {
+      "cs": string;
+      "en": string;
+    }
+  },
+  module_version_mapping: {
+    [module_version: string]: string[]
+  }
   records_custom_data: any
   graphs: GraphSetting[]
 }

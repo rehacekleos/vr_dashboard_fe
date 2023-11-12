@@ -56,7 +56,6 @@ export class ApplicationDetailComponent extends TranslateComponent implements On
   }
 
   async onChangeSetting($event: any) {
-    console.log($event);
     try {
       await this.applicationService.updateApplicationSetting(this.application.id, $event);
       this.toaster.showToastMessage(this.translateService.instantTranslation(Translations.messages.update.setting));

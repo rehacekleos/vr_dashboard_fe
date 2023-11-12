@@ -47,7 +47,7 @@
     <h2 class="m-0">{{Translations.statistics | translation | titlecase}}</h2>
   </div>
 
-  <c-card class="mb-4" *ngIf="activity; else loading">
+  <c-card class="mb-4" *ngIf="activity && selectedEnvironment !== null; else loading">
     <c-card-body>
       <c-row class="my-2">
         <c-col class="w-100">
@@ -68,10 +68,10 @@
         </c-col>
       </c-row>
 
-      <c-row *ngIf="hasApplicationModule()" class="justify-content-center">
+      <c-row *ngIf="applicationModuleVersion" class="justify-content-center">
         <hr class="my-3">
         <ng-container *ngIf="showModule; else toggleModule">
-          <app-application-module [application]="application" [logVersion]="activity.data.log_version" />
+          <app-application-module [application]="application" [moduleVersion]="applicationModuleVersion" [activityId]="activity.id" [environmentId]="selectedEnvironment" />
         </ng-container>
         <ng-template #toggleModule>
           <button class="btn btn-primary w-50" (click)="onToggleModule()">{{Translations.Actions.showModule | translation}}</button>
@@ -86,6 +86,7 @@
             [part]="graph.part"
             [records]="environmentsRecords"
             [graphSetting]="graph"
+            [appSetting]="application.setting"
           />
 
           <app-rotation-polar-chart
@@ -93,12 +94,14 @@
             [part]="graph.part"
             [records]="environmentsRecords"
             [axis]="graph.axis"
+            [appSetting]="application.setting"
           />
 
           <app-position-chart
             *ngIf="graph.type === 'position' && graph.display === true"
             [part]="graph.part"
             [records]="environmentsRecords"
+            [appSetting]="application.setting"
           />
 
           <app-positional-differential-chart
@@ -106,12 +109,15 @@
             [part]="graph.part"
             [graphSetting]="graph"
             [records]="environmentsRecords"
+            [appSetting]="application.setting"
           />
 
           <app-heatmap-chart
             *ngIf="graph.type === 'position-heatmap' && graph.display === true"
             [records]="environmentsRecords"
             [part]="graph.part"
+            [graphSetting]="graph"
+            [appSetting]="application.setting"
           />
 
         </c-row>

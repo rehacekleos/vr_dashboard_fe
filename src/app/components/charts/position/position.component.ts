@@ -16,6 +16,7 @@ import {
   ApexYAxis
 } from "ng-apexcharts";
 import { ChartUtil } from "../../../shared/utils/chartUtil";
+import { ApplicationSetting } from "../../../models/application.model";
 
 @Component({
   selector: 'app-position-chart',
@@ -26,41 +27,45 @@ export class PositionComponent extends TranslateComponent implements OnInit, OnC
 
   @Input({required: true, alias: "part"}) part: "head" | "left_hand" | "right_hand";
   @Input({required: true}) records: Record[];
+  @Input({required: true}) appSetting: ApplicationSetting
 
   position = [];
 
   series: ApexAxisChartSeries;
-  chart: ApexChart;
-  dataLabels: ApexDataLabels;
-  markers: ApexMarkers;
+  chart: ApexChart = {
+    type: "line",
+    height: ChartUtil.CHART_HEIGHT,
+    zoom: {
+      type: "x",
+      enabled: true,
+      autoScaleYaxis: true
+    },
+    toolbar: {
+      autoSelected: "zoom"
+    },
+    animations: {
+      enabled: false
+    }
+  };
+  dataLabels: ApexDataLabels = {enabled: false};
+  markers: ApexMarkers = {size: 0};
   title: ApexTitleSubtitle;
   fill: ApexFill;
   yAxis: ApexYAxis;
   xAxis: ApexXAxis;
-  legend: ApexLegend;
+  legend: ApexLegend = {
+    position: "top"
+  };
   annotations: ApexAnnotations;
-  tooltip: ApexTooltip;
+  tooltip: ApexTooltip = {};
 
   constructor(private translateService: CustomTranslateService) {
     super();
+
   }
 
   ngOnInit(): void {
-    this.chart = {
-      type: "line",
-      height: ChartUtil.CHART_HEIGHT,
-      zoom: {
-        type: "x",
-        enabled: true,
-        autoScaleYaxis: true
-      },
-      toolbar: {
-        autoSelected: "zoom"
-      },
-      animations: {
-        enabled: false
-      }
-    }
+
     this.title = {
       text: this.translateService.instantTranslation(Translations.position[this.part].all),
       align: "center",
@@ -79,13 +84,7 @@ export class PositionComponent extends TranslateComponent implements OnInit, OnC
         text: this.translateService.instantTranslation(Translations.axis.x)
       }
     }
-    this.dataLabels = {enabled: false}
-    this.markers = {size: 0}
-    this.legend = {
-      position: "top"
-    }
-    this.tooltip = {
-    }
+
   }
 
   ngOnChanges(changes: SimpleChanges): void {

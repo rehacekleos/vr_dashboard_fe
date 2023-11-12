@@ -29,6 +29,7 @@
   "events": "události",
   "event": "událost",
   "log_version": "Verze logů",
+  "module_version": "Verze modulu",
   "compare": "porovnání",
   "cancelCompare": "Zrušit porovnání",
   "submitCompare": "porovnat",
@@ -137,7 +138,8 @@
     "code": "Kód je povinný!",
     "organisationName": "Jméno organizace je povinné!",
     "invitationCode": "Kód pozvánky je povinný!",
-    "log_version": "Verze logů je povinná a musí mít formát: 0.0.0 !"
+    "log_version": "Verze logů je povinná a musí mít formát: 0.0.0 !",
+    "module_version": "Verze modulu je povinná a musí mít formát: 0.0.0 !"
   },
 
   "messages": {

@@ -16,7 +16,7 @@ export class AddApplicationModuleComponent extends TranslateComponent{
   validated = false;
   file: File;
 
-  logVersion: string;
+  moduleVersion: string;
 
   @Input({required: true}) open: boolean;
   @Input({required: true}) application: Application;
@@ -28,7 +28,7 @@ export class AddApplicationModuleComponent extends TranslateComponent{
 
   private resetForm(){
     this.file = undefined;
-    this.logVersion = undefined;
+    this.moduleVersion = undefined;
     this.validated = false;
   }
 
@@ -45,7 +45,7 @@ export class AddApplicationModuleComponent extends TranslateComponent{
         const base64String = FileUtil.arrayBufferToBase64(arrayBuffer);
         const addModule: AddModule = {
           module: base64String,
-          log_version: this.logVersion
+          module_version: this.moduleVersion
         }
         await this.applicationService.addModule(this.application.id, addModule);
         this.visibleChanged.emit(false);

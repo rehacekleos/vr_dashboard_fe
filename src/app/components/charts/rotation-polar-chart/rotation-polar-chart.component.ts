@@ -17,6 +17,7 @@ import { ChartUtil } from "../../../shared/utils/chartUtil";
 import { Translations } from "../../../shared/translate/translate.model";
 import { CustomTranslateService } from "../../../shared/translate/services/custom-translate.service";
 import { TranslateComponent } from "../../../shared/translate/translate.component";
+import { ApplicationSetting } from "../../../models/application.model";
 
 @Component({
   selector: 'app-rotation-polar-chart',
@@ -28,75 +29,65 @@ export class RotationPolarChartComponent extends TranslateComponent implements O
   @Input({required: true, alias: "part"}) part: GraphPart;
   @Input({required: true}) records: Record[];
   @Input({required: true}) axis: Axis;
+  @Input({required: true}) appSetting: ApplicationSetting
 
   rotation = [];
 
   series: ApexAxisChartSeries;
-  chart: ApexChart;
-  dataLabels: ApexDataLabels;
-  markers: ApexMarkers;
+  chart: ApexChart = {
+    type: "polarArea",
+    height: ChartUtil.CHART_HEIGHT,
+    animations: {
+      enabled: false
+    }
+  };
+  dataLabels: ApexDataLabels = {enabled: false};
+  markers: ApexMarkers = {size: 0};
   title: ApexTitleSubtitle;
-  fill: ApexFill;
-  yAxis: ApexYAxis;
-  xAxis: ApexXAxis;
-  legend: ApexLegend;
+  fill: ApexFill = {
+    opacity: 1
+  };
+  yAxis: ApexYAxis = {
+    show: false
+  };
+  xAxis: ApexXAxis = {
+    type: "numeric",
+  };
+  legend: ApexLegend = {
+    position: "top"
+  };
   annotations: ApexAnnotations;
-  tooltip: ApexTooltip;
-  labels: string[];
-  plotOptions: ApexPlotOptions;
-  stroke: ApexStroke;
+  tooltip: ApexTooltip = {
+    y: {
+      formatter(val: number, opts?: any): string {
+        return val + "%"
+      }
+    }
+  };
+  labels: string[] = ["315-360°", "270-315°", "225-270°", "180-225°", "135-180°", "90-135°", "45-90°", "0-45°"];
+  plotOptions: ApexPlotOptions = {
+    polarArea: {
+      rings: {
+        strokeWidth: 0
+      }
+    }
+  };
+  stroke: ApexStroke = {
+    width: 1,
+    colors: undefined
+  };
 
   constructor(private translateService: CustomTranslateService) {
     super();
   }
 
   ngOnInit() {
-    this.chart = {
-      type: "polarArea",
-      height: ChartUtil.CHART_HEIGHT,
-      animations: {
-        enabled: false
-      }
-    }
-    this.xAxis = {
-      type: "numeric"
-    }
     this.title = {
       text: this.translateService.instantTranslation(Translations.rotation[this.part].all),
       align: "center",
       style: {
         fontSize: "16px"
       }
-    }
-    this.yAxis = {
-      show: false
-    }
-    this.dataLabels = {enabled: false}
-    this.markers = {size: 0}
-    this.legend = {
-      position: "top"
-    }
-    this.tooltip = {
-      y: {
-        formatter(val: number, opts?: any): string {
-          return val + "%"
-        }
-      }
-    }
-    this.labels = ["315-360°", "270-315°", "225-270°", "180-225°", "135-180°", "90-135°", "45-90°", "0-45°"]
-    this.plotOptions = {
-      polarArea: {
-        rings: {
-          strokeWidth: 0
-        }
-      }
-    }
-    this.fill = {
-      opacity: 1
-    }
-    this.stroke = {
-      width: 1,
-      colors: undefined
     }
   }
 

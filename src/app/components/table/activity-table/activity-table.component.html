@@ -23,6 +23,19 @@
             type="date">
         </c-input-group>
 
+        <c-input-group sizing="sm" class="w-auto m-1 p-0">
+          <span cInputGroupText>{{Translations.application | translation | titlecase}}</span>
+          <select
+            sizing="sm"
+            [(ngModel)]="application"
+            (ngModelChange)="filterActivities()"
+            name="Application"
+            cSelect>
+            <option [ngValue]="''"></option>
+            <option *ngFor="let app of applications" [ngValue]="app.id">{{app.name}}</option>
+          </select>
+        </c-input-group>
+
         <c-input-group sizing="sm" class="w-auto m-1 p-0" *ngIf="showParticipant">
           <span cInputGroupText>{{Translations.participant | translation | titlecase}}</span>
           <select
@@ -36,18 +49,6 @@
           </select>
         </c-input-group>
 
-        <c-input-group sizing="sm" class="w-auto m-1 p-0">
-          <span cInputGroupText>{{Translations.application | translation | titlecase}}</span>
-          <select
-            sizing="sm"
-            [(ngModel)]="application"
-            (ngModelChange)="filterActivities()"
-            name="Application"
-            cSelect>
-            <option [ngValue]="''"></option>
-            <option *ngFor="let app of applications" [ngValue]="app.id">{{app.name}}</option>
-          </select>
-        </c-input-group>
       </c-col>
       <div class="col-auto p-0">
         <button
