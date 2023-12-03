@@ -1,6 +1,7 @@
 # VR dashboard client application
 
 This client is used to view and organise Vr data from various Virtual Reality applications.<br>
+It is communicating with [VR dashboard server](https://github.com/rehacekleos/vr_dashboard_be).
 
 The client application is written in Angular v16 using typescript.<br>
 
