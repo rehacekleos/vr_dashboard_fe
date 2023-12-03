@@ -8,11 +8,8 @@
     "coreui_library_docs_url": "https://coreui.io/angular/docs/"
   },
   "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
     "dev": "ng serve",
     "build": "ng build",
-    "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "check-translation": "node Prompts/translate-check.js",
     "generateApplicationSettingSchema": "npx ts-json-schema-generator --path './src/app/models/application.model.ts' --type 'ApplicationSetting' --out './src/assets/monaco-editor/settings-type.json'"
