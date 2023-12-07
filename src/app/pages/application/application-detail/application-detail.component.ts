@@ -7,6 +7,8 @@ import { Translations } from "../../../shared/translate/translate.model";
 import { TranslateService } from "@ngx-translate/core";
 import { CustomTranslateService } from "../../../shared/translate/services/custom-translate.service";
 import { CustomToastrService } from "../../../shared/services/custom-toastr.service";
+import { User } from "../../../models/user.model";
+import { AuthService } from "../../../auth/auth.service";
 
 @Component({
   selector: 'app-application-detail',
@@ -18,7 +20,9 @@ export class ApplicationDetailComponent extends TranslateComponent implements On
   application: Application;
   deleteModalOpen = false;
   addModuleModalOpen = false;
+  user: User;
   constructor(private applicationService: ApplicationService,
+              private authService: AuthService,
               private translateService: CustomTranslateService,
               private route: ActivatedRoute,
               private toaster: CustomToastrService,
@@ -27,6 +31,9 @@ export class ApplicationDetailComponent extends TranslateComponent implements On
   }
 
   ngOnInit(): void {
+    this.user = this.authService.getCurrentUser();
+    console.log(this.user);
+
     this.route.params.subscribe(async params => {
       this.application = await this.applicationService.getApplication(params.applicationId);
     });

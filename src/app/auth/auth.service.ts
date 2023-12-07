@@ -30,7 +30,6 @@ export class AuthService extends HttpService{
         this.token = val.token;
         SessionStorageUtil.saveValue("auth", val);
         await this.orgService.getOrganisations();
-        console.log("route")
         await this.router.navigate(['']);
       } else if (val === null) {
         this.user = undefined;
@@ -56,6 +55,17 @@ export class AuthService extends HttpService{
     this.$authResponse.next(res);
   }
 
+  async getActualInformation(){
+    const res = await firstValueFrom(this.http.get<User>(this.createUrl('/information')));
+    this.$user.next(res);
+    const sessionVal: AuthResponse = SessionStorageUtil.getValue("auth");
+    const newSession: AuthResponse = {
+      token: sessionVal.token,
+      user: res
+    }
+    SessionStorageUtil.saveValue("auth", newSession);
+  }
+
   getCurrentUser() {
     if (this.user) {
       return this.user;
@@ -65,6 +75,7 @@ export class AuthService extends HttpService{
       this.token = sessionVal.token;
       this.user = sessionVal.user;
       this.$user.next(sessionVal.user);
+      this.getActualInformation().then();
       return sessionVal.user;
     }
 

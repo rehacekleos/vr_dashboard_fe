@@ -8,10 +8,10 @@ export class AdminGuard implements CanActivate{
   constructor(private authService: AuthService, private route: Router) {
   }
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+  async canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
     const user = this.authService.getCurrentUser();
-    if (!user && user.superAdmin !== true){
-      this.route.navigate([""])
+    if (!user || (user.superAdmin !== true && user.developer !== true)){
+      await this.route.navigate([""])
       return false;
     }
     return true;

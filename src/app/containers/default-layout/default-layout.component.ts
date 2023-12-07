@@ -5,6 +5,8 @@ import { CustomTranslateService } from "../../shared/translate/services/custom-t
 import { Translations } from "../../shared/translate/translate.model";
 import { firstValueFrom, lastValueFrom } from "rxjs";
 import { J } from "@angular/cdk/keycodes";
+import { AuthService } from "../../auth/auth.service";
+import { INavData } from "@coreui/angular";
 
 @Component({
   selector: 'app-dashboard',
@@ -13,9 +15,10 @@ import { J } from "@angular/cdk/keycodes";
 })
 export class DefaultLayoutComponent implements OnInit{
 
-  public navItems
+  public navItems: INavData[]
 
-  constructor(private translateService: CustomTranslateService) {
+  constructor(private translateService: CustomTranslateService,
+              private authService: AuthService) {
 
   }
 
@@ -36,10 +39,18 @@ export class DefaultLayoutComponent implements OnInit{
   }
 
   async setNavItems() {
-    const copy = JSON.parse(JSON.stringify(navItems));
+    const user = this.authService.getCurrentUser();
+    console.log(user);
+    let copy: INavData[] = JSON.parse(JSON.stringify(navItems));
+
+    if (!user.superAdmin && !user.developer){
+      copy = copy.filter(i => !i.attributes || !i.attributes.administrator === true);
+    }
+
     for (let i = 0; i < copy.length; i++) {
       copy[i].name = await firstValueFrom(this.translateService.get(copy[i].name))
     }
+
     this.navItems = copy;
   }
 }

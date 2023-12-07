@@ -1,7 +1,7 @@
 <c-container>
   <div class="d-flex flex-row align-items-center justify-content-between mb-2">
     <h2 class="m-0">{{Translations.application | translation | titlecase}}</h2>
-    <div>
+    <div *ngIf="user && (user.superAdmin || user.developer)">
       <button class="btn btn-primary btn-sm me-2" (click)="changeModalVisibility(true)">
         <iconify icon="mdi:add"/>
         {{Translations.Actions.addModule | translation}}</button>
@@ -27,6 +27,7 @@
               <app-json-editor class="d-flex flex-grow-1"
                                [title]="Translations.settings | translation | titlecase"
                                [json]="application.setting"
+                               [user]="user"
                                (onJsonChanged)="onChangeSetting($event)"
               />
             </c-col>

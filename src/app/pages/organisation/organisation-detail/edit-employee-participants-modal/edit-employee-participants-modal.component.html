@@ -1,0 +1,34 @@
+<c-modal size="lg" alignment="center" [scrollable]="true" [visible]="open" (visibleChange)="visibleChange($event)">
+
+  <c-modal-header>
+    <h5 cModalTitle>
+      <iconify size="lg" icon="cil-user"/>
+      {{Translations.assign.participantsFor_$ | translation:{param: this.employee?.user?.email} }}
+    </h5>
+    <button (click)="visibleChange(false)" cButtonClose></button>
+  </c-modal-header>
+  <c-modal-body>
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+        <tr>
+          <th>{{ Translations.nickname | translation | titlecase }}</th>
+          <th>{{ Translations.assigned | translation | titlecase }}</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let par of allParticipants">
+          <td>{{par.nickname}}</td>
+          <td><input type="checkbox" [checked]="isAssigned(par.id)" (click)="changeAssignment(par.id)"></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </c-modal-body>
+  <c-modal-footer>
+    <button (click)="visibleChange(false)" cButton color="secondary">
+      {{Translations.Actions.close | translation | titlecase}}
+    </button>
+    <button cButton color="primary" (click)="onSubmit()">{{Translations.Actions.add | translation | titlecase}}</button>
+  </c-modal-footer>
+</c-modal>

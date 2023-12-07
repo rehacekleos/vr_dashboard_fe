@@ -25,6 +25,7 @@ import { CreateOrganisationModalComponent } from './create-organisation-modal/cr
 import { PagesModule } from "../pages.module";
 import { SharedModule } from "../../shared/shared.module";
 import { JoinOrganisationModalComponent } from './join-organisation-modal/join-organisation-modal.component';
+import { EditEmployeeParticipantsModalComponent } from './organisation-detail/edit-employee-participants-modal/edit-employee-participants-modal.component';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { JoinOrganisationModalComponent } from './join-organisation-modal/join-o
     NewInvitationFormComponent,
     OrganisationDetailComponent,
     CreateOrganisationModalComponent,
-    JoinOrganisationModalComponent
+    JoinOrganisationModalComponent,
+    EditEmployeeParticipantsModalComponent
   ],
   exports: [
     CreateOrganisationModalComponent

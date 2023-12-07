@@ -31,7 +31,7 @@ export class ApplicationModuleComponent implements OnInit{
 
   getApplicationModule() {
     const params = `?application_identifier=${this.application.identifier}&&organisation_code=${this.organisation.code}&&activity_id=${this.activityId}&&environment_id=${this.environmentId}`
-    return this.sanitizer.bypassSecurityTrustResourceUrl(`${environment.apiUrl}/public/modules/${this.application.id}/${this.moduleVersion}/${params}`);
+    return this.sanitizer.bypassSecurityTrustResourceUrl(`${environment.apiUrl}/webgl/modules/${this.application.id}/${this.moduleVersion}/${params}`);
   }
 
 

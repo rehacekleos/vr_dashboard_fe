@@ -5,13 +5,14 @@ import dayjs from "dayjs";
 import { NewApplication } from "../../../models/application.model";
 import { ApplicationService } from "../../../shared/services/app/application.service";
 import { TranslateComponent } from "../../../shared/translate/translate.component";
+import { AuthService } from "../../../auth/auth.service";
 
 @Component({
   selector: 'app-new-application-modal',
   templateUrl: './new-application-modal.component.html',
   styleUrls: ['./new-application-modal.component.scss']
 })
-export class NewApplicationModalComponent extends TranslateComponent{
+export class NewApplicationModalComponent extends TranslateComponent {
   submitForm: Subject<any> = new Subject<any>()
 
   newApplication: NewApplication = {
@@ -23,7 +24,8 @@ export class NewApplicationModalComponent extends TranslateComponent{
   @Input() open: boolean;
   @Output() visibleChanged: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  constructor(private applicationService: ApplicationService) {
+  constructor(private applicationService: ApplicationService,
+              private authService: AuthService) {
     super()
   }
 
@@ -39,7 +41,7 @@ export class NewApplicationModalComponent extends TranslateComponent{
 
   async onSubmitForm($event: NewApplication) {
     try {
-      await this.applicationService.createApplication($event);
+      await this.applicationService.createApplication($event, this.authService.getCurrentUser());
       this.visibleChanged.emit(false);
     } catch (e) {
       console.log(e);

@@ -19,7 +19,7 @@
       </c-col>
     </c-row>
   </div>
-  <div class="mt-3">
+  <div class="mt-3" *ngIf="user.superAdmin && organisations">
     <c-row>
       <div class="d-flex flex-row align-items-center justify-content-between mb-2">
         <h4 class="m-0 text-capitalize">{{Translations.organisations | translation}}</h4>

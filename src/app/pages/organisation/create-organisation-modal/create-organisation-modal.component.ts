@@ -25,6 +25,7 @@ export class CreateOrganisationModalComponent extends TranslateComponent{
   createError: string = null;
 
   constructor(private orgService: OrganisationService,
+              private authService: AuthService,
               private router: Router) {
     super();
   }
@@ -40,7 +41,7 @@ export class CreateOrganisationModalComponent extends TranslateComponent{
   async onCreateSubmit($event: NewOrganisation) {
     this.createActive = true;
     try {
-      await this.orgService.createOrganisation($event);
+      await this.orgService.createOrganisation($event, this.authService.getCurrentUser());
       this.createActive = false;
       this.visibleChanged.emit(false);
       await this.router.navigate([""]);

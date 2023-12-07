@@ -71,7 +71,7 @@ export class NoOrganisationComponent extends TranslateComponent implements OnIni
   async onCreateSubmit($event: NewOrganisation) {
     this.createActive = true;
     try {
-      await this.orgService.createOrganisation($event);
+      await this.orgService.createOrganisation($event, this.authService.getCurrentUser());
       this.createActive = false;
       await this.router.navigate([""]);
     } catch (e) {

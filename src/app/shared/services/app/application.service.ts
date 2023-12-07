@@ -5,6 +5,7 @@ import { OrganisationService } from "./organisation.service";
 import { BehaviorSubject, firstValueFrom } from "rxjs";
 import { AddModule, Application, NewApplication } from "../../../models/application.model";
 import { AdminService } from "./admin.service";
+import { User } from "../../../models/user.model";
 
 @Injectable({
   providedIn: 'root'
@@ -28,10 +29,10 @@ export class ApplicationService extends HttpService {
     this.$applications.next(res);
   }
 
-  async createApplication(body: NewApplication) {
+  async createApplication(body: NewApplication, user: User) {
     await firstValueFrom(this.http.post<Application[]>(this.createUrl(''), body));
     await this.getApplications();
-    await this.adminService.getAllApplications();
+    await this.adminService.getAllApplications(user);
   }
 
   async assignApplication(applicationId: string) {

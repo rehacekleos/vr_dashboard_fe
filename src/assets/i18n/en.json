@@ -50,7 +50,8 @@
     "invite": "invite",
     "assign": "assign",
     "addModule": "Add application module",
-    "showModule": "Show module"
+    "showModule": "Show module",
+    "settings": "settings"
   },
 
   "noOrganisation": "You dont have any organisations.",

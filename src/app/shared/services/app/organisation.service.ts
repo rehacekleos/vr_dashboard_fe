@@ -4,6 +4,7 @@ import { HttpClient } from "@angular/common/http";
 import { NewOrganisation, Organisation } from "../../../models/organisation.model";
 import { Injectable } from "@angular/core";
 import { AdminService } from "./admin.service";
+import { User } from "../../../models/user.model";
 
 @Injectable({
   providedIn: 'root'
@@ -48,11 +49,11 @@ export class OrganisationService extends HttpService{
     return res;
   }
 
-  async createOrganisation(newOrg: NewOrganisation){
+  async createOrganisation(newOrg: NewOrganisation, user: User){
     const res = await firstValueFrom(this.http.post<Organisation>(this.createUrl(''), newOrg));
     this.$selectedOrganisation.next(res);
     await this.getOrganisations();
-    await this.adminService.getAllOrganisations();
+    await this.adminService.getAllOrganisations(user);
   }
 
 

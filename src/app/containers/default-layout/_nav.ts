@@ -31,6 +31,8 @@ export const navItems: INavData[] = [
     name: Translations.admin,
     url: '/admin',
     iconComponent: {name: 'cil-settings'},
+    attributes: {
+      administrator: true
+    }
   },
-
 ];

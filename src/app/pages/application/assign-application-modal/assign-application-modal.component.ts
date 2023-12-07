@@ -5,6 +5,7 @@ import { TranslateComponent } from "../../../shared/translate/translate.componen
 import { NgForm } from "@angular/forms";
 import { AdminService } from "../../../shared/services/app/admin.service";
 import { combineLatest, combineLatestAll } from "rxjs";
+import { AuthService } from "../../../auth/auth.service";
 
 @Component({
   selector: 'app-assign-application-modal',
@@ -24,6 +25,7 @@ export class AssignApplicationModalComponent extends TranslateComponent implemen
   init = false;
 
   constructor(private applicationService: ApplicationService,
+              private authService: AuthService,
               private adminService: AdminService) {
     super()
   }
@@ -45,7 +47,7 @@ export class AssignApplicationModalComponent extends TranslateComponent implemen
     if (changes.open) {
       this.open = changes.open.currentValue;
       if (this.open) {
-        await this.adminService.getAllApplications();
+        await this.adminService.getAllApplications(this.authService.getCurrentUser());
       }
     }
   }

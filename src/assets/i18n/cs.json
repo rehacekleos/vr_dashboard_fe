@@ -33,6 +33,7 @@
   "compare": "porovnání",
   "cancelCompare": "Zrušit porovnání",
   "submitCompare": "porovnat",
+  "assigned": "přiřazen",
 
   "Actions": {
     "select": "vybrat",
@@ -50,7 +51,10 @@
     "invite": "pozvat",
     "assign": "přiřadit",
     "addModule": "Přidat aplikační modul",
-    "showModule": "Zobrazit modul"
+    "addParticipants": "Přidat participanty",
+    "deleteEmployee": "Odstranit zaměstnance",
+    "showModule": "Zobrazit modul",
+    "settings": "nastavení"
   },
 
   "noOrganisation": "Nemáte žádné organizace.",
@@ -66,6 +70,10 @@
     "module": "Přidat aplikační modul"
   },
 
+  "assign": {
+    "participantsFor_$": "Přiřadit participanty pro: {{param}}"
+  },
+
   "edit": {
     "participant": "Upravit participanta"
   },
@@ -73,6 +81,7 @@
   "delete": {
     "participant": "Odstranit participanta",
     "invitation": "Odstranit pozvánku",
+    "employee": "Odstranit zaměstnance",
     "activity": "Odstranit aktivitu",
     "application": "odstranit aplikaci"
   },
@@ -81,6 +90,7 @@
     "delete": {
       "participant_$": "Opravdu chcete odstranit participanta s přezdívkou: {{param}}?",
       "invitation_$": "Opravdu chcete odstranit pozvánku s emailem: {{param}}?",
+      "employee_$": "Opravdu chcete odstranit zaměstnance s emailem: {{param}}?",
       "activity": "Opravdu chcete odstranit aktivitu?",
       "application_$": "Opravdu chcete odstranit aplikaci s kódem: {{param}}?\nPo odstranění je možné, že přestanou fungovat VR aplikace!"
     }
@@ -149,12 +159,14 @@
     "update": {
       "participant": "Participant byl aktualizován.",
       "invitation": "Pozvánka byla obnovena.",
+      "role": "Role byla změněna.",
       "note": "Poznámka byla upravena.",
       "setting": "Nastavení bylo aktualizováno."
     },
     "delete": {
       "participant": "Participant byl odstraněn!",
       "invitation": "Pozvánka byla odstraněna!",
+      "employee": "Zaměstnanec byl odstraněn!",
       "activity": "Aktivita byla odstraněna!"
     },
     "selected": {

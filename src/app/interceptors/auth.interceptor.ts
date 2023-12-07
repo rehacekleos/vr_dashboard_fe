@@ -12,11 +12,14 @@ import { AuthService } from "../auth/auth.service";
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService) {
+  }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     // Do not filter auth api calls without auth middleware
-    if (request.url.startsWith(environment.apiUrl + '/auth')) {
+    if (request.url.startsWith(environment.apiUrl + '/auth/login') ||
+      request.url.startsWith(environment.apiUrl + '/auth/logout')
+    ) {
       return next.handle(request);
     }
 

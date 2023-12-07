@@ -4,6 +4,8 @@ import { Application } from "../../models/application.model";
 import { ApplicationService } from "../../shared/services/app/application.service";
 import { AdminService } from "../../shared/services/app/admin.service";
 import { Organisation } from "../../models/organisation.model";
+import { AuthService } from "../../auth/auth.service";
+import { User } from "../../models/user.model";
 
 @Component({
   selector: 'app-admin',
@@ -18,13 +20,18 @@ export class AdminComponent extends TranslateComponent{
   organisations: Organisation[]
   openOrganisationModal = false;
 
-  constructor(private adminService: AdminService) {
+  user: User;
+
+  constructor(private adminService: AdminService,
+              private authService: AuthService) {
     super()
   }
 
-  async ngOnInit(): Promise<void> {
-    await this.adminService.getAllApplications();
-    await this.adminService.getAllOrganisations();
+  async ngOnInit(): Promise<void>{
+    this.user = this.authService.getCurrentUser();
+    await this.adminService.getAllApplications(this.user);
+    await this.adminService.getAllOrganisations(this.user);
+
 
     this.adminService.$applications.subscribe(a => {
       this.applications = a;

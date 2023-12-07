@@ -15,7 +15,6 @@ export class OrganisationsGuard implements CanActivate {
       currentOrganisations = await this.orgService.getOrganisations();
     }
     if (!currentOrganisations || currentOrganisations.length < 1) {
-      console.log("reroute")
       await this.router.navigate(['/no-organisation']);
       return false;
     }

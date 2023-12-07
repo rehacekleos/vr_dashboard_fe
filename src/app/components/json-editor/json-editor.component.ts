@@ -6,6 +6,7 @@ import IStandaloneCodeEditor = editor.IStandaloneCodeEditor;
 
 import * as settingSchema from '../../../assets/monaco-editor/settings-type.json';
 import { ChangeDetection } from "@angular/cli/lib/config/workspace-schema";
+import { User } from "../../models/user.model";
 
 @Component({
   selector: 'app-json-editor',
@@ -16,6 +17,7 @@ export class JsonEditorComponent extends TranslateComponent implements OnInit {
 
   @Input({required: true}) title: string;
   @Input({required: true}) json: any;
+  @Input({required: true}) user: User;
 
   value = "";
 
@@ -48,6 +50,8 @@ export class JsonEditorComponent extends TranslateComponent implements OnInit {
     } else {
       this.value = JSON.stringify(this.json, null, 2);
     }
+
+    this.editorOptions.readOnly = !(this.user.superAdmin || this.user.developer);
   }
 
   textChanged($event: any) {
