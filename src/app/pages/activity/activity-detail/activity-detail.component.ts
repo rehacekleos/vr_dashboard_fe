@@ -14,6 +14,7 @@ import { Translations } from "../../../shared/translate/translate.model";
 import { CustomToastrService } from "../../../shared/services/custom-toastr.service";
 import { combineLatest } from "rxjs";
 import { DomSanitizer } from "@angular/platform-browser";
+import { CustomDataUtils } from "../../../shared/utils/customDataUtils";
 
 dayjs.extend(duration)
 
@@ -63,7 +64,7 @@ export class ActivityDetailComponent extends TranslateComponent implements OnIni
         this.environments = this.getEnvironments(this.activity.data);
         this.selectedEnvironment = this.environments[0];
         this.getEnvRecords();
-        this.customData = this.getCustomData();
+        this.customData = [...this.getCustomData(), ...this.getRecordsCustomData()];
       }
     })
 
@@ -126,28 +127,61 @@ export class ActivityDetailComponent extends TranslateComponent implements OnIni
     this.deleteModalOpen = true;
   }
 
-  hasCustomData() {
-    return this.activity.data.custom_data && this.application?.setting && typeof this.application?.setting === "object"
+  getCustomData(): CustomDataDisplay[] {
+    const settings = this.application.setting as ApplicationSetting;
+    const data = this.activity?.data?.custom_data;
+
+    // Check if application has set custom data and activity has custom data
+    if (settings?.custom_data && data) {
+      const res: CustomDataDisplay[] = [];
+      const currentLang = this.translateService.currentLang;
+      for (const set of settings.custom_data) {
+        res.push({
+          title: set.languages[currentLang],
+          value: data[set.path]
+        })
+      }
+      return res;
+    } else {
+      return [];
+    }
   }
 
-  getCustomData(): CustomDataDisplay[] {
-    if (this.hasCustomData()) {
-      const settings = this.application.setting as ApplicationSetting;
-      if (settings.custom_data) {
-        const res: CustomDataDisplay[] = [];
-        const data = this.activity.data.custom_data;
-        const currentLang = this.translateService.currentLang;
-        for (const set of settings.custom_data) {
-          res.push({
-            title: set.languages[currentLang],
-            value: data[set.path]
-          })
-        }
-        return res;
-      } else {
-        return [];
-      }
+  getRecordsCustomData(): CustomDataDisplay[] {
+    const settings = this.application.setting as ApplicationSetting;
 
+    // Check if application has set record custom data
+    if (settings.records_custom_data && settings.records_custom_data.length > 0) {
+      const res: CustomDataDisplay[] = [];
+      const currentLang = this.translateService.currentLang;
+      for (const set of settings.records_custom_data) {
+        // Record custom data only accept number values
+        let value: number = 0;
+        const values = this.environmentsRecords.filter(r => r.custom_data && r.custom_data[set.path] && typeof r.custom_data[set.path] === "number").map(r => r.custom_data[set.path]);
+        if (values.length > 0){
+          switch (set.type){
+            case "avg":
+              value = CustomDataUtils.getAvgValue(values);
+              break;
+            case "sum":
+              value = CustomDataUtils.getSumValue(values);
+              break;
+            case "min":
+              value = CustomDataUtils.getMinValue(values);
+              break;
+            case "max":
+              value = CustomDataUtils.getMaxValue(values);
+              break;
+            default:
+              continue;
+          }
+        }
+        res.push({
+          title: set.languages[currentLang],
+          value: value.toFixed(2)
+        });
+      }
+      return res;
     } else {
       return [];
     }

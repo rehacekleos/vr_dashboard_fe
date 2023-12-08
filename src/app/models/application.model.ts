@@ -37,7 +37,14 @@ export type ApplicationSetting = {
   module_version_mapping: {
     [module_version: string]: string[]
   }
-  records_custom_data: any
+  records_custom_data: {
+    path: string;
+    languages: {
+      "cs": string;
+      "en": string;
+    }
+    type: "sum" | "avg" | "max" | "min";
+  }[]
   graphs: GraphSetting[]
 }
 

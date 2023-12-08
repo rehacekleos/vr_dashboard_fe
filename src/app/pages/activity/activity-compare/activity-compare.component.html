@@ -19,7 +19,7 @@
             <p class="m-0" *ngIf="activity.participantId"><span class="fw-bolder">{{Translations.participant | translation | titlecase}}
               | </span>{{getParticipant(activity)?.nickname}}</p>
             <p class="m-0"><span class="fw-bolder">{{Translations.application | translation | titlecase}}
-              | </span>{{getApplication(activity)?.name}}</p>
+              | </span>{{application.name}}</p>
             <p class="m-0 text-wrap"><span class="fw-bolder">{{Translations.notes | translation | titlecase}}
               | </span>{{activity.notes}}</p>
           </c-col>
@@ -42,6 +42,48 @@
         <c-row class="flex-nowrap">
           <c-col class="compare-col text-nowrap" *ngFor="let envRecords of environmentsRecords">
             <app-records-statistics [records]="envRecords"/>
+            <c-row *ngFor="let graph of application.setting.graphs">
+              <hr class="my-3">
+              <app-rotation-chart
+                *ngIf="graph.type === 'rotation' && graph.display === true"
+                [part]="graph.part"
+                [records]="envRecords"
+                [graphSetting]="graph"
+                [appSetting]="application.setting"
+              />
+
+              <app-rotation-polar-chart
+                *ngIf="graph.type === 'rotation-polar' && graph.display === true"
+                [part]="graph.part"
+                [records]="envRecords"
+                [axis]="graph.axis"
+                [appSetting]="application.setting"
+              />
+
+              <app-position-chart
+                *ngIf="graph.type === 'position' && graph.display === true"
+                [part]="graph.part"
+                [records]="envRecords"
+                [appSetting]="application.setting"
+              />
+
+              <app-positional-differential-chart
+                *ngIf="graph.type === 'position-differential' && graph.display === true"
+                [part]="graph.part"
+                [graphSetting]="graph"
+                [records]="envRecords"
+                [appSetting]="application.setting"
+              />
+
+              <app-heatmap-chart
+                *ngIf="graph.type === 'position-heatmap' && graph.display === true"
+                [records]="envRecords"
+                [part]="graph.part"
+                [graphSetting]="graph"
+                [appSetting]="application.setting"
+              />
+
+            </c-row>
           </c-col>
         </c-row>
       </div>

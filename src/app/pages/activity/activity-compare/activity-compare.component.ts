@@ -24,6 +24,7 @@ export class ActivityCompareComponent extends TranslateComponent implements OnIn
 
   environments: string[];
   selectedEnvironment: string;
+  application: Application;
   environmentsRecords: Record[][];
 
   constructor(private activityService: ActivityService,
@@ -49,6 +50,7 @@ export class ActivityCompareComponent extends TranslateComponent implements OnIn
         }
 
         this.activities = await this.activityService.getActivitiesByIds(ids);
+        this.application = this.applications.find(p => p.id === this.activities[0].applicationId);
         this.environments = this.getEnvironments(this.activities);
         this.selectedEnvironment = this.environments[0];
         this.getEnvRecords();
@@ -93,9 +95,5 @@ export class ActivityCompareComponent extends TranslateComponent implements OnIn
 
   getParticipant(activity: Activity): Participant {
     return this.participants.find(p => p.id === activity.participantId);
-  }
-
-  getApplication(activity: Activity): Application {
-    return this.applications.find(p => p.id === activity.applicationId);
   }
 }
