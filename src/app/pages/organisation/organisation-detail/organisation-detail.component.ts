@@ -175,6 +175,7 @@ export class OrganisationDetailComponent extends TranslateComponent implements O
   async updateAssignment($event: string[]) {
     try {
       await this.empService.changeAssignment(this.editEmployee, $event);
+      this.toastr.showToastMessage(this.translationService.instantTranslation(Translations.messages.assign.participants));
       this.openEditParticipantsModal = false;
       this.editEmployee = null;
     } catch (e) {

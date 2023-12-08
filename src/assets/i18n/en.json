@@ -33,6 +33,7 @@
   "compare": "comparison",
   "cancelCompare": "Cancel comparison",
   "submitCompare": "compare",
+  "assigned": "assign",
 
   "Actions": {
     "select": "select",
@@ -51,7 +52,9 @@
     "assign": "assign",
     "addModule": "Add application module",
     "showModule": "Show module",
-    "settings": "settings"
+    "settings": "settings",
+    "addParticipants": "Add participants",
+    "deleteEmployee": "Delete employee"
   },
 
   "noOrganisation": "You dont have any organisations.",
@@ -67,6 +70,10 @@
     "module": "Add application module"
   },
 
+  "assign": {
+    "participantsFor_$": "Assign participants for: {{param}}"
+  },
+
   "edit": {
     "participant": "Edit participant"
   },
@@ -74,6 +81,7 @@
   "delete": {
     "participant": "Delete participant",
     "invitation": "Delete invitation",
+    "employee": "Delete employee",
     "activity": "Delete activity",
     "application": "Delete application"
   },
@@ -82,6 +90,7 @@
     "delete": {
       "participant_$": "Do you really want to remove the participant with nickname: {{param}}?",
       "invitation_$": "Do you really want to remove the invitation with email: {{param}}?",
+      "employee_$": "Do you really want to remove the employee with the email: {{param}}?",
       "activity": "Do you really want to remove the activity?",
       "application_$": "Do you really want to remove the application with code: {{param}}?\nAfter the remove, maybe your VR application stop working!"
     }
@@ -150,16 +159,21 @@
     "update": {
       "participant": "Participant has been updated.",
       "invitation": "Invitation has been restored.",
+      "role": "Role has been changed.",
       "note": "Note has been updated.",
       "setting": "Settings have been updated."
     },
     "delete": {
       "participant": "Participant has been removed!",
       "invitation": "Invitation has been removed!",
-      "activity": "Activity has been removed!"
+      "activity": "Activity has been removed!",
+      "employee": "Employee has been removed!"
     },
     "selected": {
       "organisation$": "Organisation {{param}} has been selected."
+    },
+    "assign": {
+      "participants": "Participant assignments have been updated"
     }
   },
 

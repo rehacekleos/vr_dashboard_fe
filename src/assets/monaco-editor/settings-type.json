@@ -71,7 +71,48 @@
           },
           "type": "object"
         },
-        "records_custom_data": {}
+        "records_custom_data": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "languages": {
+                "additionalProperties": false,
+                "properties": {
+                  "cs": {
+                    "type": "string"
+                  },
+                  "en": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "cs",
+                  "en"
+                ],
+                "type": "object"
+              },
+              "path": {
+                "type": "string"
+              },
+              "type": {
+                "enum": [
+                  "sum",
+                  "avg",
+                  "max",
+                  "min"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "path",
+              "languages",
+              "type"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        }
       },
       "required": [
         "custom_data",

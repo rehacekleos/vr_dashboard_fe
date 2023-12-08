@@ -171,6 +171,9 @@
     },
     "selected": {
       "organisation$": "Organizace {{param}} byla vybrána."
+    },
+    "assign": {
+      "participants": "Přiřazení participantů bylo aktualizováno"
     }
   },
 
