@@ -30,7 +30,7 @@ export class LoginComponent extends TranslateComponent{
         await this.authService.login(login);
       } catch (e: any) {
         this.validated = false;
-        console.log(e)
+        console.error(e)
         this.error = e.error.message;
       }
     }

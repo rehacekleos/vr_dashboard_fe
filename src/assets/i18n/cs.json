@@ -163,6 +163,9 @@
       "note": "Poznámka byla upravena.",
       "setting": "Nastavení bylo aktualizováno."
     },
+    "created": {
+      "invitation_$": "The invitation has been created. Invitation code: {{param}}"
+    },
     "delete": {
       "participant": "Participant byl odstraněn!",
       "invitation": "Pozvánka byla odstraněna!",

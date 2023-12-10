@@ -69,7 +69,7 @@ export class ParticipantEditComponent extends TranslateComponent implements OnIn
       this.toaster.showToastMessage(this.translationService.instantTranslation(Translations.messages.update.participant));
       await this.router.navigate(['participant', this.participant.id])
     } catch (e) {
-      console.log(e);
+      console.error(e);
     }
   }
 

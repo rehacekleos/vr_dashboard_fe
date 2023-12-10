@@ -32,8 +32,6 @@ export class ApplicationDetailComponent extends TranslateComponent implements On
 
   ngOnInit(): void {
     this.user = this.authService.getCurrentUser();
-    console.log(this.user);
-
     this.route.params.subscribe(async params => {
       this.application = await this.applicationService.getApplication(params.applicationId);
     });

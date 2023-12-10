@@ -44,7 +44,7 @@ export class NewApplicationModalComponent extends TranslateComponent {
       await this.applicationService.createApplication($event, this.authService.getCurrentUser());
       this.visibleChanged.emit(false);
     } catch (e) {
-      console.log(e);
+      console.error(e);
     }
   }
 }

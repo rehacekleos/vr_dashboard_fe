@@ -61,7 +61,7 @@ export class NoOrganisationComponent extends TranslateComponent implements OnIni
     try {
       await this.invitationService.acceptInvitation($event);
       this.joinActive = false;
-      await this.router.navigate([""]);
+      await this.router.navigate([""], {fragment: "confirmInvitation"});
     } catch (e) {
       this.joinActive = false;
       this.joinError = e.error.message;
@@ -73,7 +73,7 @@ export class NoOrganisationComponent extends TranslateComponent implements OnIni
     try {
       await this.orgService.createOrganisation($event, this.authService.getCurrentUser());
       this.createActive = false;
-      await this.router.navigate([""]);
+      await this.router.navigate([""], {fragment: "confirmInvitation"});
     } catch (e) {
       this.createActive = false;
       this.createError = e.error.message;

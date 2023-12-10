@@ -40,7 +40,6 @@ export class DefaultLayoutComponent implements OnInit{
 
   async setNavItems() {
     const user = this.authService.getCurrentUser();
-    console.log(user);
     let copy: INavData[] = JSON.parse(JSON.stringify(navItems));
 
     if (!user.superAdmin && !user.developer){

@@ -11,7 +11,7 @@ export class OrganisationsGuard implements CanActivate {
 
   async canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
     let currentOrganisations = this.orgService.organisations;
-    if (!currentOrganisations){
+    if (!currentOrganisations || route.fragment === "confirmInvitation"){
       currentOrganisations = await this.orgService.getOrganisations();
     }
     if (!currentOrganisations || currentOrganisations.length < 1) {

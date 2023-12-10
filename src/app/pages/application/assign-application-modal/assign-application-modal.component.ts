@@ -69,7 +69,7 @@ export class AssignApplicationModalComponent extends TranslateComponent implemen
         this.visibleChanged.emit(false);
       } catch (e) {
         this.validated = false;
-        console.log(e);
+        console.error(e);
       }
     }
   }

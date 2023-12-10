@@ -102,7 +102,7 @@ export class OrganisationDetailComponent extends TranslateComponent implements O
       await this.invitationService.refreshInvitation(id);
       this.toastr.showToastMessage(this.translationService.instantTranslation(Translations.messages.update.invitation));
     } catch (e) {
-      console.log(e)
+      console.error(e)
     }
   }
 
@@ -113,7 +113,7 @@ export class OrganisationDetailComponent extends TranslateComponent implements O
       this.invitationToDelete = null;
       this.deleteModalOpen = false;
     } catch (e) {
-      console.log(e)
+      console.error(e)
     }
   }
 
@@ -124,7 +124,7 @@ export class OrganisationDetailComponent extends TranslateComponent implements O
       this.employeeToDelete = null;
       this.deleteModalOpen = false;
     } catch (e) {
-      console.log(e);
+      console.error(e);
     }
   }
 
@@ -158,7 +158,7 @@ export class OrganisationDetailComponent extends TranslateComponent implements O
       await this.empService.changeRole(emp, $event);
       this.toastr.showToastMessage(this.translationService.instantTranslation(Translations.messages.update.role));
     } catch (e) {
-      console.log(e)
+      console.error(e)
     }
   }
 
@@ -179,7 +179,7 @@ export class OrganisationDetailComponent extends TranslateComponent implements O
       this.openEditParticipantsModal = false;
       this.editEmployee = null;
     } catch (e) {
-      console.log(e);
+      console.error(e);
     }
   }
 }

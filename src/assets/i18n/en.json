@@ -163,6 +163,9 @@
       "note": "Note has been updated.",
       "setting": "Settings have been updated."
     },
+    "created": {
+      "invitation_$": "Invivation byla vytvořena. Kód pozvánky: {{param}}"
+    },
     "delete": {
       "participant": "Participant has been removed!",
       "invitation": "Invitation has been removed!",

@@ -8,6 +8,8 @@ import { InvitationService } from "../../../../shared/services/app/invitation.se
 import { ToastrService } from "ngx-toastr";
 import { CustomToastrService } from "../../../../shared/services/custom-toastr.service";
 import { TranslateComponent } from "../../../../shared/translate/translate.component";
+import { CustomTranslateService } from "../../../../shared/translate/services/custom-translate.service";
+import { Translations } from "../../../../shared/translate/translate.model";
 
 @Component({
   selector: 'app-new-invitation-modal',
@@ -28,6 +30,7 @@ export class NewInvitationModalComponent extends TranslateComponent{
   @Output() visibleChanged: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor(private inviteService: InvitationService,
+              private translateService: CustomTranslateService,
               private toastr: CustomToastrService) {
     super();
   }
@@ -44,11 +47,10 @@ export class NewInvitationModalComponent extends TranslateComponent{
     try {
       const res = await this.inviteService.createInvitation($event);
       this.error = null;
-      console.log(res);
-      this.toastr.showToastMessage(`Invitation created.\n Code: ${res.code}`, 10000);
+      this.toastr.showToastMessage(this.translateService.instantTranslation(Translations.messages.created.invitation_$, {param: res.code}), 10000);
       this.visibleChanged.emit(false);
     } catch (e) {
-      console.log(e);
+      console.error(e);
       this.error = e.error.message;
     }
   }
