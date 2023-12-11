@@ -67,7 +67,7 @@ export class CustomTranslateService extends TranslateService{
 
 }
 
-// Translate Navod:
+// Translate navod:
 // 	Vsude kde neni NUTNE potreba asynchroni preklad pouzivat TranslatePipeCustom
 // 		- v .html pouzivat ve formatu '<p>Translations.foo.baz | translation</p>'
 // 		- v .ts pouzivat ve formatu 'this.translateService.instant(Translations.foo.baz)'
@@ -77,9 +77,3 @@ export class CustomTranslateService extends TranslateService{
 // 		- v .ts pouzivat ve formatu 'this.translateService.instant(Translations.bar_$, { param: x-y })'
 //
 // 	V pripade nutnosti asynchroniho prekladu pouzit async metodu CustomTranslateService.getTranslation()
-//
-//
-//
-//  Translations => Translations
-//
-//  Tool na hlednani chybejicich klicu v jazykovych JSONech vuci anglictine. (npm run test_languages)

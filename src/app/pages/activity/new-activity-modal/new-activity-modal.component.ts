@@ -5,6 +5,7 @@ import { NewActivity } from "../../../models/activity.model";
 import dayjs from "dayjs";
 import { TranslateComponent } from "../../../shared/translate/translate.component";
 import { ActivityService } from "../../../shared/services/app/activity.service";
+import { Route, Router } from "@angular/router";
 
 @Component({
   selector: 'app-new-activity-modal',
@@ -25,7 +26,8 @@ export class NewActivityModalComponent extends TranslateComponent{
   @Input() open: boolean;
   @Output() visibleChanged: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  constructor(private activityService: ActivityService) {
+  constructor(private activityService: ActivityService,
+              private router: Router) {
     super();
   }
 
@@ -41,8 +43,9 @@ export class NewActivityModalComponent extends TranslateComponent{
 
   async onSubmitForm($event: NewActivity) {
     try {
-      await this.activityService.createActivity($event);
+      const activity = await this.activityService.createActivity($event);
       this.visibleChanged.emit(false);
+      await this.router.navigate(["/activity", activity.id]);
     } catch (e) {
       console.error(e)
     }
