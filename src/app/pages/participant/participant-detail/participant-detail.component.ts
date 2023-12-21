@@ -10,6 +10,9 @@ import { ApplicationService } from "../../../shared/services/app/application.ser
 import { Activity } from "../../../models/activity.model";
 import { ActivityService } from "../../../shared/services/app/activity.service";
 import { CustomToastrService } from "../../../shared/services/custom-toastr.service";
+import { CustomTranslateService } from "../../../shared/translate/services/custom-translate.service";
+import { TitleCasePipe } from "@angular/common";
+import { Translations } from "../../../shared/translate/translate.model";
 
 dayjs.extend(duration)
 
@@ -28,6 +31,8 @@ export class ParticipantDetailComponent extends TranslateComponent implements On
               private participantService: ParticipantService,
               private activityService: ActivityService,
               private toastr: CustomToastrService,
+              private translateService: CustomTranslateService,
+              private titleCasePipe: TitleCasePipe,
               private router: Router) {
     super()
   }
@@ -67,4 +72,11 @@ export class ParticipantDetailComponent extends TranslateComponent implements On
     await this.router.navigate(['participant', this.participant.id, 'edit'])
   }
 
+  getTranslateSex(sex: string) {
+    if (sex === ""){
+      return "";
+    }
+
+    return this.titleCasePipe.transform(this.translateService.instantTranslation(Translations.genders[sex]));
+  }
 }

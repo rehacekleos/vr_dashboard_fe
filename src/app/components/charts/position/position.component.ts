@@ -17,6 +17,7 @@ import {
 } from "ng-apexcharts";
 import { ChartUtil } from "../../../shared/utils/chartUtil";
 import { ApplicationSetting } from "../../../models/application.model";
+import { TitleCasePipe } from "@angular/common";
 
 @Component({
   selector: 'app-position-chart',
@@ -57,14 +58,29 @@ export class PositionComponent extends TranslateComponent implements OnInit, OnC
     position: "top"
   };
   annotations: ApexAnnotations;
-  tooltip: ApexTooltip = {};
+  tooltip: ApexTooltip;
 
-  constructor(private translateService: CustomTranslateService) {
+  constructor(private translateService: CustomTranslateService,
+              private titleCasePipe: TitleCasePipe) {
     super();
 
   }
 
   ngOnInit(): void {
+    const timeTranslate = this.titleCasePipe.transform(this.translateService.instantTranslation(Translations.time));
+
+    this.tooltip = {
+      y: {
+        title:{
+          formatter(seriesName: string): string {
+            return timeTranslate + ":";
+          }
+        },
+        formatter: function(value, { series, seriesIndex, dataPointIndex, w }) {
+          return dataPointIndex.toString()
+        }
+      }
+    }
 
     this.title = {
       text: this.translateService.instantTranslation(Translations.position[this.part].all),

@@ -24,7 +24,7 @@
   "file": "soubor",
   "anonymous": "anonym",
   "statistics": "statistiky",
-  "admin": "administrator",
+  "admin": "administrátor",
   "environment": "prostředí",
   "events": "události",
   "event": "událost",
@@ -114,6 +114,13 @@
   "gender": "pohlaví",
   "settings": "nastavení",
   "optional": "volitelné",
+  "none": "žádné",
+
+  "genders": {
+    "men": "muž",
+    "female": "žena",
+    "other": "ostatní"
+  },
 
   "profile": "profil",
   "basicInformation": "Obecné informace",

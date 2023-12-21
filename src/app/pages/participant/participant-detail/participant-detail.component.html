@@ -18,7 +18,7 @@
               <p class="m-0" *ngIf="participant.name"><span class="fw-bolder">{{Translations.name | translation | titlecase}} | </span>{{participant.name}}</p>
               <p class="m-0" *ngIf="participant.surname"><span class="fw-bolder">{{Translations.surname | translation | titlecase}} | </span>{{participant.surname}}</p>
               <p class="m-0" *ngIf="participant.birthday"><span class="fw-bolder">{{Translations.age | translation | titlecase}} | </span>{{getAge(participant.birthday)}}</p>
-              <p class="m-0" *ngIf="participant.sex"><span class="fw-bolder">{{Translations.gender | translation | titlecase}} | </span><span class="text-capitalize">{{participant.sex}}</span></p>
+              <p class="m-0" *ngIf="participant.sex"><span class="fw-bolder">{{Translations.gender | translation | titlecase}} | </span><span class="text-capitalize">{{getTranslateSex(participant.sex)}}</span></p>
             </c-col>
             <c-col xs>
               <p class="m-0 fw-bolder">{{Translations.notes | translation | titlecase}}</p>

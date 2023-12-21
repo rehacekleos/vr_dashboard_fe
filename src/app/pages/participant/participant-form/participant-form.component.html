@@ -49,10 +49,10 @@
       [ngModel]="newParticipant.sex"
       name="sex"
       cSelect>
-      <option value="">None</option>
-      <option value="men">Men</option>
-      <option value="female">Female</option>
-      <option value="other">Other</option>
+      <option value="">{{Translations.none | translation | titlecase}}</option>
+      <option value="men">{{Translations.genders.men | translation | titlecase}}</option>
+      <option value="female">{{Translations.genders.female | translation | titlecase}}</option>
+      <option value="other">{{Translations.genders.other | translation | titlecase}}</option>
     </select>
   </c-input-group>
   <label>{{Translations.notes | translation | titlecase}} <span class="text-muted small">({{Translations.optional | translation | titlecase}})</span></label>
