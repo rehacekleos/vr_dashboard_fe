@@ -61,10 +61,10 @@
   "joinOrganisation": "Připojit se k organizaci",
   "inviteEmployee": "Pozvat zaměstnance",
   "needToRefresh": "Je potřeba obnova",
-  "assignApplication": "Přiřadit aplikaci",
+  "assignApplication": "Přiřadit aplikaci k organizaci",
 
   "add": {
-    "application": "Přidat aplikaci",
+    "application": "Vytvořit aplikaci",
     "participant": "Přidat participanta",
     "activity": "Přidat aktivitu",
     "module": "Přidat aplikační modul"
