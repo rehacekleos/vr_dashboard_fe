@@ -34,6 +34,7 @@
   "cancelCompare": "Cancel comparison",
   "submitCompare": "compare",
   "assigned": "assign",
+  "noEnvData": "There is no data for this environment.",
 
   "Actions": {
     "select": "select",
@@ -114,6 +115,13 @@
   "gender": "gender",
   "settings": "settings",
   "optional": "optional",
+  "none": "none",
+
+  "genders": {
+    "men": "male",
+    "female": "female",
+    "other": "other"
+  },
 
   "profile": "profile",
   "basicInformation": "Basic information",
