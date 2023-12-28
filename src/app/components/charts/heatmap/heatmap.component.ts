@@ -31,11 +31,14 @@ export class HeatmapComponent extends TranslateComponent implements OnChanges {
       colorScale: {
         ranges: []
       }
-    }
+    },
   }
   chart: ApexChart = {
     height: 400,
-    type: "heatmap"
+    type: "heatmap",
+    toolbar: {
+      offsetY: 17,
+    }
   }
 
   constructor(private translateService: CustomTranslateService) {

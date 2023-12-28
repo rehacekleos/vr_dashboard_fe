@@ -47,6 +47,7 @@ export class RotationComponent extends TranslateComponent implements OnInit, OnC
       enabled: true
     },
     toolbar: {
+      offsetY: 17,
       autoSelected: "zoom"
     },
     animations: {

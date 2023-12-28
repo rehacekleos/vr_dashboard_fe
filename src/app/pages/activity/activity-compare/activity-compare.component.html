@@ -41,49 +41,55 @@
         <hr class="my-3">
         <c-row class="flex-nowrap">
           <c-col class="compare-col text-nowrap" *ngFor="let envRecords of environmentsRecords">
-            <app-records-statistics [records]="envRecords"/>
-            <c-row *ngFor="let graph of application.setting.graphs">
-              <hr class="my-3">
-              <app-rotation-chart
-                *ngIf="graph.type === 'rotation' && graph.display === true"
-                [part]="graph.part"
-                [records]="envRecords"
-                [graphSetting]="graph"
-                [appSetting]="application.setting"
-              />
+            <ng-container *ngIf="envRecords.length > 0; else noData">
+              <app-records-statistics [records]="envRecords"/>
+              <c-row *ngFor="let graph of application.setting.graphs">
+                <hr class="my-3">
+                <app-rotation-chart
+                  *ngIf="graph.type === 'rotation' && graph.display === true"
+                  [part]="graph.part"
+                  [records]="envRecords"
+                  [graphSetting]="graph"
+                  [appSetting]="application.setting"
+                />
 
-              <app-rotation-polar-chart
-                *ngIf="graph.type === 'rotation-polar' && graph.display === true"
-                [part]="graph.part"
-                [records]="envRecords"
-                [axis]="graph.axis"
-                [appSetting]="application.setting"
-              />
+                <app-rotation-polar-chart
+                  *ngIf="graph.type === 'rotation-polar' && graph.display === true"
+                  [part]="graph.part"
+                  [records]="envRecords"
+                  [axis]="graph.axis"
+                  [appSetting]="application.setting"
+                />
 
-              <app-position-chart
-                *ngIf="graph.type === 'position' && graph.display === true"
-                [part]="graph.part"
-                [records]="envRecords"
-                [appSetting]="application.setting"
-              />
+                <app-position-chart
+                  *ngIf="graph.type === 'position' && graph.display === true"
+                  [part]="graph.part"
+                  [records]="envRecords"
+                  [appSetting]="application.setting"
+                />
 
-              <app-positional-differential-chart
-                *ngIf="graph.type === 'position-differential' && graph.display === true"
-                [part]="graph.part"
-                [graphSetting]="graph"
-                [records]="envRecords"
-                [appSetting]="application.setting"
-              />
+                <app-positional-differential-chart
+                  *ngIf="graph.type === 'position-differential' && graph.display === true"
+                  [part]="graph.part"
+                  [graphSetting]="graph"
+                  [records]="envRecords"
+                  [appSetting]="application.setting"
+                />
 
-              <app-heatmap-chart
-                *ngIf="graph.type === 'position-heatmap' && graph.display === true"
-                [records]="envRecords"
-                [part]="graph.part"
-                [graphSetting]="graph"
-                [appSetting]="application.setting"
-              />
+                <app-heatmap-chart
+                  *ngIf="graph.type === 'position-heatmap' && graph.display === true"
+                  [records]="envRecords"
+                  [part]="graph.part"
+                  [graphSetting]="graph"
+                  [appSetting]="application.setting"
+                />
 
-            </c-row>
+              </c-row>
+            </ng-container>
+            <ng-template #noData>
+              <c-alert class="text-wrap" color="info">{{Translations.noEnvData | translation}}</c-alert>
+            </ng-template>
+
           </c-col>
         </c-row>
       </div>

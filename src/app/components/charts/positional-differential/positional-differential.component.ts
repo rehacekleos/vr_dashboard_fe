@@ -46,6 +46,7 @@ export class PositionalDifferentialComponent extends TranslateComponent implemen
       enabled: true,
     },
     toolbar: {
+      offsetY: 17,
       autoSelected: "zoom"
     },
     animations: {

@@ -42,6 +42,7 @@ export class PositionComponent extends TranslateComponent implements OnInit, OnC
       autoScaleYaxis: true
     },
     toolbar: {
+      offsetY: 17,
       autoSelected: "zoom"
     },
     animations: {

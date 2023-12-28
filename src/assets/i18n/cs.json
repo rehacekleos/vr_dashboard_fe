@@ -34,6 +34,7 @@
   "cancelCompare": "Zrušit porovnání",
   "submitCompare": "porovnat",
   "assigned": "přiřazen",
+  "noEnvData": "Pro dané prostředí nejsou žádné data.",
 
   "Actions": {
     "select": "vybrat",
