@@ -100,8 +100,8 @@ export class ActivityTableComponent extends TranslateComponent implements OnInit
       const activity: ActivityTable = {
         id: a.id,
         start: this.getStart(a),
-        participant: participant.nickname || "",
-        application: application.name || "",
+        participant: participant?.nickname || "",
+        application: application?.name || "",
         applicationId: application.id,
         participantId: participant.id
       }

@@ -24,7 +24,7 @@ import {
     PageLinkDirective,
     PaginationComponent,
     RowComponent,
-    TableDirective
+    TableDirective, TooltipDirective
 } from "@coreui/angular";
 import { ApplicationWidgetComponent } from './application-widget/application-widget.component';
 import { ConfirmationModalComponent } from './confirmation-modal/confirmation-modal.component';
@@ -106,7 +106,8 @@ import { NgApexchartsModule } from "ng-apexcharts";
         FormSelectDirective,
         InputGroupTextDirective,
         NgApexchartsModule,
-        FormCheckInputDirective
+        FormCheckInputDirective,
+        TooltipDirective
     ],
   providers: [
     TitleCasePipe

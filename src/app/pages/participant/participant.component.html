@@ -25,7 +25,7 @@
               <tbody>
               <tr *ngFor="let part of participants">
                 <td nowrap>
-                  <iconify class="text-primary pointer" icon="bxs:detail" (click)="goToDetail(part.id)"/>
+                  <iconify class="text-primary pointer" [cTooltip]="Translations.Actions.detail | translation | titlecase" icon="bxs:detail" (click)="goToDetail(part.id)"/>
                 </td>
                 <td nowrap>{{part.nickname}}</td>
                 <td nowrap>{{part.name || ''}}</td>

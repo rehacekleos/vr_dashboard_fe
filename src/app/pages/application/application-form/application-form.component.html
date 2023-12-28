@@ -16,13 +16,14 @@
     />
     <c-form-feedback [valid]="false">{{Translations.inputErrors.name | translation}}</c-form-feedback>
   </c-input-group>
-  <label>{{Translations.identifier | translation | titlecase}}</label>
+  <label>{{Translations.identifier | translation | titlecase}} <span class="text-muted">(com.example.application.2d)</span></label>
   <c-input-group class="mb-2 has-validation">
     <input
       required
       [(ngModel)]="newApplication.identifier"
       name="identifier"
       type="text"
+      pattern="[a-z\d.\-_]+"
       cFormControl
       [placeholder]="Translations.identifier | translation | titlecase"
     />

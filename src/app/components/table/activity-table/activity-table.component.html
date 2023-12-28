@@ -82,7 +82,7 @@
         <tbody>
         <tr *ngFor="let activity of filteredActivities">
           <td nowrap>
-            <iconify class="text-primary pointer" icon="bxs:detail" (click)="goToDetail(activity.id)"/>
+            <iconify class="text-primary pointer" [cTooltip]="Translations.Actions.detail | translation | titlecase" icon="bxs:detail" (click)="goToDetail(activity.id)"/>
           </td>
           <td *ngIf="comparing" nowrap class="text-center">
             <input

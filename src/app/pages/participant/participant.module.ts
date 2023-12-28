@@ -23,7 +23,7 @@ import {
     ModalHeaderComponent,
     ModalTitleDirective,
     RowComponent,
-    TableDirective
+    TableDirective, TooltipDirective
 } from "@coreui/angular";
 import { ComponentsModule } from "../../components/components.module";
 import { NewParticipantModalComponent } from './new-participant-modal/new-participant-modal.component';
@@ -69,7 +69,8 @@ import { SharedModule } from "../../shared/shared.module";
         ImgDirective,
         CardFooterComponent,
         AlertComponent,
-        SharedModule
+        SharedModule,
+        TooltipDirective
     ]
 })
 export class ParticipantModule { }

@@ -153,7 +153,7 @@
     "time": "Čas je povinný!",
     "participant": "Participant je povinný!",
     "role": "Role je povinná!",
-    "identifier": "Identifikátor je povinný!",
+    "identifier": "Identifikátor je povinný nebo má špatný formát!",
     "code": "Kód je povinný!",
     "organisationName": "Jméno organizace je povinné!",
     "invitationCode": "Kód pozvánky je povinný!",

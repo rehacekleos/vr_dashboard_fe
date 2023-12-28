@@ -153,7 +153,7 @@
     "time": "Time is mandatory!",
     "participant": "Participant is mandatory!",
     "role": "Role is mandatory!",
-    "identifier": "Identifier is mandatory!",
+    "identifier": "Identifier is mandatory or has wrong format!",
     "code": "Code is mandatory!",
     "organisationName": "Organisation name is mandatory!",
     "invitationCode": "Invitation code is mandatory!",

@@ -64,7 +64,12 @@
       </c-row>
       <c-row>
         <c-col class="w-100">
-          <app-records-statistics [records]="environmentsRecords"/>
+          <ng-container *ngIf="environmentsRecords.length > 0; else noData">
+            <app-records-statistics [records]="environmentsRecords"/>
+          </ng-container>
+          <ng-template #noData>
+            <c-alert class="text-wrap" color="info">{{Translations.noEnvData | translation}}</c-alert>
+          </ng-template>
         </c-col>
       </c-row>
 
