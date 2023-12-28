@@ -1,13 +1,15 @@
 <c-container>
   <div class="d-flex flex-row align-items-center justify-content-between mb-2">
-    <h2 class="m-0">{{Translations.application | translation | titlecase}}</h2>
+    <h2 class="m-0">{{ Translations.application | translation | titlecase }}</h2>
     <div *ngIf="user && (user.superAdmin || user.developer)">
       <button class="btn btn-primary btn-sm me-2" (click)="changeModalVisibility(true)">
         <iconify icon="mdi:add"/>
-        {{Translations.Actions.addModule | translation}}</button>
+        {{ Translations.Actions.addModule | translation }}
+      </button>
       <button class="btn btn-danger btn-sm" (click)="openConfirmModal()">
         <iconify icon="mdi:trash"/>
-        {{Translations.Actions.delete | translation | titlecase}}</button>
+        {{ Translations.Actions.delete | translation | titlecase }}
+      </button>
     </div>
   </div>
 
@@ -15,13 +17,13 @@
     <c-card-body>
       <c-row>
         <c-col>
-          <h5>{{Translations.basicInformation | translation}}</h5>
+          <h5>{{ Translations.basicInformation | translation }}</h5>
           <c-row>
             <c-col [xs]="6">
-              <p class="m-0"><span class="fw-bolder">{{Translations.name | translation | titlecase}} | </span>{{application.name}}</p>
+              <p class="m-0"><span class="fw-bolder">{{ Translations.name | translation | titlecase }} | </span>{{ application.name }}</p>
             </c-col>
             <c-col [xs]="6">
-              <p class="m-0"><span class="fw-bolder">{{Translations.identifier | translation | titlecase}} | </span>{{application.identifier}}</p>
+              <p class="m-0"><span class="fw-bolder">{{ Translations.identifier | translation | titlecase }} | </span>{{ application.identifier }}</p>
             </c-col>
             <c-col [xs]="12" class="d-flex flex-column">
               <app-json-editor class="d-flex flex-grow-1"
@@ -36,6 +38,30 @@
       </c-row>
     </c-card-body>
   </c-card>
+
+  <div class="my-2" *ngIf="application && application.modules && application.modules.length > 0">
+    <h3 class="m-0">{{ Translations.modules | translation }}</h3>
+    <c-card>
+      <c-card-body>
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+            <tr>
+              <th>{{ Translations.module_version | translation }}</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let module of application.modules">
+              <td>
+                {{module}}
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </c-card-body>
+    </c-card>
+  </div>
 
 </c-container>
 

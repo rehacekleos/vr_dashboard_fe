@@ -34,6 +34,7 @@ export class ApplicationDetailComponent extends TranslateComponent implements On
     this.user = this.authService.getCurrentUser();
     this.route.params.subscribe(async params => {
       this.application = await this.applicationService.getApplication(params.applicationId);
+      console.log(this.application)
     });
   }
 

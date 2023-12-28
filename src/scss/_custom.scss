@@ -140,3 +140,14 @@
   border-radius: 0.25rem;
   line-height: 0.8;
 }
+
+@keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform:rotate(360deg);
+  }
+}
+
+.rotating{
+  animation: spin 1s linear infinite;
+}

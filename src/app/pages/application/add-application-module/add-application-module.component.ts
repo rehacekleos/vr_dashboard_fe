@@ -14,6 +14,7 @@ import { FileUtil } from "../../../shared/utils/fileUtil";
 export class AddApplicationModuleComponent extends TranslateComponent{
 
   validated = false;
+  submitting = false;
   file: File;
 
   moduleVersion: string;
@@ -40,6 +41,7 @@ export class AddApplicationModuleComponent extends TranslateComponent{
   async onSubmit(form: NgForm) {
     this.validated = true;
     if (form.valid && this.file) {
+      this.submitting = true;
       try {
         const arrayBuffer = await this.file.arrayBuffer();
         const base64String = FileUtil.arrayBufferToBase64(arrayBuffer);
@@ -53,6 +55,7 @@ export class AddApplicationModuleComponent extends TranslateComponent{
       } catch (e) {
         this.validated = false;
       }
+      this.submitting = false;
     }
   }
 

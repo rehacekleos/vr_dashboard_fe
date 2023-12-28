@@ -35,6 +35,7 @@
   "submitCompare": "porovnat",
   "assigned": "přiřazen",
   "noEnvData": "Pro dané prostředí nejsou žádné data.",
+  "modules": "Aplikační moduly",
 
   "Actions": {
     "select": "vybrat",

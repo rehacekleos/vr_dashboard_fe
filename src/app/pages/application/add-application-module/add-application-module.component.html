@@ -27,7 +27,7 @@
         <c-form-feedback [valid]="false">{{Translations.inputErrors.file | translation}}</c-form-feedback>
       </c-input-group>
 
-      <label>{{Translations.module_version | translation}}</label>
+      <label>{{Translations.module_version | translation}} <span class="text-muted small">(x.x.x)</span></label>
       <c-input-group class="mb-2 has-validation">
         <input
           [(ngModel)]="moduleVersion"
@@ -44,6 +44,6 @@
     <button (click)="visibleChange(false)" cButton color="secondary">
       {{Translations.Actions.close | translation | titlecase}}
     </button>
-    <button (click)="onSubmitButton(newModuleForm)" cButton color="primary">{{Translations.Actions.add | translation | titlecase}}</button>
+    <button (click)="onSubmitButton(newModuleForm)" [disabled]="submitting" cButton color="primary"><iconify *ngIf="submitting" [rotating]="true" icon="tdesign:load"></iconify> {{Translations.Actions.add | translation | titlecase}}</button>
   </c-modal-footer>
 </c-modal>

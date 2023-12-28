@@ -31,14 +31,14 @@
     </c-card-body>
   </c-card>
   <div class="my-2">
-    <h2 class="m-0">{{Translations.statistics | translation | titlecase}}</h2>
+    <h3 class="m-0">{{Translations.statistics | translation | titlecase}}</h3>
     <ng-container *ngIf="activities; else loading">
       <app-activities-statistics [activities]="activities"/>
     </ng-container>
   </div>
 
   <div class="my-2">
-    <h2 class="m-0">{{Translations.activities | translation | titlecase}}</h2>
+    <h3 class="m-0">{{Translations.activities | translation | titlecase}}</h3>
     <ng-container *ngIf="activities; else loading">
       <app-activity-table [activities]="activities" [showParticipant]="false"/>
     </ng-container>

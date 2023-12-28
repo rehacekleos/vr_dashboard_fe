@@ -14,6 +14,6 @@
     <button (click)="visibleChange(false)" cButton color="secondary">
       {{Translations.Actions.close | translation | titlecase}}
     </button>
-    <button cButton color="primary" (click)="onSubmit()">{{Translations.Actions.add | translation | titlecase}}</button>
+    <button cButton [disabled]="submitting" color="primary" (click)="onSubmit()"><iconify *ngIf="submitting" [rotating]="true" icon="tdesign:load"></iconify> {{Translations.Actions.add | translation | titlecase}}</button>
   </c-modal-footer>
 </c-modal>

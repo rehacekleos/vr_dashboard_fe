@@ -15,6 +15,7 @@ import { Route, Router } from "@angular/router";
 export class NewActivityModalComponent extends TranslateComponent{
 
   submitForm: Subject<any> = new Subject<any>()
+  submitting = false;
 
   newActivity: NewActivity = {
     data: null,
@@ -42,6 +43,7 @@ export class NewActivityModalComponent extends TranslateComponent{
 
 
   async onSubmitForm($event: NewActivity) {
+    this.submitting = true;
     try {
       const activity = await this.activityService.createActivity($event);
       this.visibleChanged.emit(false);
@@ -49,6 +51,7 @@ export class NewActivityModalComponent extends TranslateComponent{
     } catch (e) {
       console.error(e)
     }
+    this.submitting = false;
   }
 
 }

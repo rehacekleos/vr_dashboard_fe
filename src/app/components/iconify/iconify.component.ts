@@ -11,6 +11,8 @@ export class IconifyComponent implements OnInit{
   @Input() size: 'xs' | 'sm' | 'md' | 'lg' = 'sm';
   @Input() customSize: number;
 
+  @Input() rotating = false;
+
   styles: string;
 
   ngOnInit(): void {
