@@ -5,6 +5,15 @@ It is communicating with [VR dashboard server](https://github.com/rehacekleos/vr
 
 The client application is written in Angular v16 using typescript.<br>
 
+## Application Structure
+
+- `/Prompts` Custom CLI scripts
+- `/src` Project source folder
+  - `/app` Application logic
+  - `/assets` Defining different types of server
+    - `/i18n`
+    - `/monaco-editor`
+
 ## First run on local machine
 
 ### Prerequisites

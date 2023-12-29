@@ -56,14 +56,18 @@ export class AuthService extends HttpService{
   }
 
   async getActualInformation(){
-    const res = await firstValueFrom(this.http.get<User>(this.createUrl('/information')));
-    this.$user.next(res);
-    const sessionVal: AuthResponse = SessionStorageUtil.getValue("auth");
-    const newSession: AuthResponse = {
-      token: sessionVal.token,
-      user: res
+    try {
+      const res = await firstValueFrom(this.http.get<User>(this.createUrl('/information')));
+      this.$user.next(res);
+      const sessionVal: AuthResponse = SessionStorageUtil.getValue("auth");
+      const newSession: AuthResponse = {
+        token: sessionVal.token,
+        user: res
+      }
+      SessionStorageUtil.saveValue("auth", newSession);
+    } catch (e) {
+      await this.router.navigate(['/auth/login']);
     }
-    SessionStorageUtil.saveValue("auth", newSession);
   }
 
   getCurrentUser() {
