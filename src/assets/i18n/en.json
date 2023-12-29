@@ -173,19 +173,23 @@
       "setting": "Settings have been updated."
     },
     "created": {
-      "invitation_$": "Invivation byla vytvořena. Kód pozvánky: {{param}}"
+      "invitation_$": "Invitation has been created. Invitation code: {{param}}.",
+      "application_$": "The {{param}} application has been created."
     },
     "delete": {
       "participant": "Participant has been removed!",
       "invitation": "Invitation has been removed!",
       "activity": "Activity has been removed!",
-      "employee": "Employee has been removed!"
+      "employee": "Employee has been removed!",
+      "application": "Application has been removed!"
     },
     "selected": {
       "organisation$": "Organisation {{param}} has been selected."
     },
     "assign": {
-      "participants": "Participant assignments have been updated"
+      "participants": "Participant assignments have been updated.",
+      "application": "Application has been assigned.",
+      "module": "Module has been assigned to the application."
     }
   },
 
