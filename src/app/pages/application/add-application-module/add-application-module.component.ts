@@ -5,6 +5,9 @@ import { ApplicationService } from "../../../shared/services/app/application.ser
 import { TranslateComponent } from "../../../shared/translate/translate.component";
 import { NgForm } from "@angular/forms";
 import { FileUtil } from "../../../shared/utils/fileUtil";
+import { CustomToastrService } from "../../../shared/services/custom-toastr.service";
+import { CustomTranslateService } from "../../../shared/translate/services/custom-translate.service";
+import { Translations } from "../../../shared/translate/translate.model";
 
 @Component({
   selector: 'app-add-application-module',
@@ -23,7 +26,9 @@ export class AddApplicationModuleComponent extends TranslateComponent{
   @Input({required: true}) application: Application;
   @Output() visibleChanged: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  constructor(private applicationService: ApplicationService) {
+  constructor(private applicationService: ApplicationService,
+              private translateService: CustomTranslateService,
+              private toaster: CustomToastrService) {
     super()
   }
 
@@ -50,6 +55,7 @@ export class AddApplicationModuleComponent extends TranslateComponent{
           module_version: this.moduleVersion
         }
         await this.applicationService.addModule(this.application.id, addModule);
+        this.toaster.showToastMessage(this.translateService.instantTranslation(Translations.messages.assign.module));
         this.visibleChanged.emit(false);
         this.resetForm();
       } catch (e) {

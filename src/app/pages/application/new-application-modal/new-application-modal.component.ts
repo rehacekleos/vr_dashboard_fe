@@ -6,6 +6,9 @@ import { NewApplication } from "../../../models/application.model";
 import { ApplicationService } from "../../../shared/services/app/application.service";
 import { TranslateComponent } from "../../../shared/translate/translate.component";
 import { AuthService } from "../../../auth/auth.service";
+import { CustomTranslateService } from "../../../shared/translate/services/custom-translate.service";
+import { CustomToastrService } from "../../../shared/services/custom-toastr.service";
+import { Translations } from "../../../shared/translate/translate.model";
 
 @Component({
   selector: 'app-new-application-modal',
@@ -25,6 +28,8 @@ export class NewApplicationModalComponent extends TranslateComponent {
   @Output() visibleChanged: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor(private applicationService: ApplicationService,
+              private translateService: CustomTranslateService,
+              private toaster: CustomToastrService,
               private authService: AuthService) {
     super()
   }
@@ -32,6 +37,11 @@ export class NewApplicationModalComponent extends TranslateComponent {
 
   visibleChange($event: boolean) {
     this.visibleChanged.emit($event);
+    this.newApplication = {
+      name: "",
+      identifier: "",
+      setting: ""
+    };
   }
 
   onSubmit() {
@@ -41,7 +51,8 @@ export class NewApplicationModalComponent extends TranslateComponent {
 
   async onSubmitForm($event: NewApplication) {
     try {
-      await this.applicationService.createApplication($event, this.authService.getCurrentUser());
+      const app = await this.applicationService.createApplication($event, this.authService.getCurrentUser());
+      this.toaster.showToastMessage(this.translateService.instantTranslation(Translations.messages.created.application_$, {param: app.name}));
       this.visibleChanged.emit(false);
     } catch (e) {
       console.error(e);

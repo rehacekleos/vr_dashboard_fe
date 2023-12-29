@@ -6,6 +6,10 @@ import { NgForm } from "@angular/forms";
 import { AdminService } from "../../../shared/services/app/admin.service";
 import { combineLatest, combineLatestAll } from "rxjs";
 import { AuthService } from "../../../auth/auth.service";
+import { Translations } from "../../../shared/translate/translate.model";
+import { CustomTranslateService } from "../../../shared/translate/services/custom-translate.service";
+import { ActivatedRoute } from "@angular/router";
+import { CustomToastrService } from "../../../shared/services/custom-toastr.service";
 
 @Component({
   selector: 'app-assign-application-modal',
@@ -26,6 +30,8 @@ export class AssignApplicationModalComponent extends TranslateComponent implemen
 
   constructor(private applicationService: ApplicationService,
               private authService: AuthService,
+              private translateService: CustomTranslateService,
+              private toaster: CustomToastrService,
               private adminService: AdminService) {
     super()
   }
@@ -66,6 +72,7 @@ export class AssignApplicationModalComponent extends TranslateComponent implemen
       try {
         await this.applicationService.assignApplication(this.selectedApplication.id);
         this.validated = false;
+        this.toaster.showToastMessage(this.translateService.instantTranslation(Translations.messages.assign.application));
         this.visibleChanged.emit(false);
       } catch (e) {
         this.validated = false;

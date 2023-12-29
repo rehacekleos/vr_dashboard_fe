@@ -34,7 +34,6 @@ export class ApplicationDetailComponent extends TranslateComponent implements On
     this.user = this.authService.getCurrentUser();
     this.route.params.subscribe(async params => {
       this.application = await this.applicationService.getApplication(params.applicationId);
-      console.log(this.application)
     });
   }
 
@@ -47,7 +46,8 @@ export class ApplicationDetailComponent extends TranslateComponent implements On
     try {
       await this.applicationService.deleteApplication(this.application.id);
       this.deleteModalOpen = false;
-      await this.router.navigate(["activity"]);
+      this.toaster.showToastMessage(this.translateService.instantTranslation(Translations.messages.delete.application));
+      await this.router.navigate(["admin"]);
     } catch (e) {
 
     }
@@ -70,7 +70,10 @@ export class ApplicationDetailComponent extends TranslateComponent implements On
     }
   }
 
-  changeModalVisibility($event: boolean) {
+  async changeModalVisibility($event: boolean) {
     this.addModuleModalOpen = $event;
+    if (this.application && $event === false) {
+      this.application = await this.applicationService.getApplication(this.application.id);
+    }
   }
 }

@@ -173,19 +173,23 @@
       "setting": "Nastavení bylo aktualizováno."
     },
     "created": {
-      "invitation_$": "The invitation has been created. Invitation code: {{param}}"
+      "invitation_$": "Pozvánka byla vytvořena. Kód pozvánky: {{param}}",
+      "application_$": "Aplikace {{param}} byla vytvořena."
     },
     "delete": {
       "participant": "Participant byl odstraněn!",
       "invitation": "Pozvánka byla odstraněna!",
       "employee": "Zaměstnanec byl odstraněn!",
-      "activity": "Aktivita byla odstraněna!"
+      "activity": "Aktivita byla odstraněna!",
+      "application": "Aplikace byla odstraněna!"
     },
     "selected": {
       "organisation$": "Organizace {{param}} byla vybrána."
     },
     "assign": {
-      "participants": "Přiřazení participantů bylo aktualizováno"
+      "participants": "Přiřazení participantů bylo aktualizováno.",
+      "application": "Aplikace byla přiřazena.",
+      "module": "Modul byl přiřazen k aplikaci."
     }
   },
 

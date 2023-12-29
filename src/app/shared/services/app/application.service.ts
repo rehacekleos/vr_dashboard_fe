@@ -30,9 +30,10 @@ export class ApplicationService extends HttpService {
   }
 
   async createApplication(body: NewApplication, user: User) {
-    await firstValueFrom(this.http.post<Application[]>(this.createUrl(''), body));
+    const res = await firstValueFrom(this.http.post<Application>(this.createUrl(''), body));
     await this.getApplications();
     await this.adminService.getAllApplications(user);
+    return res;
   }
 
   async assignApplication(applicationId: string) {
