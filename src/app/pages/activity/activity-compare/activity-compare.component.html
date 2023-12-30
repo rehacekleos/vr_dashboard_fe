@@ -64,6 +64,7 @@
                 <app-position-chart
                   *ngIf="graph.type === 'position' && graph.display === true"
                   [part]="graph.part"
+                  [graphSetting]="graph"
                   [records]="envRecords"
                   [appSetting]="application.setting"
                 />

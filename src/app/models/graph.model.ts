@@ -8,20 +8,22 @@ export type PositionGraph = {
   type: "position"
   part: GraphPart
   display: boolean
+  x_axis_unit?: string;
+  y_axis_unit?: string;
 }
 
 export type PositionHeatMapGraph = {
   type: "position-heatmap"
   part: GraphPart
   display: boolean
-  x_axis_unit?: string;
+  x_axis_unit?: string
   y_axis_unit?: string
 }
 
 export type RotationGraph = {
   type: "rotation"
   part: GraphPart
-  display: boolean,
+  display: boolean
   axis: {
     x: boolean
     y: boolean
@@ -34,9 +36,9 @@ export type DifferenceGraph = {
   part: GraphPart
   diff: "absolute" | "avg"
   display: boolean
-  recommended_max?: number,
-  recommended_min?: number,
-  unit?: string,
+  recommended_max?: number
+  recommended_min?: number
+  unit?: string
   axis: {
     x: boolean
     y: boolean

@@ -18,6 +18,7 @@ import {
 import { ChartUtil } from "../../../shared/utils/chartUtil";
 import { ApplicationSetting } from "../../../models/application.model";
 import { TitleCasePipe } from "@angular/common";
+import { GraphSetting, PositionGraph, PositionHeatMapGraph } from "../../../models/graph.model";
 
 @Component({
   selector: 'app-position-chart',
@@ -29,6 +30,7 @@ export class PositionComponent extends TranslateComponent implements OnInit, OnC
   @Input({required: true, alias: "part"}) part: "head" | "left_hand" | "right_hand";
   @Input({required: true}) records: Record[];
   @Input({required: true}) appSetting: ApplicationSetting
+  @Input({required: true}) graphSetting: GraphSetting
 
   position = [];
 
@@ -69,6 +71,7 @@ export class PositionComponent extends TranslateComponent implements OnInit, OnC
 
   ngOnInit(): void {
     const timeTranslate = this.titleCasePipe.transform(this.translateService.instantTranslation(Translations.time));
+    const setting: PositionGraph = this.graphSetting as PositionGraph;
 
     this.tooltip = {
       y: {
@@ -90,15 +93,15 @@ export class PositionComponent extends TranslateComponent implements OnInit, OnC
         fontSize: "16px"
       }
     }
+    this.yAxis = {
+      title: {
+        text: this.translateService.instantTranslation(Translations.axis.x) + (setting.y_axis_unit ? ` [${setting.y_axis_unit}]` : "")
+      }
+    }
     this.xAxis = {
       type: "numeric",
       title: {
-        text: this.translateService.instantTranslation(Translations.axis.z)
-      }
-    }
-    this.yAxis = {
-      title: {
-        text: this.translateService.instantTranslation(Translations.axis.x)
+        text: this.translateService.instantTranslation(Translations.axis.z) + (setting.x_axis_unit ? ` [${setting.x_axis_unit}]` : "")
       }
     }
 
