@@ -8,6 +8,8 @@ import { J } from "@angular/cdk/keycodes";
 import { AuthService } from "../../auth/auth.service";
 import { INavData } from "@coreui/angular";
 
+import pkg from '../../../../package.json';
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './default-layout.component.html',
@@ -15,7 +17,8 @@ import { INavData } from "@coreui/angular";
 })
 export class DefaultLayoutComponent implements OnInit{
 
-  public navItems: INavData[]
+  public navItems: INavData[];
+  appVersion: string = pkg.version;
 
   constructor(private translateService: CustomTranslateService,
               private authService: AuthService) {
@@ -26,6 +29,7 @@ export class DefaultLayoutComponent implements OnInit{
   public perfectScrollbarConfig = {
     suppressScrollX: true,
   };
+
 
   async ngOnInit() {
 
@@ -52,4 +56,7 @@ export class DefaultLayoutComponent implements OnInit{
 
     this.navItems = copy;
   }
+
+  protected readonly JSON = JSON;
+  protected readonly console = console;
 }

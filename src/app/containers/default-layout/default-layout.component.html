@@ -28,6 +28,9 @@
       dropdownMode="close"
     />
   </ng-scrollbar>
+  <div *ngIf="!sidebar.sidebarState.unfoldable" class="text-center">
+    Version | <span class="text-muted">{{appVersion}}</span>
+  </div>
   <c-sidebar-toggler
     *ngIf="!sidebar.narrow"
     toggle="unfoldable"

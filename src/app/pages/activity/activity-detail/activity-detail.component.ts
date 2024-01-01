@@ -209,4 +209,8 @@ export class ActivityDetailComponent extends TranslateComponent implements OnIni
   onToggleModule() {
     this.showModule = !this.showModule;
   }
+
+  async redirectToParticipant(participantId: string) {
+    await this.router.navigate(['/participant', participantId]);
+  }
 }
