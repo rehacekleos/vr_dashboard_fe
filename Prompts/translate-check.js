@@ -3,6 +3,10 @@ const path = require('path')
 const _ = require('lodash')
 
 
+/**
+ * Support script that checks if all language files have defined keys and translations.
+ * It also checks if there are any extra keys in the files.
+ */
 class TranslateCheck {
     languageFilePath = path.join(__dirname,'../','src','assets','i18n')
     translationKeysArray = [];

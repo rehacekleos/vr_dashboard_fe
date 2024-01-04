@@ -10,9 +10,19 @@ The client application is written in Angular v16 using typescript.<br>
 - `/Prompts` Custom CLI scripts
 - `/src` Project source folder
   - `/app` Application logic
+    - `/auth` Logic and pages for login and registration
+    - `/components` Directory of components
+    - `/containers` Default application layout
+    - `/guards` Router guards
+    - `/interceptors` HTTP interceptors
+    - `/models` Models of entities
+    - `/pages` Directory of pages
+    - `/shared` Base services, translate logic and utils
   - `/assets` Defining different types of server
-    - `/i18n`
-    - `/monaco-editor`
+    - `/i18n` Location of language translations
+    - `/monaco-editor` Location of the validation schema for monaco editor
+  - `/environments` Defining individual variables for environments
+  - `/scss` Definition of global css styles
 
 ## First run on local machine
 
