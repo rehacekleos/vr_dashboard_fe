@@ -15,6 +15,7 @@ import { CustomToastrService } from "../../../shared/services/custom-toastr.serv
 import { combineLatest } from "rxjs";
 import { DomSanitizer } from "@angular/platform-browser";
 import { CustomDataUtils } from "../../../shared/utils/customDataUtils";
+import { addCollection } from "@iconify/iconify";
 
 dayjs.extend(duration)
 
@@ -51,10 +52,8 @@ export class ActivityDetailComponent extends TranslateComponent implements OnIni
   }
 
   ngOnInit(): void {
-    this.participantService.getParticipants().then();
-    this.applicationService.getApplications().then();
 
-    combineLatest([this.route.params, this.participantService.$participants, this.applicationService.$applications]).subscribe(async ([params, participants, applications]) => {
+    combineLatest([this.route.params, this.participantService.$participants, this.applicationService.$applications]).pipe().subscribe(async ([params, participants, applications]) => {
       if (params && applications && participants) {
         this.activity = await this.activityService.getActivity(params.activityId);
         this.participant = participants.find(p => p.id === this.activity.participantId);
@@ -67,7 +66,6 @@ export class ActivityDetailComponent extends TranslateComponent implements OnIni
         this.customData = [...this.getCustomData(), ...this.getRecordsCustomData()];
       }
     })
-
   }
 
   getApplicationModuleVersion() {
@@ -75,12 +73,12 @@ export class ActivityDetailComponent extends TranslateComponent implements OnIni
     const appSetting = this.application.setting;
     const logVersion = this.activity.data.log_version.toString();
 
-    if (appSetting.module_version_mapping == null){
+    if (appSetting.module_version_mapping == null) {
       return;
     }
-    for (const [key, value] of Object.entries(appSetting.module_version_mapping)){
-      if (value.includes(logVersion.toString())){
-        if (appModules.includes(key.toString())){
+    for (const [key, value] of Object.entries(appSetting.module_version_mapping)) {
+      if (value.includes(logVersion.toString())) {
+        if (appModules.includes(key.toString())) {
           this.applicationModuleVersion = key;
           return;
         }
@@ -158,8 +156,8 @@ export class ActivityDetailComponent extends TranslateComponent implements OnIni
         // Record custom data only accept number values
         let value: number = 0;
         const values = this.environmentsRecords.filter(r => r.custom_data && r.custom_data[set.path] && typeof r.custom_data[set.path] === "number").map(r => r.custom_data[set.path]);
-        if (values.length > 0){
-          switch (set.type){
+        if (values.length > 0) {
+          switch (set.type) {
             case "avg":
               value = CustomDataUtils.getAvgValue(values);
               break;
