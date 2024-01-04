@@ -36,6 +36,7 @@
   "assigned": "přiřazen",
   "noEnvData": "Pro dané prostředí nejsou žádné data.",
   "modules": "Aplikační moduly",
+  "deleted": "odstraněn",
 
   "Actions": {
     "select": "vybrat",

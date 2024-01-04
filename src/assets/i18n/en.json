@@ -36,6 +36,7 @@
   "assigned": "assign",
   "noEnvData": "There is no data for this environment.",
   "modules": "Application modules",
+  "deleted": "deleted",
 
   "Actions": {
     "select": "select",

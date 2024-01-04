@@ -10,6 +10,9 @@ import { Router } from "@angular/router";
 import isSameOrBefore from "dayjs/plugin/isSameOrBefore";
 import isSameOrAfter from "dayjs/plugin/isSameOrAfter";
 import { combineLatest, forkJoin } from "rxjs";
+import { CustomTranslateService } from "../../../shared/translate/services/custom-translate.service";
+import { TitleCasePipe } from "@angular/common";
+import { Translations } from "../../../shared/translate/translate.model";
 
 dayjs.extend(isSameOrBefore)
 dayjs.extend(isSameOrAfter)
@@ -43,6 +46,8 @@ export class ActivityTableComponent extends TranslateComponent implements OnInit
 
   constructor(private applicationService: ApplicationService,
               private participantService: ParticipantService,
+              private translateService: CustomTranslateService,
+              private titleCasePipe: TitleCasePipe,
               private router: Router) {
     super();
   }
@@ -97,11 +102,21 @@ export class ActivityTableComponent extends TranslateComponent implements OnInit
       const application = this.getApplication(a);
       const participant = this.getParticipant(a);
 
+
+      let participantName: string;
+      if (a.anonymous){
+        participantName = this.titleCasePipe.transform(this.translateService.instantTranslation(Translations.anonymous));
+      } else if (!participant){
+        participantName = this.titleCasePipe.transform(this.translateService.instantTranslation(Translations.deleted));
+      } else {
+        participantName = participant?.nickname;
+      }
+
       const activity: ActivityTable = {
         id: a.id,
         start: this.getStart(a),
-        participant: participant?.nickname || "",
-        application: application?.name || "",
+        participant: participantName,
+        application: application?.name || this.titleCasePipe.transform(this.translateService.instantTranslation(Translations.deleted)),
         applicationId: application?.id,
         participantId: participant?.id
       }

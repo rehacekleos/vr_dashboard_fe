@@ -16,6 +16,7 @@ import { combineLatest } from "rxjs";
 import { DomSanitizer } from "@angular/platform-browser";
 import { CustomDataUtils } from "../../../shared/utils/customDataUtils";
 import { addCollection } from "@iconify/iconify";
+import { TitleCasePipe } from "@angular/common";
 
 dayjs.extend(duration)
 
@@ -46,6 +47,7 @@ export class ActivityDetailComponent extends TranslateComponent implements OnIni
               private participantService: ParticipantService,
               private applicationService: ApplicationService,
               private translateService: CustomTranslateService,
+              private titleCasePipe: TitleCasePipe,
               private toaster: CustomToastrService,
               private activityService: ActivityService) {
     super();
@@ -210,5 +212,13 @@ export class ActivityDetailComponent extends TranslateComponent implements OnIni
 
   async redirectToParticipant(participantId: string) {
     await this.router.navigate(['/participant', participantId]);
+  }
+
+  getParticipantNickname() {
+   if (!this.participant){
+      return  this.titleCasePipe.transform(this.translateService.instantTranslation(Translations.deleted));
+    } else {
+      return  this.participant?.nickname;
+    }
   }
 }

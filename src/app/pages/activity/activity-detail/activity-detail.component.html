@@ -23,7 +23,7 @@
                 <app-boolean-icon [value]="activity.anonymous"/>
               </p>
               <p class="m-0" *ngIf="activity.participantId"><span class="fw-bolder">{{Translations.participant | translation | titlecase}}
-                | </span><button (click)="redirectToParticipant(activity.participantId)" class="btn btn-link m-0 p-0 border-0 align-baseline">{{participant?.nickname}}</button></p>
+                | </span><button (click)="redirectToParticipant(activity.participantId)" [disabled]="participant == null" class="btn btn-link m-0 p-0 border-0 align-baseline">{{getParticipantNickname()}}</button></p>
               <p class="m-0"><span class="fw-bolder">{{Translations.application | translation | titlecase}}
                 | </span>{{application?.name}}</p>
             </c-col>
