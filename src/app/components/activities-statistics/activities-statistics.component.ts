@@ -32,6 +32,7 @@ export class ActivitiesStatisticsComponent extends TranslateComponent implements
 
   getStatistics() {
     let totalDuration = 0;
+    let avg = 0;
     for (const activity of this.activities){
       const start = activity.data.start;
       const end = activity.data.end;
@@ -39,8 +40,11 @@ export class ActivitiesStatisticsComponent extends TranslateComponent implements
       totalDuration += diffInMs;
     }
 
+    if (this.activities.length){
+      avg = totalDuration / this.activities.length
+    }
     this.totalDuration = dayjs.duration(totalDuration).format(`m [min] s [s]`)
-    this.avgDuration = dayjs.duration(totalDuration / this.activities.length).format(`m [min] s [s]`)
+    this.avgDuration = dayjs.duration(avg).format(`m [min] s [s]`)
     if (this.activities.length > 0) {
       this.lastActivityBefore = dayjs.duration(dayjs().diff(this.activities[0].data.start)).format(`D [d] H [h]`)
     }
