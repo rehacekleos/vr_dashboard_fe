@@ -11,10 +11,9 @@
     "dev": "ng serve",
     "build": "ng build",
     "test": "ng test",
-    "check-translation": "node Prompts/translate-check.js",
-    "generateApplicationSettingSchema": "npx ts-json-schema-generator --path './src/app/models/application.model.ts' --type 'ApplicationSetting' --out './src/assets/monaco-editor/settings-type.json'"
+    "check:translation": "node Prompts/translate-check.js",
+    "generate:app-schema": "npx ts-json-schema-generator --path './src/app/models/application.model.ts' --type 'ApplicationSetting' --out './src/assets/monaco-editor/settings-type.json'"
   },
-  "private": true,
   "dependencies": {
     "@angular/animations": "^16.1.1",
     "@angular/cdk": "^16.1.1",
