@@ -20,6 +20,18 @@ import { ApplicationSetting } from "../../../models/application.model";
 import { TitleCasePipe } from "@angular/common";
 import { GraphSetting, PositionGraph, PositionHeatMapGraph } from "../../../models/graph.model";
 
+/**
+ * Position Graph <br>
+ * It visualize position of selected part in axis X and Z
+ *
+ * @example
+ *  <app-positional-differential-chart
+ *   [part]="graph.part"
+ *   [graphSetting]="graph"
+ *   [records]="environmentsRecords"
+ *   [appSetting]="application.setting"
+ * />
+ */
 @Component({
   selector: 'app-position-chart',
   templateUrl: './position.component.html',

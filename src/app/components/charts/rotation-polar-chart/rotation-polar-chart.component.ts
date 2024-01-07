@@ -19,6 +19,18 @@ import { CustomTranslateService } from "../../../shared/translate/services/custo
 import { TranslateComponent } from "../../../shared/translate/translate.component";
 import { ApplicationSetting } from "../../../models/application.model";
 
+/**
+ * Rotation Polar Graph <br>
+ * It visualize rotation as Polar graph (circle) of selected part in selected axis
+ *
+ * @example
+ * <app-rotation-polar-chart
+ *   [part]="graph.part"
+ *   [records]="environmentsRecords"
+ *   [axis]="graph.axis"
+ *   [appSetting]="application.setting"
+ * />
+ */
 @Component({
   selector: 'app-rotation-polar-chart',
   templateUrl: './rotation-polar-chart.component.html',

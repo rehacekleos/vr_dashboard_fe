@@ -20,6 +20,19 @@ import { ChartUtil } from "../../../shared/utils/chartUtil";
 import { DifferenceGraph, GraphPart, GraphSetting } from "../../../models/graph.model";
 import { ApplicationSetting } from "../../../models/application.model";
 
+
+/**
+ * Positional Difference Graph <br>
+ * It visualize position difference as line graph of selected part in selected axis
+ *
+ * @example
+ * <app-heatmap-chart
+ *    [records]="environmentsRecords"
+ *    [part]="graph.part"
+ *    [graphSetting]="graph"
+ *    [appSetting]="application.setting"
+ * />
+ */
 @Component({
   selector: 'app-positional-differential-chart',
   templateUrl: './positional-differential.component.html',

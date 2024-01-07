@@ -7,6 +7,18 @@ import { TranslateComponent } from "../../../shared/translate/translate.componen
 import { ApplicationSetting } from "../../../models/application.model";
 import { GraphSetting, PositionHeatMapGraph } from "../../../models/graph.model";
 
+/**
+ * Heatmap Graph <br>
+ * It visualize position of selected part in axis X and Z by heatmap
+ *
+ * @example
+ * <app-heatmap-chart
+ *    [records]="environmentsRecords"
+ *    [part]="graph.part"
+ *    [graphSetting]="graph"
+ *    [appSetting]="application.setting"
+ * />
+ */
 @Component({
   selector: 'app-heatmap-chart',
   templateUrl: './heatmap.component.html',

@@ -21,6 +21,18 @@ import { ChartUtil } from "../../../shared/utils/chartUtil";
 import { GraphPart, GraphSetting, RotationGraph } from "../../../models/graph.model";
 import { ApplicationSetting } from "../../../models/application.model";
 
+/**
+ * Rotation Graph <br>
+ * It visualize rotation of selected part in selected axis
+ *
+ * @example
+ * <app-rotation-chart
+ *   [part]="graph.part"
+ *   [records]="environmentsRecords"
+ *   [graphSetting]="graph"
+ *   [appSetting]="application.setting"
+ * />
+ */
 @Component({
   selector: 'app-rotation-chart',
   templateUrl: './rotation.component.html',
