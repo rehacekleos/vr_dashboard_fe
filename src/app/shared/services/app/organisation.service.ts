@@ -62,4 +62,11 @@ export class OrganisationService extends HttpService{
     this.$selectedOrganisation.next(res);
     return res;
   }
+
+  async deleteOrganisation(id: any) {
+    const res = await firstValueFrom(this.http.delete(this.createUrl(`/${id}`)));
+    this.$selectedOrganisation.next(undefined);
+    await this.getOrganisations();
+    return res;
+  }
 }

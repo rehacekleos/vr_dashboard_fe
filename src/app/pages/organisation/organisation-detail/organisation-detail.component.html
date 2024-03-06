@@ -1,6 +1,14 @@
 <c-container fluid>
   <div class="mb-3" *ngIf="organisation; else loading">
-    <h2>{{ organisation.name }}</h2>
+    <div class="d-flex flex-row align-items-center justify-content-between">
+      <h2>{{ organisation.name }}</h2>
+      <div *ngIf="user && user.superAdmin">
+        <button class="btn btn-danger btn-sm" (click)="openConfirmModal()">
+          <iconify icon="mdi:trash"/>
+          {{ Translations.Actions.delete | translation | titlecase }}
+        </button>
+      </div>
+    </div>
     <span class="h5">{{ Translations.code | translation | titlecase }} | <span class="text-muted">{{ organisation.code }}</span>
       <iconify (click)="copyCode(organisation.code)" class="ms-2 pointer h-75" icon="zondicons:copy"/>
     </span>
@@ -29,7 +37,9 @@
                 <th>{{ Translations.surname | translation | titlecase }}</th>
                 <th>{{ Translations.role | translation | titlecase }}</th>
                 <th>{{ Translations.participants | translation | titlecase }}</th>
-                <th *ngIf="(employee && employee.role.name === RoleNames.ADMIN) || user.superAdmin">{{ Translations.actions | translation | titlecase }}</th>
+                <th
+                  *ngIf="(employee && employee.role.name === RoleNames.ADMIN) || user.superAdmin">{{ Translations.actions | translation | titlecase }}
+                </th>
               </tr>
               </thead>
               <tbody>
@@ -38,7 +48,8 @@
                 <td nowrap>{{ emp.user.name }}</td>
                 <td nowrap>{{ emp.user.surname }}</td>
                 <td nowrap>
-                  <ng-container *ngIf="((employee && employee.role.name === RoleNames.ADMIN) || user.superAdmin) && emp.userId !== user.id; else notAdmin">
+                  <ng-container
+                    *ngIf="((employee && employee.role.name === RoleNames.ADMIN) || user.superAdmin) && emp.userId !== user.id; else notAdmin">
                     <select class="form-select form-select-xs" [(ngModel)]="emp.role.name" (ngModelChange)="changeUserRole(emp, $event)">
                       <option [ngValue]="RoleNames.ADMIN">{{ RoleNames.ADMIN }}</option>
                       <option [ngValue]="RoleNames.EMPLOYEE">{{ RoleNames.EMPLOYEE }}</option>
@@ -87,7 +98,9 @@
                   <th>{{ Translations.createdAt | translation | titlecase }}</th>
                   <th class="text-center">{{ Translations.valid | translation | titlecase }}</th>
                   <th>{{ Translations.code | translation | titlecase }}</th>
-                  <th *ngIf="(employee && employee.role.name === RoleNames.ADMIN) || user.superAdmin">{{ Translations.actions | translation | titlecase }}</th>
+                  <th
+                    *ngIf="(employee && employee.role.name === RoleNames.ADMIN) || user.superAdmin">{{ Translations.actions | translation | titlecase }}
+                  </th>
                 </tr>
                 </thead>
                 <tbody>
@@ -123,9 +136,9 @@
 
 <app-new-invitation-modal [open]="openInvitationModal" (visibleChanged)="invitationModalVisibleChange($event)"/>
 <app-confirmation-modal
-  [open]="deleteModalOpen"
+  [open]="deleteInvitationModalOpen"
   [title]="Translations.delete.invitation | translation"
-  [message]="getDeleteMessage()"
+  [message]="getDeleteInvitationMessage()"
   [confirmButtonText]="Translations.Actions.delete | translation | titlecase"
   (confirm)="deleteInvitation()"
   (cancel)="closeDeleteModal()"
@@ -146,7 +159,18 @@
   [allParticipants]="allParticipants"
   (visibleChanged)="openEditParticipantsModal = $event"
   (newAssignedParticipants)="updateAssignment($event)"
-  />
+/>
+
+
+<app-confirmation-modal
+  [open]="deleteModalOpen"
+  [title]="Translations.delete.organisation | translation | titlecase"
+  [message]="getDeleteMessage()"
+  [confirmButtonText]="Translations.Actions.delete | translation | titlecase"
+  (confirm)="deleteApplication()"
+  (cancel)="closeConfirmModal()"
+  [color]="'danger'"/>
+
 
 <ng-template #valid>
   <iconify class="text-success" icon="codicon:pass-filled"/>

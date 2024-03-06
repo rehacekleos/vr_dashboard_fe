@@ -8,7 +8,7 @@ import { EmployeeService } from "../../../shared/services/app/employee.service";
 import { InvitationService } from "../../../shared/services/app/invitation.service";
 import { Clipboard } from "@angular/cdk/clipboard";
 import dayjs from "dayjs";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { TranslateComponent } from "../../../shared/translate/translate.component";
 import { CustomTranslateService } from "../../../shared/translate/services/custom-translate.service";
 import { Translations } from "../../../shared/translate/translate.model";
@@ -38,6 +38,7 @@ export class OrganisationDetailComponent extends TranslateComponent implements O
   editEmployee: Employee;
   openInvitationModal = false;
   deleteModalOpen = false;
+  deleteInvitationModalOpen = false;
   invitationToDelete: Invitation;
   deleteEmployeeModalOpen = false;
   employeeToDelete: Employee;
@@ -48,6 +49,7 @@ export class OrganisationDetailComponent extends TranslateComponent implements O
               private toastr: CustomToastrService,
               private empService: EmployeeService,
               private route: ActivatedRoute,
+              private router: Router,
               private translationService: CustomTranslateService,
               private invitationService: InvitationService,
               private clipboard: Clipboard) {
@@ -106,12 +108,23 @@ export class OrganisationDetailComponent extends TranslateComponent implements O
     }
   }
 
+  async deleteApplication() {
+    try {
+      await this.orgService.deleteOrganisation(this.organisation.id);
+      this.toastr.showToastMessage(this.translationService.instantTranslation(Translations.messages.delete.organisation));
+      this.deleteModalOpen = false;
+      this.router.navigate(["organisation"])
+    } catch (e) {
+      console.error(e)
+    }
+  }
+
   async deleteInvitation() {
     try {
       await this.invitationService.deleteInvitation(this.invitationToDelete.id);
       this.toastr.showToastMessage(this.translationService.instantTranslation(Translations.messages.delete.invitation));
       this.invitationToDelete = null;
-      this.deleteModalOpen = false;
+      this.deleteInvitationModalOpen = false;
     } catch (e) {
       console.error(e)
     }
@@ -122,13 +135,26 @@ export class OrganisationDetailComponent extends TranslateComponent implements O
       await this.empService.deleteEmployee(this.employeeToDelete.id);
       this.toastr.showToastMessage(this.translationService.instantTranslation(Translations.messages.delete.employee));
       this.employeeToDelete = null;
-      this.deleteModalOpen = false;
+      this.deleteEmployeeModalOpen = false;
     } catch (e) {
       console.error(e);
     }
   }
 
+  closeConfirmModal() {
+    this.deleteModalOpen = false;
+  }
+
+  openConfirmModal() {
+    this.deleteModalOpen = true;
+  }
+
   getDeleteMessage() {
+    return this.translationService.instantTranslation(Translations.confirm.delete.organisation_$, {param: this.organisation.name});
+
+  }
+
+  getDeleteInvitationMessage() {
     if (this.invitationToDelete) {
       return this.translationService.instantTranslation(Translations.confirm.delete.invitation_$, {param: this.invitationToDelete.email})
     }
@@ -141,12 +167,12 @@ export class OrganisationDetailComponent extends TranslateComponent implements O
   }
 
   openDeleteModal(invitation: Invitation) {
-    this.deleteModalOpen = true;
+    this.deleteInvitationModalOpen = true;
     this.invitationToDelete = invitation;
   }
 
   closeDeleteModal() {
-    this.deleteModalOpen = false;
+    this.deleteInvitationModalOpen = false;
   }
 
   closeDeleteEmployeeModal() {
@@ -182,4 +208,5 @@ export class OrganisationDetailComponent extends TranslateComponent implements O
       console.error(e);
     }
   }
+
 }

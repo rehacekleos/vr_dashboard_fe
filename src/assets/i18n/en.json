@@ -85,6 +85,7 @@
     "participant": "Delete participant",
     "invitation": "Delete invitation",
     "employee": "Delete employee",
+    "organisation": "Delete organisation",
     "activity": "Delete activity",
     "application": "Delete application"
   },
@@ -93,6 +94,7 @@
     "delete": {
       "participant_$": "Do you really want to remove the participant with nickname: {{param}}?",
       "invitation_$": "Do you really want to remove the invitation with email: {{param}}?",
+      "organisation_$": "Do you really want to remove the organisation: {{param}}?",
       "employee_$": "Do you really want to remove the employee with the email: {{param}}?",
       "activity": "Do you really want to remove the activity?",
       "application_$": "Do you really want to remove the application with code: {{param}}?\nAfter the remove, maybe your VR application stop working!"
@@ -180,6 +182,7 @@
     "delete": {
       "participant": "Participant has been removed!",
       "invitation": "Invitation has been removed!",
+      "organisation": "Organisation has been removed!",
       "activity": "Activity has been removed!",
       "employee": "Employee has been removed!",
       "application": "Application has been removed!"

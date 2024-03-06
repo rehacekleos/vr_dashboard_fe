@@ -86,6 +86,7 @@
     "invitation": "Odstranit pozvánku",
     "employee": "Odstranit zaměstnance",
     "activity": "Odstranit aktivitu",
+    "organisation": "Odstranit organizaci",
     "application": "odstranit aplikaci"
   },
 
@@ -93,6 +94,7 @@
     "delete": {
       "participant_$": "Opravdu chcete odstranit participanta s přezdívkou: {{param}}?",
       "invitation_$": "Opravdu chcete odstranit pozvánku s emailem: {{param}}?",
+      "organisation_$": "Opravdu chcete odstranit organizaci {{param}}?",
       "employee_$": "Opravdu chcete odstranit zaměstnance s emailem: {{param}}?",
       "activity": "Opravdu chcete odstranit aktivitu?",
       "application_$": "Opravdu chcete odstranit aplikaci s kódem: {{param}}?\nPo odstranění je možné, že přestanou fungovat VR aplikace!"
@@ -180,6 +182,7 @@
     "delete": {
       "participant": "Participant byl odstraněn!",
       "invitation": "Pozvánka byla odstraněna!",
+      "organisation": "Organizace byla odstraněna!",
       "employee": "Zaměstnanec byl odstraněn!",
       "activity": "Aktivita byla odstraněna!",
       "application": "Aplikace byla odstraněna!"
